@@ -1,0 +1,33 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\chapter{Combinatoriek}
+\label{cha:combinatoriek}
+
+\section{Variaties}
+\label{sectie:variaties}
+
+\begin{de}
+  Een \term{variatie} van $p\in \mathbb{N}$ elementen uit $n\in \mathbb{N}$ elementen (met $p \le n$) is een \textbf{geordend} $p$-tal van \textbf{verschillende elementen} gekozen uit een gegeven verzameling van $n$ elementen.    
+\end{de}
+
+\begin{de}
+  Twee variaties zijn gelijk als zowel de orde van als de elementen in het $p$-tal gelijk zijn.
+\end{de}
+
+\begin{st}
+  Het aantal variaties van $p$ elementen uit $n$ is gelijk aan $V_{v}^{p}$.
+  \[
+  V_{p}^{n} = \prod_{i=0}^{p-1}(n-p)
+  \]
+
+  \begin{proof}
+    We moeten een rij van lengte $p$ vormen met $n$ elementen.
+    Voor de eerste plaats is er vrije keuze, dus $n$ elementen.
+    Voor de tweede plaats is er keuze uit de overgebleven $n-1$ elementen.
+    Voor de $i$-de plaats is er dan keuze uit de overgebleven $n-1$ elementen.
+    er zijn dus $\prod_{i=0}^{p-1}(n-p)$ mogelijke manieren om $p$ elementen te kiezen uit $n$ zonder herhalingen.
+  \end{proof}
+\end{st}
+
+\end{document}
