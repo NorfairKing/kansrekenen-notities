@@ -4,7 +4,6 @@
 \chapter{Combinatoriek}
 \label{cha:combinatoriek}
 
-\TODO{definieer een $n$-tal? en een combinatie met eigen eerst zonder de context van combinatoriek?}
 
 \section{Variaties}
 \label{sec:variaties}
@@ -16,7 +15,7 @@
 \begin{st}
   Het aantal variaties van $p$ elementen uit $n$ is gelijk aan $V_{v}^{p}$.
   \[
-  V_{p}^{n} = \prod_{i=0}^{p-1}(n-p)
+  V_{p}^{n} = \prod_{i=0}^{p-1}(n-i)
   \]
 
   \begin{proof}
@@ -30,7 +29,10 @@
 
 \begin{ei}
   \[ V_{n}^{0} = 1 \quad\text{en}\quad V_{n}^{n} = n! \]
-\extra{bewijs}
+
+  \begin{proof}
+    \[ V_{n}^{0} = \prod_{i=0}^{0-1}(n-i) = 1 \quad\text{ en }\quad V_{n}^{n} = \prod_{i=0}^{n-1}(n-i) = n!\]
+  \end{proof}
 \end{ei}
 
 \begin{de}
@@ -99,18 +101,41 @@
 
 \begin{ei}
   \[ C_{n}^{n} = C_{n}^{0} = 1 \]
-\extra{bewijs}
+
+  \begin{proof}
+    \[ C_{n}^{n} = \frac{n!}{n!(n-n)!} = 1 = \frac{n!}{0!(n-0!)} = C_{n}^{0} \]
+  \end{proof}
 \end{ei}
 
 \begin{ei}
   \[ C_{n}^{p} = C_{n}^{n-p} \]
-\extra{bewijs}
+
+  \begin{proof}
+    \[
+    \begin{array}{rll}
+      C_{n}^{n-p} &= \frac{n!}{(n-p)!(n-(n-p))!} \\
+                &= \frac{n!}{(n-p)!(n-n+p)!} \\
+                &= \frac{n!}{p!(n-p)!} &= C_{n}^{p}
+    \end{array}
+    \]
+  \end{proof}
 \end{ei}
 
 \begin{ei}
   De \term{formule van Pascal}.
   \[ C_{n}^{p} + C_{n}^{p+1} = C_{n+1}^{p+1} \]
-\extra{bewijs}
+
+  \begin{proof}
+    \[
+    \begin{array}{rll}
+      C_{n}^{p} + C_{n}^{p+1} &= \frac{n!}{p!(n-p)!} + \frac{n!}{(p+1)!(n-(p+1))!} \\
+                           &= \frac{n!}{p!(n-p)(n-p-1)!} + \frac{n!}{(p+1)p!(n-p-1))!} \\
+                           &= \frac{n!(p+1)+ n!(n-p)}{(p+1)p!(n-p)(n-p-1)!} \\
+                           &= \frac{(n+1)n!}{(p+1)!(n-p)!} \\
+                           &= \frac{(n+1)!}{(p+1)!((n+1)-(p+1)!} &= C_{n+1}^{p+1}\\
+    \end{array}
+    \]
+  \end{proof}
 \end{ei}
 
 \begin{de}
