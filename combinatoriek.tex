@@ -1,0 +1,196 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\chapter{Combinatoriek}
+\label{cha:combinatoriek}
+
+
+\section{Variaties}
+\label{sec:variaties}
+
+\begin{de}
+  Een \term{variatie} van $p\in \mathbb{N}$ \textbf{verschillende} elementen uit $n\in \mathbb{N}$ elementen (met $p \le n$) is een \textbf{geordend} $p$-tal van \textbf{verschillende elementen} gekozen uit een gegeven verzameling van $n$ elementen.    
+\end{de}
+
+\begin{st}
+  Het aantal variaties van $p$ elementen uit $n$ is gelijk aan $V_{v}^{p}$.
+  \[
+  V_{p}^{n} = \prod_{i=0}^{p-1}(n-i)
+  \]
+
+  \begin{proof}
+    We moeten een rij van lengte $p$ vormen met $n$ elementen.
+    Voor de eerste plaats is er vrije keuze, dus $n$ elementen.
+    Voor de tweede plaats is er keuze uit de overgebleven $n-1$ elementen.
+    Voor de $i$-de plaats is er dan keuze uit de overgebleven $n-1$ elementen.
+    er zijn dus $\prod_{i=0}^{p-1}(n-p)$ mogelijke manieren om $p$ elementen te kiezen uit $n$ zonder herhalingen.
+  \end{proof}
+\end{st}
+
+\begin{ei}
+  \[ V_{n}^{0} = 1 \quad\text{en}\quad V_{n}^{n} = n! \]
+
+  \begin{proof}
+    \[ V_{n}^{0} = \prod_{i=0}^{0-1}(n-i) = 1 \quad\text{ en }\quad V_{n}^{n} = \prod_{i=0}^{n-1}(n-i) = n!\]
+  \end{proof}
+\end{ei}
+
+\begin{de}
+  Een \term{herhalingsvariatie} van $p\in \mathbb{N}$ elementen uit $n\in \mathbb{N}$ elementen is een \textbf{geordend} $p$-tal van \textbf{verschillende elementen} gekozen uit een gegeven verzameling van $n$ elementen.  
+\end{de}
+
+\begin{st}
+  Het aantal herhalingsvariaties van $p$ elementen uit $n$ is gelijk aan $\overline{V}_{v}^{p}$.
+  \[
+  \overline{V}_{p}^{n} = n^{p}
+  \]
+
+  \begin{proof}
+    Voor elk element van het $p$-tal is er keuze uit $n$ elementen. 
+    Er zijn dus $n^{p}$ mogelijke herhalingsvariaties van $p$ elementen uit $n$.
+  \end{proof}
+\end{st}
+
+\section{Permutaties}
+\label{sec:permutaties}
+
+\begin{de}
+  Een \term{permutatie} van $n\in \mathbb{N}$ elementen is een variatie van $n$ uit $n$ elementen. 
+\end{de}
+
+\begin{opm}
+  Soms wordt een permutatie ook beschreven als een bijectie van een eindige verzameling naar zichzelf.
+  Deze noties komen overeen in de zin dat de variatie beschreven in bovenstaande definitie een beschrijving geeft van de bijectie in de andere definitie.
+\end{opm}
+
+\begin{de}
+  Een \term{herhalingspermutatie} van $n\in \mathbb{N}$ elementen waarvan $p_{i}$ elementen telkens tot soort $i$ behoren (met $\sum_{i=1}^{r} p_{i} = n$) is een \textbf{geordend} $n$-tal van elementen waarvan de $i$-de $p_{i}$ elementen telkens tot soort $i$ behoren.
+\end{de}
+
+\begin{st}
+  Het aantal herhalingspermutaties van $p$ elementen uit $n$ is gelijk aan $\overline{P}_{n}^{p_{1},p_{2},\dotsc,p_{r}}$.
+  \[ \overline{P}_{n}^{p_{1},p_{2},\dotsc,p_{r}} = \frac{n!}{\prod_{i=1}^{r}p_{i}} = \binom{n}{p_{1}\ p_{2}\ \dotsb\ p_{r}} \]
+\extra{bewijs}
+\end{st}
+
+\section{Combinaties}
+\label{sec:combinaties}
+
+\begin{de}
+  Een \term{combinatie} van $p$ elementen uit $n$ is een deelverzameling van die $n$ elementen.
+\end{de}
+
+\begin{opm}
+  Bij een combinatie speelt de volgorde van de elementen dus geen rol.
+\end{opm}
+
+\begin{st}
+  Het aantal combinaties van $p$ elementen uit $n$ is $C_{n}^{p}$.
+  \[ C_{n}^{p} = \frac{n!}{p!(n-p)!} = \binom{n}{p} \]
+
+  \begin{proof}
+    Het aantal variaties $V_{n}^{p}$ van $p$ elemenen uit $n$, (waar de volgorde wel een rol speelt) is teveel.
+    Het is zelfs precies $P_{p}$ keer teveel want we kunnen de elementen in het $n$ tal nog permuteren.
+    \[ C_{n}^{p} = \frac{V_{n}^{p}}{P_{p}} = \frac{n!}{p!(n-p)!} \]
+  \end{proof}
+\end{st}
+
+\begin{opm}
+  $\binom{n}{p}$ lezen we als ``$n$ kies $p$''.
+\end{opm}
+
+\begin{ei}
+  \[ C_{n}^{n} = C_{n}^{0} = 1 \]
+
+  \begin{proof}
+    \[ C_{n}^{n} = \frac{n!}{n!(n-n)!} = 1 = \frac{n!}{0!(n-0!)} = C_{n}^{0} \]
+  \end{proof}
+\end{ei}
+
+\begin{ei}
+  \[ C_{n}^{p} = C_{n}^{n-p} \]
+
+  \begin{proof}
+    \[
+    \begin{array}{rll}
+      C_{n}^{n-p} &= \frac{n!}{(n-p)!(n-(n-p))!} \\
+                &= \frac{n!}{(n-p)!(n-n+p)!} \\
+                &= \frac{n!}{p!(n-p)!} &= C_{n}^{p}
+    \end{array}
+    \]
+  \end{proof}
+\end{ei}
+
+\begin{ei}
+  De \term{formule van Pascal}.
+  \[ C_{n}^{p} + C_{n}^{p+1} = C_{n+1}^{p+1} \]
+
+  \begin{proof}
+    \[
+    \begin{array}{rll}
+      C_{n}^{p} + C_{n}^{p+1} &= \frac{n!}{p!(n-p)!} + \frac{n!}{(p+1)!(n-(p+1))!} \\
+                           &= \frac{n!}{p!(n-p)(n-p-1)!} + \frac{n!}{(p+1)p!(n-p-1))!} \\
+                           &= \frac{n!(p+1)+ n!(n-p)}{(p+1)p!(n-p)(n-p-1)!} \\
+                           &= \frac{(n+1)n!}{(p+1)!(n-p)!} \\
+                           &= \frac{(n+1)!}{(p+1)!((n+1)-(p+1)!} &= C_{n+1}^{p+1}\\
+    \end{array}
+    \]
+  \end{proof}
+\end{ei}
+
+\begin{de}
+  Een \term{herhalingscombinatie} van $p$ elementen uit $n$ is een \textbf{ongeordend} $p$-tal van elementen waarbij herhaling mogelijk is.
+\end{de}
+
+\begin{opm}
+  De notie van een ``ongeordend $p$-tal'' is ietwat vaag.
+  In feite hebben we nood aan een structuur die geen orde oplegt en herhaling van elementen toelaat.
+  Noch een geordend $p$-tal, noch een verzameling is hiervoor dus bruikbaar.
+\end{opm}
+
+\begin{st}
+  Het aantal herhalingscombinaties van $p$ elementen uit $n$ is $\overline{C}_{n}^{p}$.
+  \[ \overline{C}_{n}^{p} = C_{n+p-1}^{p} = \binom{n+p-1}{p} \]
+\end{st}
+
+\subsection{Binomium van Newton}
+\label{sec:binomium-van-newton}
+
+\begin{st}
+  Het \term{binomium van Newton}.
+  \[ (a+b)^{n} = \sum_{i=0}^{n} = \binom{n}{i} a^{n-i}b^{i} \]
+\extra{bewijs}
+\end{st}
+
+\begin{de}
+  De co\"efficienten $\binom{n}{i}$ worden daarom ook de \term{binomiaalco\"efficienten} genoemd.
+\end{de}
+
+\subsection{Multinomiale ontwikkeling}
+\label{sec:mult-ontw}
+
+\begin{st}
+  De \term{multinomiale ontwikkeling}.
+  \[ \left(\sum_{i=1}^{k}\right)^{n} = \sum_{\sum_{i=1}^{k}n_{i}=n}\left(\binom{n}{n_{1}\ n_{2}\ \dotsb\ n_{k}}\prod_{i=1}^{k}x_{i}^{n_{i}}\right) \]
+\end{st}
+
+\begin{de}
+  De co\"efficienten $\binom{n}{n_{1}\ n_{2}\ \dotsb\ n_{k}}$ worden daarom ook de \term{multinomiaalco\"efficienten} genoemd.
+\end{de}
+
+\subsection{Het aantal deelverzamelingen}
+\label{sec:het-aant-deelv}
+
+\begin{st}
+  Het aantal deelverzamelingen $|\mathcal{P}(V)|$ van een verzameling $V$ is $2^{|V|}$.
+
+  \begin{proof}
+    Het aantal deelverzamelingen van $i$ elementen van $V$ is $C_{|V|}^{i}$.
+    Het totaal aantal deelverzamelingen is dan $\sum_{i=0}^{|V|}C_{|V|}^{i}$.
+    Gebruik nu het binomium van newton met $a=b=1$ om het gezochte resultaat te bekomen.
+    \[ \sum_{i=0}^{|V|}C_{|V|}^{i} = \sum_{i=0}^{|V|}\binom{|V|}{i} = \sum_{i=0}^{|V|}\binom{|V|}{i}1^{(|V|-i)}1^{i} = (1+1)^{|V|} = 2^{|V|} \]
+  \end{proof}
+\end{st}
+
+
+\end{document}
