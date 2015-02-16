@@ -7,9 +7,10 @@
 \begin{de}
   Een \term{stochastisch experiment} is een experiment waarvan de uitkomst op voorhand onbekend is.
 \end{de}
+\extra{dit is heel vaag?}
 
 \begin{de}
-  Een \term{Bernoulli experiment} is een experiment met maar twee mogelijke uitkomsten.
+  Een \term{Bernoulli experiment} is een stochastisch experiment met maar twee mogelijke uitkomsten.
 \end{de}
 \section{Sigma algebra's}
 
@@ -24,26 +25,51 @@
 \end{de}
 
 \begin{st}
-  $\emptyset \in \mathcal{A}$
-\extra{bewijs}  
+  Zij $\mathcal{A}$ een sigma-algebra.
+  \[ \emptyset \in \mathcal{A} \]
+
+  \begin{proof}
+    De eerste twee axioma's, samen met $\Omega^{C} = \emptyset$ geeft de stelling. 
+  \end{proof}
 \end{st}
 
 \begin{st}
-  $(\forall n\in \{ 1,\dotsc,n \}: A_{n} \in \mathcal{A}) \Rightarrow \bigcup_{n\in \{1,\dotsc,n\}}A_{n} \in \mathcal{A}$
-\extra{bewijs}  
+  \label{st:sigma-algebra-eindige-unie}
+  Zij $\mathcal{A}$ een sigma-algebra.
+  \[ (\forall n\in \{ 1,\dotsc,n \}: A_{n} \in \mathcal{A}) \Rightarrow \bigcup_{n\in \{1,\dotsc,n\}}A_{n} \in \mathcal{A} \]
+
+  \begin{proof}
+    We kunnen in het derde axioma de $n+1,...$ gebeurtenissen gelijkstellen aan de lege verzameling om een eindige unie te bekomen.
+  \end{proof}
 \end{st}
 
 \begin{st}
-  $(\forall n\in \mathbb{N}: A_{n} \in \mathcal{A}) \Rightarrow \bigcap_{n\in \mathbb{N}}A_{n} \in \mathcal{A}$
+  \label{st:sigma-algebra-oneindige-doorsnede}
+  Zij $\mathcal{A}$ een sigma-algebra.
+  \[ (\forall n\in \mathbb{N}: A_{n} \in \mathcal{A}) \Rightarrow \bigcap_{n\in \mathbb{N}}A_{n} \in \mathcal{A} \]
+
+  \begin{proof}
+    Het eerste axioma, samen met stelling \ref{st:sigma-algebra-eindige-unie} en de tweede wet van de morgan\stref{st:tweede-wet-van-de-morgan} geeft de stelling.
+  \end{proof}
 \end{st}
 
 \begin{st}
-  $(\forall n\in \{ 1,\dotsc,n \}: A_{n} \in \mathcal{A}) \Rightarrow \bigcap_{n\in \{1,\dotsc,n\}}A_{n} \in \mathcal{A}$
-\extra{bewijs}  
+  Zij $\mathcal{A}$ een sigma-algebra.
+  \[ (\forall n\in \{ 1,\dotsc,n \}: A_{n} \in \mathcal{A}) \Rightarrow \bigcap_{n\in \{1,\dotsc,n\}}A_{n} \in \mathcal{A} \]
+
+  \begin{proof}
+    We kunnen in stelling \ref{st:sigma-algebra-oneindige-doorsnede} de $n+1,...$ gebeurtenissen gelijkstellen aan het universum om een eindige doorsnede te bekomen.
+  \end{proof}
 \end{st}
 
 \begin{st}
-  $\forall A,B \in \mathcal{A}: A \triangle B \in \mathcal{A}$
+  Zij $\mathcal{A}$ een sigma-algebra.
+  \[ \forall A,B \in \mathcal{A}: A \triangle B \in \mathcal{A} \]
+
+  \begin{proof}
+    Het symmetrisch verschil $A \triangle B$ is gelijk aan $(A\cup B) \cap (A \cap B)^{C}$.\stref{st:verschil-verzamelingen-is-doorsnede-complement} \stref{st:symmetrisch-verchil-enkelvoudig-verchil.}
+    Neem nu stelling \ref{st:sigma-algebra-eindige-unie}, \ref{st:sigma-algebra-oneindige-doorsnede} en het eerste axioma samen om de stelling te bekomen.
+  \end{proof}
 \end{st}
 
 \begin{de}
@@ -67,9 +93,9 @@
   \begin{enumerate}
   \item $P(\Omega) = 1$
   \item $\forall A \in \mathcal{A}:\ P(A) \ge 0$
-  \item Aftelbare additiviteit of $\sigma$-additiviteit: $\forall n\in \mathbb{N}, A_{n} \in \mathcal{A}, i \neq j:\ A_{i}\cap A_{j} = \emptyset$:
+  \item De \term{aftelbare additiviteit} of \term{$\sigma$-additiviteit}:\\
+    Zij $(A_{n})_{n}$ een aftelbaar-oneindige rij van onderling disjuncte verzamelingen.
     \[ P\left( \bigcup_{n\in\mathbb{N}}A_{n} \right) = \sum_{n\in\mathbb{N}}P(A_{n}) \]
-\extra{dit kan mooier geschreven,toch?}
   \end{enumerate}
   De structuur $\Omega,\mathcal{A},P$ noemen we een \term{kansruimte}.
 \end{de} 
@@ -83,26 +109,44 @@
   \end{itemize}
 \end{de}
 
-\begin{st}
-  $A_{n} \uparrow \Rightarrow \lim_{n\rightarrow \infty}A_{n} = \bigcup_{n\in \mathbb{N}}^{\infty}A_{n}$.
-\extra{bewijs}
-\end{st}
+\begin{de}
+  Zij $(A_{n})_{n}$ een stijgende rij verzamelingen: $A_{n} \uparrow$
+  \[ \lim_{n\rightarrow \infty}A_{n} = \bigcup_{n\in \mathbb{N}}^{\infty}A_{n} \]
+\extra{is dit een definitie?}
+\end{de}
+
+\begin{de}
+  Zij $(A_{n})_{n}$ een dalende rij verzamelingen: $A_{n} \downarrow$
+  \[ \lim_{n\rightarrow \infty}A_{n} = \bigcap_{n\in \mathbb{N}}^{\infty}A_{n} \]
+\extra{is dit een definitie?}
+\end{de}
+
 
 \begin{st}
-  $A_{n} \downarrow \Rightarrow \lim_{n\rightarrow \infty}A_{n} = \bigcap_{n\in \mathbb{N}}^{\infty}A_{n}$.
-\extra{bewijs}
-\end{st}
-
-\begin{st}
+  \label{st:kansmaat-eindige-additiviteit}
   Zij $\Omega,\mathcal{A},P$ een kansruimte en $\{ A_{n} \mid n\in \{ 1,\dotsc,N\} \}$ $N$ paarsgewijze disjuncte gebeurtenissen.
   \[ P\left( \bigcup_{n=1}^{N}A_{n}\right) = \sum_{n=1}^{N}P(A_{n}) \]
-\extra{bewijs}
+
+  \begin{proof}
+    Kies voor de $n+1,\dotsc$ gebeurtenissen in het derde axioma van een kansmaat telkens de lege gebeurtenis om de stelling te bekomen.
+  \end{proof}
 \end{st}
 
 \begin{st}
   Zij $\Omega,\mathcal{A},P$ een kansruimte.
   \[ \forall A \in \mathcal{A}:\ P(A^{C}) = 1 - P(A) \]
-\extra{bewijs}
+
+  \begin{proof}
+    Begin met de uitdrukking $\Omega = A \cup A^{C}$.
+    Pas nu stelling \ref{st:kansmaat-eindige-additiviteit} toe:
+    \[
+    \begin{array}{rl}
+      P(\Omega) &= P(A) + P(A^{C})\\
+      1         &= P(A) + P(A^{C})\\
+      P(A^{C})  &= 1-P(A)
+    \end{array}
+    \]
+  \end{proof}
 \end{st}
 
 \begin{gev}
@@ -112,32 +156,78 @@
 \begin{st}
   Zij $\Omega,\mathcal{A},P$ een kansruimte en $(A_{n})_{n}$ een monotone rij verzamelingen.
   \[ P\left( \lim_{n\rightarrow \infty}A_{n} \right) = \lim_{n\rightarrow \infty}P(A_{n}) \]
-\extra{bewijs}
+
+  \begin{proof}
+    We bewijzen de stelling voor een stijgende rij verzamelingen $(A_{n})_{n}$.
+    Herschrijven we het linker lid, dan krijgen we de volgende unie:
+    \[
+    \begin{array}{rll}
+      P\left( \lim_{n\rightarrow \infty}A_{n} \right) &= P \left( \bigcup_{n\in \mathbb{N}}^{\infty}A_{n} \right)\\
+                                                &= P \left( A_{1} \bigcup_{n=2}^{\infty}(A_{n} \setminus A_{n-1}) \right)\\
+                                                &= P(A_{1}) + \sum_{n=1}^{\infty}P(A_{n}\setminus A_{n-1})\\
+                                                &= P(A_{1}) + \lim_{N \rightarrow \infty}\sum_{n=1}^{N}(P(A_{n}) - P(A_{n-1}))\\
+                                                &= P(A_{1}) + \lim_{N \rightarrow \infty}\sum_{n=1}^{N}P(A_{n}) - P(A_{1}) &= \lim_{n\rightarrow \infty}P(A_{n})\\
+    \end{array}
+    \]
+  \end{proof}
 \end{st}
 
 \begin{ei}
   Zij $\Omega,\mathcal{A},P$ een kansruimte.
-  $\forall A,B \in \mathcal{A}:\ P(B) = P(B \cap A) + P(B \cap A^{C})$
-\extra{bewijs}
+  \[ \forall A,B \in \mathcal{A}:\ P(B) = P(B \cap A) + P(B \cap A^{C}) \]
+
+  \begin{proof}
+    $P(B) = P((B \cap A) \cup (B \cap A^{C})) = P(B \cap A) + P(B \cap A^{C})$ met $(B \cap A)$ en $(B \cap A^{C})$ disjunct.\stref{st:kansmaat-eindige-additiviteit}
+  \end{proof}
 \end{ei}
 
 \begin{ei}
   Zij $\Omega,\mathcal{A},P$ een kansruimte.
-  $\forall A,B \in \mathcal{A}:\ A \subseteq B \Rightarrow P(A) \le P(B)$
-\extra{bewijs}
+  \[ \forall A,B \in \mathcal{A}:\ P(A \cup B) = P(A) + P(B) - P(A \cap B) \]
+
+  \begin{proof}
+    \[
+    \begin{array}{rll}
+      P(A \cup B) &= P((A \cap B^{C}) \cup (A \cap B) \cup (A^{C}\cap B)) \\
+                  &= P(A \cap B^{C})+P(A \cap B) +P(A^{C}\cap B)\\
+                  &= (P(A \cap B^{C})+P(A \cap B)) +((P(A^{C}\cap B)+P(A \cap B)) -P(A\cap B) \\
+                  &= P(A)+P(B) -P(A\cap B)\\
+    \end{array}
+    \]
+  \end{proof}
+\end{ei}
+
+
+\begin{ei}
+  \label{ei:kansmaat-verschil}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte.
+  \[ \forall A,B \in \mathcal{A}:\ P(A \setminus B) = P(A\cup B) - P(B) \]
+
+  \begin{proof}
+    $P(A \cup B) = P(B \cup (A\setminus B)) = P(B) + P(A \setminus B)$
+  \end{proof}
+\end{ei}
+
+\begin{ei}
+  \label{ei:kansmaat-kans-deelverzameling-kleiner}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte.
+  \[ \forall A,B \in \mathcal{A}:\ A \subseteq B \Rightarrow P(A) \le P(B) \]
+
+  \begin{proof}
+    $P(A) = P(B \setminus (B \cap A^{C})) = P(B) - P(B \cap A^{C}) \le P(B)$ vanwege axioma 2 en eigenschap \ref{ei:kansmaat-verschil}.
+  \end{proof}
 \end{ei}
 
 \begin{ei}
   Zij $\Omega,\mathcal{A},P$ een kansruimte.
-  $\forall A \in \mathcal{A}:\ P(A) \le 1$
-\extra{bewijs}
+  \[ \forall A \in \mathcal{A}:\ P(A) \le 1 \]
+
+  \begin{proof}
+    $A$ is steeds een deelverzameling van $\Omega$.
+    Gebruik nu eigenschap \ref{ei:kansmaat-kans-deelverzameling-kleiner}.
+  \end{proof}
 \end{ei}
 
-\begin{ei}
-  Zij $\Omega,\mathcal{A},P$ een kansruimte.
-  $\forall A,B \in \mathcal{A}:\ P(A \cup B) = P(A) + P(B) + P(A \cap B)$
-\extra{bewijs}
-\end{ei}
 
 \section{Traditionele kansruimten}
 \label{sec:trad-kansr}
