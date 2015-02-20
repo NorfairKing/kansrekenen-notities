@@ -3,7 +3,7 @@ DOT_EXT     = dot
 OUT_FORMAT  = png
 OUT_EXT     = png
 
-ILLUSTRATIONS =
+ILLUSTRATIONS = systeem-serieel.png systeem-parallel.png
 
 all: graphviz_illustrations
 
