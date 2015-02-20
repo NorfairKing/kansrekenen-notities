@@ -1,0 +1,94 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+
+\chapter{Stochastische Veranderlijken}
+\label{cha:stoch-verand}
+
+\section{Inleiding}
+\label{sec:inleiding}
+
+\begin{de}
+  $\mathcal{B}(\mathbb{R})$ is de $\sigma$-algebra voortgebracht door $\mathcal{C} = \{ ]-\infty,a]\mid -\infty < a < +\infty \}$.
+\end{de}
+
+\begin{de}
+  Zij $\Omega, \mathcal{A}, P$ een kansruimte.
+  Een re\"ee functie $X$ als volgt noemen we een \term{stochastische veranderlijke}, een \term{stochastische variabele}, een \term{stochastiek}, een \term{toevalsvariabele} of een term{random variabele}.
+  \[ X:\ \Omega \rightarrow \mathbb{R} \]
+  \[ \forall B\in \mathcal{B}(\mathbb{R}):\ X^{-1}(B) = \{\omega \mid X(\omega) \in B \} \]
+  We noemen $X$ dan een $\mathcal{A}$-\term{meetbare afbeelding}.
+\end{de}
+
+\begin{de}
+  Een $\mathcal{B}(\mathbb{R})$-meetbare afbeelding in de meetbare ruimte $\mathbb{R},\mathcal{B}(\mathbb{R})$ noemen we \term{Borel-meetbaar}.
+\end{de}
+
+\begin{st}
+  Een afbeelding $X: \mathbb{R} \rightarrow \mathbb{R}$ is een stochastische variabele in de meetbare ruimte $\mathbb{R},\mathcal{B}(\mathbb{R})$ als en slechts als het volgende geldt:
+  \[ \forall a \in \mathbb{R}:\ X^{-1}(]-\infty,a]) = \{ \omega\mid X(\omega) \le a\} \in \mathcal{A} \]
+  \zb
+\end{st}
+
+\begin{st}
+  Een Borel-meetbare afbeelding introduceert een \term{kansmaat} $P_{X}(B)$ op $\mathcal{B}(\mathbb{R})$.
+  \[ P_{X}(B) = P(X \in B) = P(X^{-1}(B)) \]
+  \[ P_{X}(B) = P(\{\omega \in \Omega \mid X(\omega) \in B \}) \]
+\extra{bewijs}
+\end{st}
+
+\begin{de}
+  Zij $\Omega,\mathcal{A},P)$ een kansruimte en $X: \Omega \rightarrow \mathbb{R}$ een stochastische veranderlijke, dan definieren we de overeenkomstige \term{verdelingsfunctie} $F_{X}$ als volgt:
+  \[ F: \mathbb{R} \rightarrow \mathbb{R}:\ F_{X}(a) = P_{X}(]-\infty,a]) = P(\{\omega\mid X(\omega) \le a\}) = P(X \le a) \]
+\end{de}
+
+\begin{st}
+  Zij $X$ een stochastische verzameling in de kansruimte $\Omega,\mathcal{A},P$, dan is de afbeelding $F_{X}$ een verdelingsfunctie als de volgende beweringen gelden.
+  \begin{enumerate}
+  \item $F_{X}$ is monotoon stijgend.
+    \[ \forall a,b\in \mathbb{R}:\ a\le b \Rightarrow F_{X}(a) \le F_{X}(b) \]
+  \item $\lim_{a\rightarrow +\infty}F_{X}(a) = 1$ en $\lim_{a \rightarrow -\infty}F_{X}(a) = 0$
+  \item $F_{X}$ is rechts continu.
+    \[ \forall a\in\mathbb{R}:\ \lim_{h \overset{>}{\rightarrow} 0}F_{X}(a+h) = F_{X}(a) \]
+  \end{enumerate}
+\zb
+\end{st}
+
+\begin{st}
+  Zij $F_{X}$ een verdelingsfunctie voor een kansruimte $\Omega,\mathcal{A},P)$.
+  \[ P(a < X \le b) = F_{X}(b) - F_{X}(a) \]
+\extra{bewijs}
+\end{st}
+
+
+\begin{st}
+  Zij $F_{X}$ een verdelingsfunctie voor een kansruimte $\Omega,\mathcal{A},P)$.
+  \[ P(X > a) = 1-F_{X}(a) \]
+\extra{bewijs}
+\end{st}
+
+\begin{de}
+  De \term{kwantielfunctie} $Q_{X}$ voor een kansruimte $\Omega,\mathcal{A},P)$ is de inverse functie van de verdelingsfunctie $F_{X}$.
+  De waarde $Q_{X}(p)$ is de kleinste waarde $a$ waarvoor $F_{X}(a) \ge p$ geldt.
+\end{de}
+
+\begin{de}
+  Het $25\%$, $50\%$ en $75\%$ kwantiel worden respectievelijk het eerste, tweede en derde \term{kwartiel} genoemd.
+\end{de}
+
+\begin{de}
+  Het tweede kwartiel wordt ook wel de \term{mediaan} genoemd.
+\end{de}
+
+\section{Types stochastische veranderlijken}
+\label{sec:types-stoch-verand}
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
