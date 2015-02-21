@@ -1,0 +1,45 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\chapter{Benaderingen van verdelingen}
+\label{cha:benad-van-verd}
+
+\section{Limietstellingen}
+\label{sec:limietstellingen}
+
+\begin{st}
+  De \term{centrale limietsstelling} (\term{CLT})\\
+  Zij $X_{i}$ $n$ identiek verdeelde stochastische veranderlijken en $S = \sum_{i}X_{1}$.
+  \[ \frac{S-n\mu}{\sqrt{n}\sigma} \rightarrow Z \]
+  \[ \forall x \in \mathbb{R}:\ \lim_{n \rightarrow \infty} P\left(\frac{S - n\mu}{\sqrt{n}\sigma} \le x\right) = \Phi(x) \]
+  \zb
+\end{st}
+
+\begin{st}
+  De \term{stelling vna De Moivre-Laplace}\\
+  Zij $X_{i}$ $n$ onafhankelijke stochastische veranderlijken die allemaal Bernoulli verdeeld zijn met parameter $p\in ]0,1[$ en $S = \sum_{i}X_{i}$.
+  \[ \frac{S-n\mu}{\sqrt{n}\sigma} \rightarrow Z \]
+  \TODO{bewijs p 94}
+\end{st}
+
+\begin{st}
+  De \term{limietstelling van Poisson}\\
+  Zij $X_{i}$ $n$ binomiaal verdeelde stochastische veranderlijken.
+  Als $\lim_{n \rightarrow +\infty, p_{i} \rightarrow 0}np_{i} = \alpha$ geldt, dan ook:
+  \[
+  X_{i} \rightarrow X \text{ met } X \sim \mathcal{P}(\alpha)
+  \]
+\end{st}
+
+
+\section{Practische benaderingen}
+\label{sec:pract-benad}
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
