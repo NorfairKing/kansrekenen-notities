@@ -256,12 +256,32 @@
 
 \begin{st}
   De $\sigma$-algebra opgespannen door een collectie deelverzamelingen van een universum is uniek.
-\extra{bewijs}
+
+  \begin{proof}
+    Als er immers nog een (even kleine) sigma algebra zou zijn die aan de voorwaarde voldoet dan zouden ze gelijk zijn volgens de derde eigenschap.
+  \end{proof}
 \end{st}
 
 \begin{ei}
   Voor elke collectie deelverzamelingen $\mathcal{C} \subseteq \Omega$ bestaat $\sigma(C)$.
-\TODO{bewijs p 13}
+
+  \begin{proof}
+    Niet constructief bewijs van existentie\\
+    Beschouw voor een gegeven collectie deelverzamelingen $\mathcal{C}$ de verzameling $X$:
+    \[ X = \{ \mathcal{A} \subseteq \mathcal{P}(\Omega) \mid \mathcal{A} \text{ is een $\sigma$-algebra.} \wedge \mathcal{C} \subseteq \mathcal{A} \} \]
+    Merk allereerst op dat $X$ niet leeg is omdat $\mathcal{P}(\Omega)$ altijd een $\sigma$-algebra is (en $\mathcal{C}$ omvat).\needed
+    We moeten nog de kleinste $\sigma$-algebra selecteren uit $X$.
+    Bekijk hiervoor $\mathcal{B}$:
+    \[ \mathcal{B} = \bigcap_{\mathcal{A} \in X}\mathcal{A} \]
+    $mathcal{B}$ omvat nu zeker $\mathcal{C}$.\waarom
+    We tonen nu aan dat $\mathcal{B}$ een $\sigma$-algebra is.
+\extra{bewijs dit, staat mss in slides?}
+    \begin{itemize}
+    \item $\Omega \in \mathcal{A}$
+    \item $A \in \mathcal{A} \Rightarrow A^{C} \in \mathcal{A}$
+    \item $(\forall n\in \mathbb{N}: A_{n}\in \mathcal{A}) \Rightarrow \bigcup_{n\in \mathbb{N}} A_{n} \in \mathcal{A}$
+    \end{itemize}
+  \end{proof}
 \end{ei}
 
 \begin{de}
