@@ -7,11 +7,19 @@
 \begin{de}
   Een \term{stochastisch experiment} is een experiment waarvan de uitkomst op voorhand onbekend is.
 \end{de}
-\extra{dit is heel vaag?}
+
+\begin{de}
+  Het \term{universum} van een stochastisch experiment is de verzameling van alle mogelijke uitkomsten.
+\end{de}
+
+\begin{de}
+  Een \term{gebeurtenis} van een stochastisch experiment is een deelverzameling van het universum.
+\end{de}
 
 \begin{de}
   Een \term{Bernoulli experiment} is een stochastisch experiment met maar twee mogelijke uitkomsten.
 \end{de}
+
 \section{Sigma algebra's}
 
 \begin{de}
@@ -80,6 +88,7 @@
 \end{de}
 
 \begin{de}
+  \label{de:discrete-sigma-algebra}
   De de machtsverzameling van een universum noemen we de \term{discrete $\sigma$-algebra}.
 \end{de}
 
@@ -112,13 +121,11 @@
 \begin{de}
   Zij $(A_{n})_{n}$ een stijgende rij verzamelingen: $A_{n} \uparrow$
   \[ \lim_{n\rightarrow \infty}A_{n} = \bigcup_{n\in \mathbb{N}}^{\infty}A_{n} \]
-\extra{is dit een definitie?}
 \end{de}
 
 \begin{de}
   Zij $(A_{n})_{n}$ een dalende rij verzamelingen: $A_{n} \downarrow$
   \[ \lim_{n\rightarrow \infty}A_{n} = \bigcap_{n\in \mathbb{N}}^{\infty}A_{n} \]
-\extra{is dit een definitie?}
 \end{de}
 
 
@@ -269,13 +276,13 @@
     Niet constructief bewijs van existentie\\
     Beschouw voor een gegeven collectie deelverzamelingen $\mathcal{C}$ de verzameling $X$:
     \[ X = \{ \mathcal{A} \subseteq \mathcal{P}(\Omega) \mid \mathcal{A} \text{ is een $\sigma$-algebra.} \wedge \mathcal{C} \subseteq \mathcal{A} \} \]
-    Merk allereerst op dat $X$ niet leeg is omdat $\mathcal{P}(\Omega)$ altijd een $\sigma$-algebra is (en $\mathcal{C}$ omvat).\needed
+    Merk allereerst op dat $X$ niet leeg is omdat $\mathcal{P}(\Omega)$ altijd een $\sigma$-algebra is (en $\mathcal{C}$ omvat).\deref{de:discrete-sigma-algebra}
     We moeten nog de kleinste $\sigma$-algebra selecteren uit $X$.
     Bekijk hiervoor $\mathcal{B}$:
     \[ \mathcal{B} = \bigcap_{\mathcal{A} \in X}\mathcal{A} \]
-    $mathcal{B}$ omvat nu zeker $\mathcal{C}$.\waarom
+    $\mathcal{B}$ omvat nu zeker $\mathcal{C}$ omdat $C$ een deel is van elke $\mathcal{A} \in X$.
     We tonen nu aan dat $\mathcal{B}$ een $\sigma$-algebra is.
-\extra{bewijs dit, staat mss in slides?}
+\extra{bewijs dit.}
     \begin{itemize}
     \item $\Omega \in \mathcal{A}$
     \item $A \in \mathcal{A} \Rightarrow A^{C} \in \mathcal{A}$
@@ -287,6 +294,7 @@
 \begin{de}
   De \term{Borel $\sigma$-algebra op $\mathbb{R}$} is de $\sigma$-algebra voortgebracht door $\mathcal{C}$:
   \[ \{ ]-\infty,a] \mid a \in \mathbb{R} \} \]  
+  \[ \{ \interval{a}{b} \mid a,b\in \mathbb{R} \} \]  
 \end{de}
 
 \begin{st}
@@ -302,25 +310,54 @@
 \label{sec:voorwaardelijke-kans}
 
 \begin{de}
+  \label{de:voorwaardelijke-kans} 
   Zij $\Omega,\mathcal{A},P$ een kansruimte.
   De \term{voorwaardelijke kans} of \term{conditionele kans} van een gebeurtenis $A$ gegeven een gebeurtenis $B$ (met $P(B) \neq 0$) is $P(A|B)$.
   \[ P(A|B) = \frac{P(A\cap B)}{P(B)} \]
 \end{de}
 
 \begin{ei}
-  $\forall A \in \mathcal{A}: P(A|A) = 1$
-\extra{bewijs}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte.
+  \[ \forall A \in \mathcal{A}: P(A|A) = 1 \]
+
+  \begin{proof}
+    \[ \forall A \in \mathcal{A}: P(A|A) = \frac{P(A \cap A)}{P(A)} = \frac{P(A)}{P(A)} = 1 \]
+  \end{proof}
 \end{ei}
 
 \begin{ei}
-  $\forall A \in \mathcal{A}: P(A|\Omega) = P(A)$
-\extra{bewijs}
+  \label{ei:gebeurtenis onafhankelijk van universum}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte.
+  Elke gebeurtenis is onafhankelijk van zijn universum.
+  \[ \forall A \in \mathcal{A}: P(A|\Omega) = P(A) \]
+
+  \begin{proof}
+    \[ \forall A \in \mathcal{A}: P(A|\Omega) \frac{P(A \cap A)}{P(A)} = \frac{P(A)}{P(\Omega)} = \frac{P(A)}{1} = P(A)\]
+  \end{proof}
 \end{ei}
 
 \begin{st}
   Zij $\Omega,\mathcal{A},P$ een kansruimte en $B$ een gebeurtenis in $\mathcal{A}$ met kans groter dan nul.
   De functie $P_{B}$ is een kansmaat.
   \[ P_{B}:\ \mathcal{A} \rightarrow [0,1] \subset \mathbb{R}:\ A \mapsto P(A|B) \]
+
+  \begin{proof}
+    We gaan elke definierende eigenschap van een kansmaat af.
+    \begin{itemize}
+    \item $P_{B}(\Omega) = P(\Omega|B) = \frac{P(\Omega \cap B)}{P(Omega)} = \frac{P(B)}{P(B)} = 1$
+    \item $\forall A \in \mathcal{A}:\ P_{B}(A) = \frac{P(A\cap B)}{P(B)} \ge 0$
+    \item Zij $(A_{n})_{n}$ een paarsgewijs disjuncte rij van gebeurtenissen in $\mathcal{A}$.
+      \[
+      \begin{array}{rl}
+        P_{B}\left( \bigcup_{n=1}^{\infty} A_{n} \right)
+        &= \frac{P\left(\left( \bigcup_{n=1}^{\infty} A_{n} \right) \cap B \right)}{P(B)}\\
+        &= \frac{P\left(\bigcup_{n=1}^{\infty} (A_{n} \cap B)\right)}{P(B)}\\
+        &= \frac{\sum_{n=1}^{\infty}P\left(A_{n} \cap B\right)}{P(B)}\\
+        &= \sum_{n=1}^{\infty}P_{B}(A_{n})\\
+      \end{array}
+      \]
+    \end{itemize}
+  \end{proof}
 \end{st}
 
 \subsection{Kettingregel}
@@ -331,11 +368,32 @@
   Zij $\{ A_{1}, A_{2}, \dotsc, A_{k}\}$ meer dan \'e\'en gebeurtenis in $\mathcal{A}$.
 
   \[
-  P\left(\bigcap_{i=1}^{k}A_{k}\right)
+  P\left(\bigcap_{i=1}^{k}A_{i}\right)
   = \prod_{i=1}^{k}P\left(A_{i}\mid\bigcap_{j=1}^{i-1}A_{j}\right)
+  \]
+  \[
+  P(A_{1}\cap A_{2} \dotsb A_{k}
   = P(A_{1})P(A_{2}|A_{1})P(A_{3}|A_{1}\cap A_{2}) \dotsb P(A_{k}|A_{1}\cap A_{2}\cap \dotsc \cap A_{k-1})
   \]
-\extra{bewijs}
+
+  \begin{proof}
+    Bewijs door volledige inductie op $\mathbb{N} \setminus \{0,1\}$:
+    \begin{itemize}
+    \item De stelling geldt voor $k=2$ vanuit de definitie van voorwaardelijke kans:\deref{de:voorwaardelijke-kans} 
+      \[  P(A_{1}|A_{2}) = \frac{P(A_{1}\cap A_{2})}{P(A_{2})} \Rightarrow P(A_{1} \cap A_{2}) = P(A_{1}) P(A_{2}|A_{1}) \]
+    \item Uit de stelling voor $k=n$ volgt dat de stelling geldt voor $k=n+1$:\\
+      We gebruiken hier het basisgeval.
+      \[ 
+      \begin{array}{rl}
+        P\left(\bigcap_{i=1}^{n+1}A_{k}\right)
+        &= P\left(\left(\bigcap_{i=1}^{n}A_{p}\right) \cap A_{n+1} \right)\\
+        &= P\left(A_{n+1} | \left(\bigcap_{i=1}^{n}A_{p}\right) \right) P\left(\bigcap_{i=1}^{n+1}A_{k}\right)\\
+        &= \prod_{i=1}^{n}P\left(A_{i}\mid\bigcap_{j=1}^{i-1}A_{j}\right) P\left(\bigcap_{i=1}^{n+1}A_{k}\right)\\
+        &= \prod_{i=1}^{n+1}P\left(A_{i}\mid\bigcap_{j=1}^{i-1}A_{j}\right)\\
+      \end{array}
+      \]
+    \end{itemize}
+  \end{proof}
 \end{st}
 
 \subsection{Wet van de totale kans}
