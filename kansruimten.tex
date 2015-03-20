@@ -23,6 +23,7 @@
 \section{Sigma algebra's}
 
 \begin{de}
+  \label{de:sigma-algebra}
   Een \term{sigma algebra} of \term{$\sigma$-algebra} $\mathcal{A}$ is een verzameling $\mathcal{A}$ van deelverzamelingen van een \term{universum} $\Omega$ die voldoet aan de volgende drie axioma's.
   \begin{enumerate}
   \item $\Omega \in \mathcal{A}$
@@ -33,6 +34,7 @@
 \end{de}
 
 \begin{st}
+  \label{st:lege-verzameling-in-sigma-algebra}
   Zij $\mathcal{A}$ een sigma-algebra.
   \[ \emptyset \in \mathcal{A} \]
 
@@ -92,6 +94,17 @@
   De de machtsverzameling van een universum noemen we de \term{discrete $\sigma$-algebra}.
 \end{de}
 
+\begin{tvb}
+   De unie van een aantal $\sigma$-algebra's is niet noodzakelijk een $\sigma$-algebra.
+
+   \begin{proof}
+     Beschouw de $\sigma$-algebra's $B$ en $C$:
+     \[ B = \{ \emptyset , \{0\} , \{1,2\}, \{0,1,2\} \} \quad\text{ en }\quad \{ \emptyset , \{1\} , \{0,2\}, \{0,1,2\} \} \]
+     De unie hiervan is geen $\sigma$-algebra:
+     \[ B \cup B = \{ \emptyset, \{0\}, \{1\}, \{0,2\}, \{1,2\}, \{0,1,2\} \} \]
+     De unie van $\{0\}$ en $\{1\}$ zit er namelijk niet in.\stref{st:sigma-algebra-eindige-unie}
+   \end{proof}
+\end{tvb}
 
 \section{Kansmaten}
 \label{sec:kansmaten}
@@ -344,7 +357,7 @@
   \begin{proof}
     We gaan elke definierende eigenschap van een kansmaat af.
     \begin{itemize}
-    \item $P_{B}(\Omega) = P(\Omega|B) = \frac{P(\Omega \cap B)}{P(Omega)} = \frac{P(B)}{P(B)} = 1$
+    \item $P_{B}(\Omega) = P(\Omega|B) = \frac{P(\Omega \cap B)}{P(\Omega)} = \frac{P(B)}{P(B)} = 1$
     \item $\forall A \in \mathcal{A}:\ P_{B}(A) = \frac{P(A\cap B)}{P(B)} \ge 0$
     \item Zij $(A_{n})_{n}$ een paarsgewijs disjuncte rij van gebeurtenissen in $\mathcal{A}$.
       \[
@@ -408,12 +421,38 @@
 \subsection{Stelling van Bayes}
 \label{sec:stelling-van-bayes}
 
-\begin{ei}
+\begin{st}
+  \label{st:bayes}
   Zij $\Omega,\mathcal{A},P$ een kansruimte en $X$ een partitie van $\Omega$ waarin $\forall A \in X:\ P(A) > 0$ geldt.
   Zij $B$ een gebeurtenis in $\mathcal{A}$ met $P(B) > 0$.
   \[ \forall A\in X:\ P(A|B) = \frac{P(A)P(B|A)}{\sum_{C\in X}P(C)P(B|C)} \]
   \extra{bewijs}
-\end{ei}
+\end{st}
+
+\subsection{Handige rekenregels}
+\label{sec:handige-rekenregels}
+
+\begin{st}
+  \label{st:rekenregel-afhankelijkheid-partitie}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte en $X$ een partitie van $\Omega$ waarin $\forall A \in X:\ P(A) > 0$ geldt.
+  Zij $X$ een gebeurtenis in $\Omega$.
+  \[ \sum_{A \in X}P(A|X) = 1 \]
+
+  \begin{proof}
+    \[
+    \begin{array}{rl}
+      \sum_{A \in X}P(A|X)
+      &= \sum_{A \in X}\frac{P(A\cap X)}{P(X)}\\
+      &= \frac{\sum_{A \in X}P(A \cap X)}{P(X)}\\
+      &= \frac{P\left(\bigcup_{A \in X}A \cap X\right)}{P(X)}\\
+      &= \frac{P\left(\bigcup_{A \in X}A\right) \cap X}{P(X)}\\
+      &= \frac{P( \Omega \cap X)}{P(X)}\\
+      &= \frac{P(X)}{P(X)}\\
+      &= 1
+    \end{array}
+    \]
+  \end{proof}
+\end{st}
 
 \subsection{Onafhankelijkheid}
 \label{sec:onafhankelijkheid}
@@ -435,7 +474,9 @@
   Zij $\Omega,\mathcal{A},P$ een kansruimte en $A$ en $B$ twee onafhankelijke gebeurtenissen uit $\mathcal{A}$.
   \[ P(A|B) = P(A) \]
   
-  \extra{bewijs}
+  \begin{proof}
+    \[ P(A|B) = \frac{P(A \cap B)}{P(B)} = \frac{P(A) \cdot P(B)}{P(B)} = P(A) \]
+  \end{proof}
 \end{st}
 
 \begin{st}

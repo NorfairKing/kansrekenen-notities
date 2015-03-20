@@ -4,8 +4,6 @@
 \chapter{Voorbeelden}
 \label{cha:voorbeelden}
 
-
-
 \section{Combinatoriek}
 \subsection*{Variaties}
 \begin{vb}
@@ -18,8 +16,14 @@
 \end{vb}
 
 \subsection*{Permutaties}
+
 \begin{vb}
-  Het aantal manieren om $5$ personen aan een ronde tafel te zetten is $P_{5}$.
+  Het aantal manieren om $5$ mensen aan een tafel te zetten is $P_{5}$.
+\end{vb}
+
+\begin{vb}
+  Het aantal manieren om $5$ personen aan een ronde tafel te zetten is $P_{4}$.
+  Omdat de tafel rond is kunnen we \'e\'en persoon vast kiezen en de andere vier op de vier overige plaatsen zetten.
 \end{vb}
 
 \subsection*{Herhalingspermutaties}
@@ -28,10 +32,6 @@
 \subsection*{Combinaties}
 \begin{vb}  
   Het aantal manieren om een groepje van $4$ studenten uit $10$ aan te duiden is $C^{4}_{10}$.
-\end{vb}
-
-\begin{vb}
-  Het aantal manieren om twee teams van $6$ uit $12$ spelers te kiezen is $\nicefrac{C^{6}_{12}}{2}$.
 \end{vb}
 
 \begin{vb}
@@ -45,9 +45,19 @@
 \subsection*{Herhalingscombinaties}
 \extra{voorbeeld}
 
+\subsection{Gemengde voorbeelden}
+
+\begin{vb}
+  Het aantal manieren om twee teams van $6$ uit $12$ spelers te kiezen is $\nicefrac{C^{6}_{12}}{2}$.
+  We kiezen $6$ mensen uit $12$ om een team te vormen.
+  De andere $6$ mensen vormen dan het andere team.
+  We delen door twee omdat het niet uitmaakt wie de tegenstanders zijn.
+\end{vb}
+
+
+
 \newpage 
 \section{Kansruimten}
-\extra{voorbeelden van sigma-algebra}
 
 \begin{vb}
   Het gooien van een dobbelsteen, met mogelijke uitkomsten $\Omega = \{1,2,3,4,5,6\}$ is een stochastisch experiment.
@@ -83,6 +93,11 @@
 \extra{kaartspel}
 
 \extra{geiger-muller teller}
+
+\subsection*{Voorwaardelijke kans en onafhankelijkheid}
+\label{sec:voorw-kans-en}
+
+
 
 
 
