@@ -184,6 +184,47 @@
   \[ 1-2\left(\int_{0}^{\frac{\pi}{2}} d-\frac{L}{2}\sin(\alpha)\ d\alpha- \int_{0}^{\frac{\pi}{2}}\frac{L}{2}\sin(\alpha)\ d\alpha \right) = \frac{2L}{\pi d} \]
 \end{oef}
 
+\begin{oef}
+  Een vaas bevat $5$ rode en $10$ zwarte ballen.
+  Trek lukraak een bal uit de vaas en noteer de kleur.
+  Na elke trekking wordt de bal teruggelegd en wordt er \'e\'en extra bal van dezelfde kleur toegevoegd.
+  Beantwoord de volgende vragen:
+  \begin{itemize}
+  \item Gegeven dat de eerste $n$ ballen allemaal zwart zijn, bereken de kans dat de $n+1$-ste bal ook zwart is en bereken de limiet:
+    \[ \lim_{n \rightarrow +\infty}P(Z_{n+1}|Z_{1} \cap Z_{2} \cap \dotsb \cap Z_{n}) \]
+  \item Gegeven dat de tweede tot en met de $n+1$-ste bal allemaal zwart zijn, bereken de kans dat de eerste getrokken bal zwart was en bereken de limiet:
+    \[ \lim_{n \rightarrow +\infty}P(Z_{1}| Z_{2} \cap Z_{3} \cap \dotsb \cap Z_{n+1}) \]
+  \end{itemize}
+  Voor de trekking zijn er $5$ rode en $10$ en zwarte ballen.
+  Wanneer er $r$ rode en $z$ zwarte ballen zijn is de kans $p$ dat er een zwarte bal getrokken word als volgt te berekenen:
+  \[ p = \frac{z}{z+r} \]
+  \begin{itemize}
+  \item  Na $n$ zwarte ballen zijn er $10+n$ zwarte ballen en nog steeds $5$ rode ballen.
+    \[ P(Z_{n+1}|Z_{1} \cap Z_{2} \cap \dotsb \cap Z_{n}) = \frac{10+n}{5+10+n} = \frac{10+n}{15+n} \]
+    \[ \lim_{n \rightarrow +\infty}P(Z_{n+1}|Z_{1} \cap Z_{2} \cap \dotsb \cap Z_{n}) = \frac{10+n}{15+n} = 1 \]
+  \item 
+    \[
+    \begin{array}{rl}
+      \frac{10+n}{15+n}
+      &= P(Z_{n+1}|Z_{1} \cap Z_{2} \cap \dotsb \cap Z_{n})\\
+      &= P(Z_{1} \cap Z_{2} \cap \dotsb \cap Z_{n} \cap Z_{n+1})\\
+    \end{array}
+    \]
+    \[
+    \begin{array}{rl}
+      P(Z_{1}| Z_{2} \cap Z_{3} \cap \dotsb \cap Z_{n+1})
+      &= \frac{P(Z_{1}\cap Z_{2} \cap Z_{3} \cap \dotsb \cap Z_{n+1})}{P(Z_{2} \cap Z_{3} \cap \dotsb \cap Z_{n+1})}\\
+      &= \frac{P(Z_{1})P(Z_{2}|Z_{1})P(Z_{3}|Z_{2}\cap Z_{1}) \cdot \dotsb \cdot P(Z_{n+1}|Z_{1} \cap Z_{2} \cap \dotsb \cap Z_{n}) }{P(Z_{2} \cap Z_{3} \cap \dotsb \cap Z_{n+1})}\\
+      &= \frac{P(Z_{2}|Z_{1})P(Z_{3}|Z_{2}\cap Z_{1}) \cdot \dotsb \cdot P(Z_{n+1}|Z_{1} \cap Z_{2} \cap \dotsb \cap Z_{n}) P(Z_{1})}{P(Z_{2} \cap Z_{3} \cap \dotsb \cap Z_{n+1})}\\
+      &= \frac{\prod_{i=1}^{n}\frac{10+n}{15+n} }{P(Z_{2})P(Z_{3}|Z_{2})P(Z_{4}|Z_{3}\cap Z_{2}) \cdot \dotsb \cdot P(Z_{n+1}|Z_{2} \cap Z_{3} \cap \dotsb \cap Z_{n})}\\
+      &= \frac{\prod_{i=1}^{n}\frac{10+n}{15+n} }{\prod_{i=2}^{n}P(Z_{i+1}|Z_{2} \cap Z_{3} \cap \dotsb \cap Z_{i})}\\
+      &= \frac{\prod_{i=1}^{n}\frac{10+n}{15+n} }{\prod_{i=2}^{n}P(Z_{i+1}|Z_{2} \cap Z_{3} \cap \dotsb \cap Z_{i})P(Z_{1} \cup \overline{Z}_{1})}\\
+      &= \frac{\prod_{i=1}^{n}\frac{10+n}{15+n} }{\prod_{i=2}^{n}P(Z_{i+1}|Z_{2} \cap Z_{3} \cap \dotsb \cap Z_{i})(P(Z_{1}) +P(\overline{Z}_{1}))}\\
+    \end{array}
+    \]
+  \end{itemize}
+\end{oef}
+
 
 \end{document}
 
