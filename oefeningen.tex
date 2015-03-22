@@ -225,6 +225,132 @@
   \end{itemize}
 \end{oef}
 
+\section{Stochastische veranderlijken}
+\label{sec:stoch-verand}
+
+\begin{oef}
+  Om naar de campus te komen moet ik de bus nemen in het station van Leuven. De wachttijd (in minuten) heeft dichtheidsfunctie: $f$
+  \[
+  f: \mathbb{R} \rightarrow \mathbb{R}:\ x \mapsto
+  \left\{
+    \begin{array}{rl}
+      \frac{c}{5}x & \text{ als } x\in \interval[open right]{0}{5}\\
+      c \left(2-\frac{1}{5}x\right) & \text{ als } x\in \interval[open right]{5}{10}\\
+      0 & \text{ elders }
+    \end{array}
+  \right.
+  \]
+
+  \begin{itemize}
+  \item Bepaal $c$ zodat $f$ een dichtheidsfunctie is.\\
+    Opdat $f$ een dichtheidsfunctie zou zijn moet de volgende integraal $1$ zijn.
+    \[
+    \begin{array}{rl}
+      \int_{-\infty}^{+\infty}f(x)\ dx 
+      &= \int_{0}^{10}f(x)\ dx \\
+      &= \int_{0}^{5}\frac{c}{5}\ dx + \int_{5}^{10}c\left(2-\frac{1}{5}\right)\ dx\\
+      &= \frac{25c}{10} + 10c - \frac{75c}{10}\\
+      &= \frac{50c}{10}
+    \end{array}
+    \]
+    $c$ moet dus $\frac{1}{5}$ zijn.
+    De functie is dus de volgende:
+    \[
+    f: \mathbb{R} \rightarrow \mathbb{R}:\ x \mapsto
+    \left\{
+      \begin{array}{rl}
+        \frac{x}{25} & \text{ als } x\in \interval[open right]{0}{5}\\
+        \frac{2}{5}-\frac{1}{25}x & \text{ als } x\in \interval[open right]{5}{10}\\
+        0 & \text{ elders }
+      \end{array}
+    \right.
+    \]
+  \item Wat is de kans dat de totale wachttijd ten hoogste drie minuten is?
+    \[
+    \begin{array}{rl}
+      P(X \le 3)
+      &= \int_{-\infty}^{3}f(x)\ dx\\
+      &= \int_{0}^{3}\frac{x}{25}\ dx\\
+      &= \frac{9}{50}
+    \end{array}
+    \]
+  \item Wat is de kans dat de totale wachttijd ten hoogste acht minuten is?
+    \[
+    \begin{array}{rl}
+      P(X \le 8)
+      &= \int_{-\infty}^{8}f(x)\ dx\\
+      &= \int_{0}^{5}\frac{x}{25}\ dx + \int_{5}^{8}\left(\frac{2}{5}-\frac{1}{25}x\right)\ dx\\
+      &= \frac{25}{50} + \frac{6}{5} - \frac{39}{50}\\
+      &= \frac{23}{25}
+    \end{array}
+    \]
+  \item Wat is de kans dat de totale wachttijd tussen drie en acht minuten ligt\\
+    \[ P(3 \le X \le 8) = P(X \le 8) - P(X \le 3) = \frac{23}{25}-\frac{9}{50} = \frac{35}{50} = \frac{7}{10} \]
+  \item Wat is de kans dat de totale wachttijd kleiner is dan twee minuten of groter is dan zes\\
+    minuten?
+    \[
+    \begin{array}{rl}
+      P(X \le 2 \vee X \ge 6)
+      &= \int_{-\infty}^{2}f(x)\ dx + \int_{6}^{+\infty}f(x)\ dx\\
+      &= \int_{0}^{2}\frac{x}{25}\ dx + \int_{6}^{10}\left(\frac{2}{5}-\frac{1}{25}x\right)\ dx\\
+      &= \frac{1}{50}\left[x^{2}\right]_{0}^{2} + \frac{2}{5}\left[x\right]_{6}^{10}-\frac{1}{50}\left[x^{2}\right]_{6}^{10}\\
+      &= \frac{4}{50} + \frac{8}{5} - \frac{100 -36}{50}\\
+      &= \frac{2}{5}
+    \end{array}
+    \]
+  \end{itemize}
+\end{oef}
+
+\begin{oef}
+  Aan een bepaalde universiteit zijn er voor het tweede jaar burgerlijk-ingenieur $350$ studenten ingeschreven.
+  Bij het begin van het academiejaar worden ze door lottrekking ingedeeld in $11$ groepen: $10$ groepen (genummerd van $1$ tot en met $10$) van dertig studenten en $1$ groep (groepsnummer $11$) van $50$ studenten.
+
+  \begin{itemize}
+  \item  E\'en van de studenten is Jan. Noem $X$ de grootte van de groep waarin deze student terecht komt.
+    $X$ kan je aanzien als een toevalsvariabele. 
+    Bepaal $E[X]$.\\\\
+    Jan kan ofwel in een groep met $30$ studenten terecht komen, ofwel in een groep met $50$ studenten.
+    \[ P(X=30) = \frac{10\cdot 30}{10 \cdot 30 + 1 \cdot 50} = \frac{300}{350} \quad\text{ en }\quad P(X=50) = \frac{1\cdot 50}{10 \cdot 30 + 1 \cdot 50} = \frac{50}{350} \]
+    We kunnen nu $E[X]$ bepalen:
+    \[ E[X] = 30 \cdot \frac{300}{350} + 50 \cdot \frac{50}{350} = \frac{11500}{350} = 32.85... \]
+  \item  Men beschikt verder over $11$ assistenten: eveneens door lottrekking wordt aan ieder een groep toegewezen.
+    Noem $Y$ de grootte van de groep die aan de oudste assistent wordt toegekend.
+    Bepaal $E[Y]$.\\\\
+    De oudste assistent kan eveneens ofwel aan een groep van $30$ studenten, ofwel aan een groep met $50$ studenten toegekend worden.
+    \[ P(Y=30) = \frac{10}{11} \quad\text{ en }\quad P(X=50) = \frac{1}{11} \]
+    We kunnen nu $E[Y]$ bepalen:
+    \[ E[Y] = 30\frac{10}{11} + 50\frac{1}{11} = \frac{350}{11} = 31.81... \]
+  \end{itemize}
+\end{oef}
+
+\begin{oef}
+  Omdat het verkeer tussen twee steden $A$ en $B$ vaak gehinderd wordt door voertuigen die in panne staan, besluit de plaatselijke overheid maatregelen te nemen door een vliegende brigade van automecaniciens op te richten.
+  Deze wil men laten opereren vanuit een basisstation ergens tussen de twee steden in (zeg in een punt $b$), zodat de gemiddelde verplaatsing van het nog op te richten station tot de bestuurder in panne minimaal is op lange termijn.
+  Hierbij is het zo dat het volgende kansmodel de plaats $X$ tussen de $2$ steden waar een panne optreedt, het best weergeeft:
+  \[
+  f_{X}(x) = 
+  \left\{
+    \begin{array}{rl}
+      \frac{x}{2} & \text{ als } 0 \le x \le 2\\
+      0 & \text{ elders }
+    \end{array}
+  \right.
+  \]
+  Ter informatie: stad $A$ bevindt zich in de oorsprong en stad $B$ in het punt met als $x$-co\"ordinaat $2$.
+  Bovendien komt $1$ eenheid overeen met $10$ kilometer.
+  Er zijn nu twee zinvolle manieren denkbaar om uitdrukking te geven aan de verplaatsing die telkens moet gebeuren, namelijk: $|X-b|$ of $(X-b)^{2}$.
+  Werken met $X-b$ is immers niet aangewezen aangezien je in dat geval een negatieve afstand kan uitkomen.
+  \begin{itemize}
+  \item Vindt $b \in \interval{0}{2}$ zodat $E[|X-b|]$ minimaal wordt.
+    Bereken vervolgens $F_{X}(b)$.
+    \extra{bewijs}
+  \item Bereken $E[X]$.
+    \extra{bewijs}
+  \item Vindt vervolgens $b \in \interval{0}{2}$ zodat $E[(X-b)^{2}]$ minimaal wordt.
+    \extra{bewijs}
+  \end{itemize}
+\end{oef}
+
 
 \end{document}
 
