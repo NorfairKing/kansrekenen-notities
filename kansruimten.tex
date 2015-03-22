@@ -454,6 +454,27 @@
   \end{proof}
 \end{st}
 
+\begin{st}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte en $(A_{i})_{n}$ een rij in $\mathcal{A}$.
+  \[ P\left(  \bigcup_{n}A_{n}\right) = P(A_{1}) + \sum_{n>1}P\left( A_{n} \cap\bigcap_{i=1}^{n-1} A_{i}^{C}\right)\]
+
+  \begin{proof}
+    We bewijzen, nog sterker, dat de bewering geldt voor elke aftelbare verzameling $A_{i}\in \mathcal{A}$ in $\mathcal{A}$.\\
+    Bewijs door volledige inductie op $\mathbb{N}$:
+    \begin{itemize}
+    \item De stelling geldt voor $n=1$
+      \[ P(A_{1} \cup A_{2}) = P(A_{1} \cup \left(A_{1}^{C} \cap A_{2}\right) = P(A_{1}) + P(A_{1}^{C} \cap A_{2}) \]
+    \item Uit de stelling voor $k=n$ volgt de stelling voor $k+1$.
+      \[
+      P\left( \bigcup_{i=1}^{n+1}A_{i}\right)
+      = P\left( A_{n+1} \cup \bigcup_{i=1}^{n}A_{i}\right) 
+      = P\left(\left(\bigcup_{i=1}^{n} A_{i}\right)^{C}\cap A_{n+1}\right) + P\left(\bigcup_{i=1}^{n}A_{i}\right) 
+      = P(A_{1}) + \sum_{n>1}P\left( A_{n} \cap\bigcap_{i=1}^{n-1} A_{i}^{C}\right)
+      \]
+    \end{itemize}
+  \end{proof}
+\end{st}
+
 \subsection{Onafhankelijkheid}
 \label{sec:onafhankelijkheid}
 \begin{de}
