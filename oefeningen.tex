@@ -386,7 +386,7 @@ in \{ 0,1,\dotsc,n-2 \}$.
     \item Het aantal manieren waarop de studenten kunnen staan met $0$ mensen ertussen is $n-1$.
     \item Het aantal manieren waarop de studenten kunnen staan met $1$ persoon ertussen is $n-2$.
     \item Het aantal manieren waarop de studenten kunnen staan met $i$ mensen ertussen is $n-i-1$.
-    \item Het totaal aantal manieren om mezelf en een vriend(in) op $2$ plaatsen uit $n$ te zetten is $C_{n}^{p}$.
+    \item Het totaal aantal manieren om mezelf en een vriend(in) op $2$ plaatsen uit $n$ te zetten is $C_{n}^{2}$.
     \end{itemize}
     \[
     \begin{array}{rl}
@@ -397,6 +397,36 @@ in \{ 0,1,\dotsc,n-2 \}$.
       &= \frac{1}{n(n-1)}\left(4n\left(\sum_{i=0}^{n-2}i\right)-n-1\right)\\
       &= \frac{4n(n-1)i-n-1}{n(n-1)}\\
       &= \frac{4ni-1}{n}\\
+    \end{array}
+    \]
+    \question{wut?}
+    \extra{hermaken}
+
+    We bekijken eerst de mogelijkheden:
+    \begin{itemize}
+    \item Het totaal aantal manieren om $n$ mensen op een rij te zetten is $P_{n}=n!$.
+    \item Het aantal manieren waarop we kunnen staan met $0$ mensen ertussen is $n-1 \cdot P_{n-2}$.
+    \item Het aantal manieren waarop we kunnen staan met $1$ persoon ertussen is $n-2 \cdot P_{n-3}$.
+    \item Het aantal manieren waarop we kunnen staan met $2$ mensen ertussen is $n-3 \cdot P_{n-4} \cdot P_{2}$.
+    \item Het aantal manieren waarop we kunnen staan met $3$ mensen ertussen is $n-4 \cdot P_{n-5} \cdot P_{3}$.
+    \item Het aantal manieren waarop we kunnen staan met $i$ mensen ertussen is $n-1-i \cdot P_{n-2-i} \cdot P_{i}$.
+    \end{itemize}
+    \[ 
+    \begin{array}{rl}
+    E[Y]
+    &= \sum_{i=0}^{n-2}i \frac{(n-1-i) \cdot P_{n-2-i} \cdot P_{i}}{P_{n}}\\
+    &= \sum_{i=0}^{n-2}i(n-1-i) \frac{(n-2-i)! \cdot i!}{n!}\\
+    &= \sum_{i=0}^{n-2}\frac{i(n-1-i)}{n(n-1)} \frac{(n-2-i)! \cdot i!}{(n-2)!}\\
+    &= \sum_{i=0}^{n-2}\frac{i(n-1-i)}{n(n-1)} \frac{1}{C_{n-2}^{i}}\\
+    &= \frac{1}{2^{n-2}}\sum_{i=0}^{n-2}\frac{i(n-1-i)}{n(n-1)}\\
+    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\sum_{i=0}^{n-2}i(n-1-i)\\
+    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\sum_{i=0}^{n-2}(in-i-i^{2})\\
+    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\left(\sum_{i=0}^{n-2}in-\sum_{i=0}^{n-2}i-\sum_{i=0}^{n-2}i^{2}\right)\\
+    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\left(n\sum_{i=1}^{n-2}i-\sum_{i=1}^{n-2}i-\sum_{i=1}^{n-2}i^{2}\right)\\
+    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\left(n\frac{(n-2)(n-3)}{2}-\frac{(n-2)(n-3)}{2}-\frac{(n-2)(n-1)(2(n-2)+1)}{6}\right)\\
+    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\left((n-1)\frac{(n-2)(n-3)}{2}-\frac{(n-2)(n-1)(2n-3)}{6}\right)\\
+    &= \frac{1}{2^{n-2}}\frac{1}{n}\left(\frac{(n-2)(n-3)}{2}-\frac{(n-2)(2n-3)}{6}\right)\\
+    &= \frac{3(n-2)(n-3) - (n-2)(2n-3)}{6n 2^{n-2}}\\
     \end{array}
     \]
     \question{wut?}
