@@ -380,58 +380,193 @@
 in \{ 0,1,\dotsc,n-2 \}$.
   Bewijs $E[Y] =\frac{n-2}{8}$.
 
-  \begin{proof}
-    We bekijken eerst de mogelijkheden.
-    \begin{itemize}
-    \item Het aantal manieren waarop de studenten kunnen staan met $0$ mensen ertussen is $n-1$.
-    \item Het aantal manieren waarop de studenten kunnen staan met $1$ persoon ertussen is $n-2$.
-    \item Het aantal manieren waarop de studenten kunnen staan met $i$ mensen ertussen is $n-i-1$.
-    \item Het totaal aantal manieren om mezelf en een vriend(in) op $2$ plaatsen uit $n$ te zetten is $C_{n}^{2}$.
-    \end{itemize}
-    \[
-    \begin{array}{rl}
-      E[Y]
-      &= \sum_{i=0}^{n-2}i \frac{n-i-1}{C_{n}^{2}}\\
-      &= \sum_{i=0}^{n-2}i\frac{2(n-i-1)}{n(n-1)}\\
-      &= \frac{1}{n(n-1)}\left(\sum_{i=0}^{n-2}2in-\sum_{i=0}^{n-2}i-\sum_{i=0}^{n-2}1\right)\\
-      &= \frac{1}{n(n-1)}\left(4n\left(\sum_{i=0}^{n-2}i\right)-n-1\right)\\
-      &= \frac{4n(n-1)i-n-1}{n(n-1)}\\
-      &= \frac{4ni-1}{n}\\
-    \end{array}
-    \]
-    \question{wut?}
-    \extra{hermaken}
-
+\begin{proof}
     We bekijken eerst de mogelijkheden:
     \begin{itemize}
     \item Het totaal aantal manieren om $n$ mensen op een rij te zetten is $P_{n}=n!$.
-    \item Het aantal manieren waarop we kunnen staan met $0$ mensen ertussen is $n-1 \cdot P_{n-2}$.
-    \item Het aantal manieren waarop we kunnen staan met $1$ persoon ertussen is $n-2 \cdot P_{n-3}$.
-    \item Het aantal manieren waarop we kunnen staan met $2$ mensen ertussen is $n-3 \cdot P_{n-4} \cdot P_{2}$.
-    \item Het aantal manieren waarop we kunnen staan met $3$ mensen ertussen is $n-4 \cdot P_{n-5} \cdot P_{3}$.
-    \item Het aantal manieren waarop we kunnen staan met $i$ mensen ertussen is $n-1-i \cdot P_{n-2-i} \cdot P_{i}$.
+    \item Het aantal manieren waarop we kunnen staan met $0$ mensen ertussen is $2(n-1) \cdot P_{n-2}$.
+    \item Het aantal manieren waarop we kunnen staan met $1$ persoon ertussen is $2(n-2) \cdot P_{n-2}$.
+    \item Het aantal manieren waarop we kunnen staan met $i$ mensen ertussen is $2(n-1-i) \cdot P_{n-2}$.
     \end{itemize}
+    De factor stamt van het feit dat je jezel en je vriend(in) kan omwisselen, de factor $(n-1-i)$ komnt van het aantal plaatsen waar de groep met (en tussen) jou en je vrien(in) kan staan en de factor $P_{n-2}$ komt van het aantal manieren dat de andere mensen kunnen staan.
     \[ 
     \begin{array}{rl}
     E[Y]
-    &= \sum_{i=0}^{n-2}i \frac{(n-1-i) \cdot P_{n-2-i} \cdot P_{i}}{P_{n}}\\
-    &= \sum_{i=0}^{n-2}i(n-1-i) \frac{(n-2-i)! \cdot i!}{n!}\\
-    &= \sum_{i=0}^{n-2}\frac{i(n-1-i)}{n(n-1)} \frac{(n-2-i)! \cdot i!}{(n-2)!}\\
-    &= \sum_{i=0}^{n-2}\frac{i(n-1-i)}{n(n-1)} \frac{1}{C_{n-2}^{i}}\\
-    &= \frac{1}{2^{n-2}}\sum_{i=0}^{n-2}\frac{i(n-1-i)}{n(n-1)}\\
-    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\sum_{i=0}^{n-2}i(n-1-i)\\
-    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\sum_{i=0}^{n-2}(in-i-i^{2})\\
-    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\left(\sum_{i=0}^{n-2}in-\sum_{i=0}^{n-2}i-\sum_{i=0}^{n-2}i^{2}\right)\\
-    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\left(n\sum_{i=1}^{n-2}i-\sum_{i=1}^{n-2}i-\sum_{i=1}^{n-2}i^{2}\right)\\
-    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\left(n\frac{(n-2)(n-3)}{2}-\frac{(n-2)(n-3)}{2}-\frac{(n-2)(n-1)(2(n-2)+1)}{6}\right)\\
-    &= \frac{1}{2^{n-2}}\frac{1}{n(n-1)}\left((n-1)\frac{(n-2)(n-3)}{2}-\frac{(n-2)(n-1)(2n-3)}{6}\right)\\
-    &= \frac{1}{2^{n-2}}\frac{1}{n}\left(\frac{(n-2)(n-3)}{2}-\frac{(n-2)(2n-3)}{6}\right)\\
-    &= \frac{3(n-2)(n-3) - (n-2)(2n-3)}{6n 2^{n-2}}\\
+    &= \sum_{i=0}^{n-2}i \cdot \frac{\left( 2(n-1-i) \cdot P_{n-2} \right)}{n!}\\
+    &= \sum_{i=0}^{n-2}i \cdot \frac{\left( 2(n-1-i) \cdot (n-2)! \right)}{n!}\\
+    &= \frac{2(n-2)!}{n!}\sum_{i=0}^{n-2}i \cdot (n-1-i)\\
+    &= \frac{2(n-2)!}{n!}\sum_{i=0}^{n-2}(in- i-i^{2})\\
+    &= \frac{2(n-2)!}{n!}\left(\sum_{i=0}^{n-2}in- \sum_{i=0}^{n-2}i-\sum_{i=0}^{n-2}i^{2}\right)\\
+    &= \frac{2(n-2)!}{n!}\left((n-1)\sum_{i=0}^{n-2}i-\sum_{i=0}^{n-2}i^{2}\right)\\
+    &= \frac{2(n-2)!}{n!}\left((n-1)\frac{n(n-1)}{2}-\frac{n(n-1)(2(n-1)+1)}{6}\right)\\
+    &= \frac{2(n-1)!}{n!}\left(\frac{n(n-1)}{2}-\frac{n(2(n-1)+1)}{6}\right)\\
+    &= \frac{2n!}{n!}\left(\frac{(n-1)}{2}-\frac{(2(n-1)+1)}{6}\right)\\
+    &= \frac{3(n-1)-(2(n-1)+1)}{3}\\
+    &= \frac{n-2}{3}\\
     \end{array}
     \]
-    \question{wut?}
-    \extra{hermaken}
-  \end{proof}
+\end{proof}
+\begin{proof}
+  Alternatief:\\
+  Noem $X_{i}$ het aantal mensen in groep $G_{i}$:
+  \begin{itemize}
+  \item $G_{1}$: de mensen tussen jullie.
+  \item $G_{2}$: de mensen links van beide.
+  \item $G_{3}$: de mensen links van beide.
+  \end{itemize}
+  Elk van de $n-2$ mensen komt in \'e\'en van de drie groepen terecht en met dezelfde kans.
+  \[ E(X_{1}) = E(X_{2}) = E(X_{3}) \]
+  Bovendien geldt $X_{1}+X_{2}+X_{3}= n-2$.
+  \[ n-2 = E(X_{1}+X_{2}+X_{3}) \]
+  \[ n-2 = E(X_{1})+E(X_{2})+E(X_{3}) \]
+  \[ n-2 = 3E(X_{1}) \]
+  \[ \frac{n-2}{3} = E(X_{1}) \]
+\end{proof}
+\end{oef}
+
+\begin{oef}
+  Een kandidaat neemt deel aan een quiz waarbij opeenvolgende vragen gesteld worden. Hij mag
+naar de volgende ronde overstappen als hij $50$ vragen juist beantwoord heeft. Om aan een saldo
+van $50$ juiste antwoorden te komen, mag de kandidaat zich hoogstens $4$ keer vergissen. Bereken
+de kans dat de kandidaat in de volgende ronde raakt, als men veronderstelt dat de kans om een
+goed antwoord te geven $0.9$ bedraagt.\\\\
+  Noem $X$ het aantal keer dat de kandidaat zich vergist voordat hij $50$ juiste antwoorden geeft.
+  $X$ is dat negatief binomiaal verdeeld.
+  \[ X \sim NB(r=50,p=0.9) \]
+  We zoeken nu de volgende kans:
+  \[ P(X \le 4) = P(X=0) + P(X=1) + P(X=2) + P(X=3) + P(X=4) \]
+  \formularium{Binomiaalverdeling}{$P(X=k) = \binom{k+r-1}{k}p^{r}(1-p)^{k}$}
+  \[
+  \begin{array}{l}
+    = \binom{49}{0}(0.9)^{50} + \binom{50}{1}(0.9)^{50}(0.1) + \binom{51}{2}(0.9)^{50}(0.1)^{2} + \binom{53}{3}(0.9)^{50}(0.1)^{3} + \binom{54}{4}(0.9)^{50}(0.1)^{4}\\
+    = \cdots\\
+    = 0.361447
+  \end{array}
+  \]
+\end{oef}
+
+\begin{oef}
+  Het aantal eieren dat door een vogel gelegd wordt, is Poisson verdeeld met parameter $\lambda$.
+  De kans dat een ei voor het uitbroeden vernietigd wordt, is $p$.
+  Zoek de kans dat geen enkel ei uitgebroed wordt.\\\\
+  Noem $X$ het aantal eieren dat gelegd worden.
+  \[ X \sim P(\gamma) \]
+  Noem $Y$ het aantal eieren dat uitgebroed worden.
+  \[ Y | X = n \sim B(n,p) \]
+  We zoeken nu de kans $P(Y=0)$, maar we kennen enkel $Y|X=n$, niet $Y$.
+  \[ P(Y=0) = \sum_{k=0}^{+\infty}P(Y=0|X=k)P(X=k) \]
+  \formularium{Poissonverdeling}{$P(X=k) = e^{-\lambda}\frac{\lambda^{k}}{k!}$}
+  \formularium{Binomiaalverdeling}{$P(Y=k|X=n)=\binom{n}{k}p^{k}(1-p)^{n-k}$}
+  \[
+  \begin{array}{rl}
+    P(Y=0)
+    &= \sum_{k=0}^{+\infty}P(Y=0|X=k)P(X=k)\\
+    &= \sum_{k=0}^{+\infty}\binom{k}{0}p^{k}(1-p)^{k-k}e^{-\lambda}\frac{\lambda^{k}}{k!}\\
+    &= \sum_{k=0}^{+\infty}\frac{p^{k}\lambda^{k}e^{-\lambda}}{k!}\\
+    &= e^{-\lambda} \sum_{k=0}^{+\infty}\frac{(p\lambda)^{k}}{k!}\\
+    &= e^{-\lambda} e^{px}\\
+    &= e^{-\lambda(1-p)}\\
+  \end{array}
+  \]
+  \formularium{Formules bovenaan}{$e^{k} = \sum_{k=0}^{\infty}\frac{x^{k}}{k!}$}
+\end{oef}
+
+\begin{oef}
+  Veronderstel dat de snelheid van auto's op een bepaald stuk weg normaal verdeeld is. Men
+heeft experimenteel bepaald dat $5\%$ van de auto's trager dan $100$ km/u rijdt en dat $20\%$ van de
+auto's sneller dan $130$ km/u rijdt. Hoeveel procent van de auto's gaat sneller dan $145$ km/u?\\\\
+  Noem $X$ de snelheid van een auto.
+  We gaan ervan uit dat $X$ normaal verdeeld is:
+  \[ X \sim N(\mu,\sigma^{2}) \]
+  We hebben de volgende gegevens over $X$...
+  \[ P(X \le 100) = 0.05 \text{ en } P(X > 130) = 0.2 \]
+  ... en zoeken de volgende kans:
+  \[ P(X > 145) \]
+  Omdat $X$ normaal verdeeld is, gelden deze kansen ook voor de $Z$-scores van deze snelheden.
+  \[ 
+  \left\{
+    \begin{array}{rcl}
+      P(X \le \frac{100-\mu}{\sigma}) &=& 0.05\\
+      P(X \le \frac{130-\mu}{\sigma}) &=& 1-0.2\\
+    \end{array}
+  \right.
+  \]
+  \tabel{Standaard normale verdeling}{De waarde waarvoor $P(X \le a) = 0.05$ geldt is $a=-1.645$  (Onthoudt, de tabel is symmetrisch rond $0$.) en de waarde waarvoor $P(X \le b)$ geldt is $b=0.84$.}
+  \[
+  \left\{
+    \begin{array}{rcl}
+      \frac{100-\mu}{\sigma} &=& -1.645\\
+      \frac{130-\mu}{\sigma} &=& 0.84\\
+    \end{array}
+  \right.
+  \quad\longrightarrow\quad
+  \left\{
+    \begin{array}{rl}
+      \mu &= 119.859\\
+      \sigma &= 12.072\\
+    \end{array}
+  \right.
+  \]
+  We kunnen nu de gevraagde kans berekenen:
+  \[ P(X > 145) = 1-P(X \ge 145) = 1-P\left(Z \le \frac{145-119.859}{12.072}\right) = 1-P(Z\le 2.082) = 0.019 \]
+  \tabel{Standaard normale verdeling}{De waarde in de tabel bij $2.082$ is $0.981$.}
+\end{oef}
+
+
+\begin{oef}
+  Een lognormale verdeling wordt voorgesteld als model om de $SO_{2}$ concentratie boven een bos te beschrijven.
+  Stel dat de $SO_{2}$ concentratie gemiddelde $1.9$ en standaardafwijking $0.9$ heeft.
+  Wat is de kans dat de concentratie op een gegeven moment tussen $5$ en $10$ ligt?\\\\
+  Noem $X$ de $SO_{2}$ concentratie boven het bos.
+  Noem $Y=\ln(X)$.
+  We zoeken de volgende kans:
+  \[ P( 5 \le X \le 10) \]
+  We berekenen $\mu_{Y}$ en $\sigma_{Y}$ vanuit $\mu_{X}$ en $\sigma_{X}$:\\
+  \formularium{Lognormale verdeling}{$\mu_{X} = e^{\mu_{Y} + \frac{\sigma_{Y}^{2}}{2}}$ en $\sigma_{X}^{2} = e^{2\mu_{Y} + \sigma_{Y}^{2}}\left(e^{\sigma_{Y}^{2}}-1\right)$}
+  \[
+  \left\{
+    \begin{array}{rl}
+      \mu_{X} &= e^{\mu_{Y} + \frac{\sigma_{Y}^{2}}{2}}\\
+      \sigma_{X}^{2} &= e^{2\mu_{Y} + \sigma_{Y}^{2}}\left(e^{\sigma_{Y}^{2}}-1\right)\\
+    \end{array}
+  \right.
+  \quad\longrightarrow\quad
+  \left\{
+    \begin{array}{rl}
+      \mu_{X} &= 0.5407\\
+      \sigma_{X} &= 0.4499\\
+    \end{array}
+  \right.
+  \]
+  We kunnen de gezochte kans nu berekenen:
+  \[ Y \sim N(\mu_{Y}=0.5407,\sigma_{Y}^{2}=0.4499^{2}) \]
+  \[ P( 5 \le X \le 10) = P(\ln(5) \le Y \le \ln(10) \]
+  \[ = P\left( \frac{\ln(5)-\mu_{Y}}{\sigma_{Y}}  \le Z \le \frac{\ln(10)-\mu_{Y}}{\sigma_{Y}}\right) = P\left( Z \le \frac{\ln(10)-\mu_{Y}}{\sigma_{Y}}\right) - P\left(Z \le \frac{\ln(5)-\mu_{Y}}{\sigma_{Y}}\right) \]
+  \[ = P( Z \le 3.9161) - P(Z \le 2.3755) \]
+  \tabel{Standaard normale verdeling}{De waarde in de tabel bij $3.9161$ staat er niet in, dus we nemen $0.999$ en de waarde in de tabel bij $2.3755$ is $0.991$.}
+  \[ = 0.999 - 0.991 = 0.008 \]
+  \textcolor{red}{Foute oplossing: gemiddelde en standaardafwijking slaan op $X$, niet op $\ln(X)$!\\
+  Noem $X$ de $SO_{2}$ concentratie boven het bos.
+  $X$ is lognormaal verdeeld:
+  \[ \ln(X) \sim N(\mu=1.9,\sigma^{2}=0.9^{2}) \]
+  We zoeken de volgende kans:
+  \[ P( 5 \le X \le 10) \]
+  We weten dat de logaritmische functie ongelijkheden behoudt (want ze is stijgend):
+  \[ P\left( \ln(5) \le \ln(X) \le \ln(10)\right) \]
+  We gebruiken dat $X$ lognormaal verdeeld is:
+  \[ P\left( \ln(5) \le \ln(X) \le \ln(10)\right) = P\left( \frac{\ln(5) - 1.9}{0.9} \le Z \le \frac{\ln(10) - 1.9}{0.9} \right)\]
+  \[ 
+  = P\left(Z \le \frac{\ln(10) - 1.9}{0.9}\right) - P\left( Z \le \frac{\ln(5) - 1.9}{0.9} \right)
+  \]
+  \[ 
+  = P\left(Z \le 0.4473 \right) - P\left( Z \le -0.3228 \right)
+  \]
+  \tabel{Standaard normale verdeling}{De waarde in de tabel bij $0.4473$ is $0.67$ en de waarde bij $-0.3228$ is $0.375$.}
+  \[ 
+  = 0.67 - 0.37 = 0.3
+  \]
+  }
+  % http://www.wolframalpha.com/input/?i=P%285+%3C%3D+X+%3C%3D+10%29+with+X+lognormal+mu%3D1.9+sigma%3D0.9
 \end{oef}
 
 
