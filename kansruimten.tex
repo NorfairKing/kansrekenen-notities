@@ -433,6 +433,25 @@
 \label{sec:handige-rekenregels}
 
 \begin{st}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte.
+  \[
+  \forall A,B \in \mathcal{A}: P(A|B) = \frac{P(A)}{P(B)}P(B|A)
+  \]
+  
+  \begin{proof}
+    \[
+    \begin{array}{rl}
+      P(A|B)
+      &= \frac{P(A\cap B)}{P(B)}\\
+      &= \frac{P(A)P(A\cap B)}{P(B)P(A)}\\
+      &= \frac{P(A)}{P(B)}\frac{P(A\cap B)}{P(A)}\\
+      &= \frac{P(A)}{P(B)}P(B|A)\\
+    \end{array}
+    \]
+  \end{proof}
+\end{st}
+
+\begin{st}
   \label{st:rekenregel-afhankelijkheid-partitie}
   Zij $\Omega,\mathcal{A},P$ een kansruimte en $X$ een partitie van $\Omega$ waarin $\forall A \in X:\ P(A) > 0$ geldt.
   Zij $X$ een gebeurtenis in $\Omega$.

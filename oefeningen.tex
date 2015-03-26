@@ -569,6 +569,184 @@ auto's sneller dan $130$ km/u rijdt. Hoeveel procent van de auto's gaat sneller 
   % http://www.wolframalpha.com/input/?i=P%285+%3C%3D+X+%3C%3D+10%29+with+X+lognormal+mu%3D1.9+sigma%3D0.9
 \end{oef}
 
+\begin{oef}
+  Een kleine maatschappij die pendelvluchten verzorgt, vliegt met vliegtuigjes waarin plaats is voor maximaal $8$ personen.
+  De maatschappij heeft vastgesteld dat in het hoogseizoen de kans dat een passagier die een ticket gekocht heeft niet opdaagt voor de vlucht $0.1$ is.
+  Voor elke lucht verkoopt de maatschappij tickets aan de eerste $10$ mensen die bestellen.
+  Er kunnen op de luchthaven zelf geen tickets gekocht worden.
+  De kans op $k$ verkochte tickets is als volgt:
+  \begin{center}
+    \begin{tabular}[H]{c|ccccc}
+      $k$ & $6$ & $7$ & $8$ & $9$ & $10$\\
+      \hline
+      kans & $0.3$ & $0.3$ & $0.25$ & $0.1$ & $0.05$\\
+    \end{tabular}
+  \end{center}
+  Bereken de kans dat het aantal passagiers dat voor een vlucht effectief komt opdagen groter is
+dan het aantal beschikbare plaatsen.\\\\
+  Noem $X$ het aantal verkochte tickets en $Y$ het aantal passagiers dat komt opdagen voor een vlucht.
+  \[ Y|X=n \sim B(n,p=0.9) \]
+  We zoeken de volgende kans:
+  \[ P( Y \ge 8) \]
+  De maatchappij verkoopt nooit meer dan $10$ tickets, dus we kunnen deze kans als volgt berekenen. 
+  \[ P(Y \ge 8) = P(Y=9) + P(Y=10) \]
+  Aangezien we enkel iets weten over $Y|X=n$, zullen we de wet van totale kans moeten gebruiken:
+  \formularium{Binomiaal verdeling}{$P(Y=k|X=n) = \binom{n}{k}p^{k}(1-p)^{n-k}$}
+  \[
+  \begin{array}{rl}
+    P(Y = 9)
+    &= \sum_{k=0}^{10}P(Y=9|X=k)\\
+    &= P(Y=9|X=9)P(X=9) + P(Y=9|X=10)P(X=10)\\
+    &= 0.9^{9}0.1 + \binom{10}{9}(0.9)^{9}(0.1)^{1}(0.05)\\
+    &= 0.9^{9}0.1 + 10(0.9)^{9}(0.1)^{1}(0.05)\\
+    &= 0.058113\\
+  \end{array}
+  \]
+  \[
+  \begin{array}{rl}
+    P(Y = 10)
+    &= \sum_{k=0}^{10}P(Y=10|X=k)\\
+    &= P(Y=10|X=10)P(X=10)\\
+    &= 0.9^{10}(0.05)\\
+    &= 0.017434\\
+  \end{array}
+  \]
+  
+  \[ P(Y \ge 8) = P(Y=9) + P(Y=10) = 0.058113 + 0.017434 = 0.076 \]
+\end{oef}
+
+\section{Bivariate verdelingen}
+\label{sec:bivar-verd}
+
+\begin{oef}
+  De gezamenlijke dichtheidsfunctie van $(X,Y)$ is gegeven door $f_{X,Y}(x,y)$:
+  \[
+  f_{X,Y}(x,y) = 
+  \left\{
+    \begin{array}{rl}
+      C \text{ als } (x,y) \in S\\
+      0 \text{ elders}
+    \end{array}
+  \right\}
+  \]
+  $S \subset \mathbb{R}^{2}$ is hierin gegeven als volgt:
+  \[ S = \{(x,y) \mid x\in \interval{0}{4} \wedge y \in \interval{3x^{2}}{12x} \]
+  Bepaal $C$ zodat $f_{X,Y}(x,y)$ een dichtheidsfunctie is.\\\\
+  Opdat $f_{X,Y}(x,y)$ een dichtheidsfunctie zou zijn, moet de integraal over het universum op $1$ uitkomen:
+  \[
+  \begin{array}{rl}
+    \iint_{\mathbb{R}^{2}}f_{X,Y}(x,y)\ dx\ dy
+    &= \int_{0}^{4}\int_{3x^{2}}^{12x}C\ dx\ dy\\
+    &= C\int_{0}^{4}\left[ y \right]_{3x^{2}}^{12x}\ dx\\
+    &= C\int_{0}^{4}\left( 12x - 3x^{2} \right)\ dx\\
+    &= C\left( 12\int_{0}^{4}x \ dx - 3\int_{0}^{4}x^{2} \ dx\right)\\
+    &= C\left( 6\left[ x^{2} \right]_{0}^{4} - \left[x^{3}\right]_{0}^{4} \right)\\
+    &= C\left( 6 \cdot 16 - 64 \right)\\
+    &= 32C \\
+  \end{array}
+  \]
+  $C$ moet dus $\frac{1}{32}$ zijn.
+\end{oef}
+
+\begin{oef}
+  De luchtvervuiling in de omgeving van een scheikundige fabriek wordt gemeten.
+  Noem $X$ de pollutiegraad per genomen staal wanneer de zuiveringsinstallatie niet werkt en $Y$ de  pollutiegraad wanneer deze wel werkt.
+  De gezamenlijke kansdichtheid van $X$ en $Y$ is gegeven door $f_{X,Y}(x,y)$:
+  \[ f_{X,Y}(x,y) = kxy \text{ voor } x \in \interval[open]{0}{2}, y \in \interval[open]{0}{1}, 2y < x \]
+  Elders is $f_{X,Y}(x,y)$ gelijk aan nul.
+  \begin{itemize}
+  \item Bepaal $k\in \mathbb{R}$ zodat $f_{X,Y}$ een dichtheidsfunctie is.\\
+    De integraal van $f_{X,Y}$ over heel het universum moet $1$ zijn opdat het een dichtheidsfunctie zou zijn.
+    \[
+    \begin{array}{rl}
+      \iint_{\mathbb{R}^{2}}f_{X,Y}(x,y)
+      &= \int_{0}^{2}\int_{0}^{\frac{x}{2}}kxy\ dx\ dy\\
+      &= \frac{k}{2} \int_{0}^{2}\left[ xy^{2}\right]_{0}^{\frac{x}{2}}\ dx\\
+      &= \frac{k}{2} \int_{0}^{2}\frac{x^{3}}{4}\ dx\\
+      &= \frac{k}{32} \left[ x^{4}\right]_{0}^{2}\\
+      &= \frac{k}{32} 16\\
+      &= \frac{k}{2}\\
+    \end{array}
+    \]
+    $\frac{k}{2}$ moet $1$ zijn, dus $k$ moet $2$ zijn.
+  \item Bepaal de marginale dichtheidsfuncties.\\
+    Volgens de wet van de totale kans kunnen we eenvoudig de marginale dichtheidsfuncties berekenen:
+    \[
+    \begin{array}{rl}
+      f_{X}(y)
+      &= \int_{\mathbb{R}}f_{X,Y}\ dy\\
+      &= \int_{0}^{\frac{x}{2}} kxy\ dy\\
+      &= \frac{kx}{2} \left[ y^{2} \right]_{0}^{\frac{x}{2}}\\
+      &= \frac{kx^{3}}{8}\\
+    \end{array}
+    \]
+    \[
+    \begin{array}{rl}
+      f_{Y}(x)
+      &= \int_{\mathbb{R}}f_{X,Y}\ dx\\
+      &= \int_{2y}^{2} kxy\ dx\\
+      &= \frac{ky}{2} \left[ x^{2} \right]_{2y}^{2}\ dx\\
+      &= 2ky(1-y^{2})\\
+    \end{array}
+    \]
+  \item Bepaal $f_{X|Y}$ en $f_{Y|X}$.\\
+    \[ f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_{Y}(x)} = \frac{kxy}{2ky(1-y^{2})} = \frac{x}{2(1-y^{2})} \text{ als } x\in \interval[open]{2y}{2} \wedge y \in \interval[open left]{0}{1} \]
+    \[ f_{Y|X}(y|x) = \frac{f_{X,Y}(x,y)}{f_{X}(y)} = \frac{8kxy}{kx^{3}} = \frac{8y}{x^{2}} \text{ als } y \in \interval[open]{0}{2} \]
+  \end{itemize}
+\end{oef}
+
+\begin{oef}
+  Stel $X$ het aantal klanten in een winkel die wachten op het inpakken van hun geschenkjes.
+  $X$ heeft mogelijke uitkomsten $0$, $1$, $2$, $3$, of $4$ met bijbehorende kansen $0.1$, $0.2$, $0.3$, $0.25$, $0.15$.
+   Een willekeurig gekozen klant moet $1$, $2$ of $3$ geschenkjes laten inpakken met respectievelijke kans $0.6$, $0.3$ en $0.1$.
+   Stel $Y$ het totaal aantal pakjes dat ingepakt moeten worden voor de klanten in de wachtrij.
+   Veronderstel dat het aantal pakjes dat voor elke klant ingepakt moet worden, onafhankelijk is van het aantal van de andere klanten.
+   Bepaal de volgende kansen:
+   \[ P(X=3 \cap Y=3) \quad \text{en} \quad P(X=4 \cap Y=11) \]
+   Noem $X$ het aantal klanten die wachten, $Y$ het totaal aantal pakjes dat moet verpakt worden en $K_{i}$ het aantal pakjes van de $i$-de klant.
+   We kennen $P(K_{i} = k)$ en $P(X = x)$.
+   \begin{itemize}
+   \item
+     Als er $3$ klanten zijn is er maar \'e\'en mogelijkheid: elke klant heeft \'e\'en pakje om te laten inpakken:
+     \[ P(Y=3|X=3) = P(K_{1}=1 \cap K_{2}=1 \cap K_{3}= 1) \]
+     We weten bovendien dat het aantal pakjes dat ingepakt moet worden voor elke klant, onafhankelijk is van elkaar.
+     \[ = P(K_{1}=1) P(K_{2}=1) P(K_{3}= 1) = P(K_{1} = 1)^{3} = 0.6^{3} = 0.216 \]
+     We kunnen nu de gevraagde kans berekenen:
+     \[ P(X=3 \cap Y=3) = P(Y=3|X=3)P(X=3) = 0.6^{3} 0.25 = 0.054 \]
+   \item 
+     Als er $11$ klanten zijn, zijn er vier gelijkaardige mogelijkheden.
+     $3$ klanten wachten elk op $3$ pakjes en \'e\'en klant wacht op $2$ pakjes.
+     \[ P(Y=11|X=4) = 4P(K_{i}=3)^{3}P(K_{i}=2) = 4(0.1)^{3}(0.3) \]
+     We kunnen dan de gevraagde kans berekenen:
+     \[ P(X=4 \cap Y=11) = P(Y=11|X=4)P(X=4) = 4(0.1)^{3}(0.3)(0.15) = 0.00018 \]
+   \end{itemize}
+\end{oef}
+
+\begin{oef}
+  Gegeven de volgende kansverdeling:
+  \[
+  P(X=k_{1},Y=k_{2}) = 
+  \left\{
+    \begin{array}{cl}
+      \frac{1}{3} & \text{ als } (k_{1},k_{2}) \in \{(0,0),(1,-1),(1,1)\}\\
+      0 & \text{ elders}
+    \end{array}
+  \right.
+  \]
+  Bewijs dat $Corr(X,Y)$ gelijk is aan nul maar dat $X$ en $Y$ niet onderling onafhankelijk zijn.
+  \begin{proof}
+    De formule voor een correlatie gaat als volgt:
+    \[ Corr(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var[X]Var[Y]}} \]
+    \[ Var[X] = E[X^{2}] - E[X]^{2} \]
+    \[ Cov(X,Y) = E[XY] - E[X]E[Y] \] We berekenen dus eerst enkele
+    verwachtingswaarden:
+    \[ E[X] = \frac{1}{3}\left(0+1-1\right) = 0 \]
+    \[ E[Y] = \frac{1}{3}\left(0+1+1\right) = \frac{2}{3} \]
+    \[ E[XY] = \frac{1}{3}\left(1\cdot (-1) + 1 \cdot 1\right) = 0 \]
+    We kunnen besluiten dat $Corr(X,Y)$ nul zal zijn:
+    \[ Corr(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var[X]Var[Y]}} = \frac{E[XY] - E[X]E[Y]}{\sqrt{Var[X]Var[Y]}} = \frac{0}{\sqrt{Var[X]Var[Y]}} = 0 \]
+  \end{proof}
+\end{oef}
 
 \end{document}
 
