@@ -43,8 +43,24 @@
 \newcommand{\formularium}[2]{(Formularium: #1: #2)}
 \newcommand{\tabel}[2]{(Tabel #1: #2)}
 
-%badges
+% Badges
 \newcommand{\examen}[0]{\bx{{\bf Examenvraag!}}\\}
+
+% Examenvragen
+\newenvironment{examenvraag}[1]
+{ \par\noindent \underline{ Examenvraag #1:}}
+{  }
+
+\newenvironment{ex-vraag}
+{\begin{mdframed}}
+{\end{mdframed}}
+
+\newenvironment{ex-antwoord}
+{\par\noindent}
+{}
+
+\newcommand{\kennen}[1]{#1 (kennen)}
+\newcommand{\kunnen}[1]{#1 (kunnen)}
 
 % Voor meer plaats tussen wiskunde
 \renewcommand{\arraystretch}{1.25}

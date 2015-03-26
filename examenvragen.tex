@@ -1,0 +1,133 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+
+\chapter{Examenvragen}
+\label{cha:examenvragen}
+
+\begin{examenvraag}{Tussentijdse Toets 2014}
+  \begin{ex-vraag}
+    Een stochastisch koppel $(X,Y)$ heeft een bivariate normale verdeling als de gezamelijke verdelingsfunctie van $X$ en $Y$ als volgt gegeven wordt:
+    \[
+    f_{X,Y}(x,y)
+    =
+    \frac
+    {
+      e^{-\frac{1}{2}\frac{1}{1-\rho^{2}}
+        \left(
+          \left(\frac{x-\mu_{x}}{\sigma_{x}}\right)^{2}
+          - 2\rho\left(\frac{x-\mu_{x}}{\sigma_{x}}\right)^{2}\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}
+          + \left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}
+        \right)
+      }
+    }
+    {
+      2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}
+    }
+    \]
+    Bereken de marginale dichtheidsfunctie van $Y$.
+  \end{ex-vraag}
+  \begin{ex-antwoord}
+    \kennen{De formule voor een marginale dichtheidsfunctie gaat als volgt:}
+    \[ f_{y}(y) = \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dx \]
+    We voeren eerst een aantal constanten in, om de leesbaarheid te vergroten:
+    \[ 
+    C = \dfrac{1}{2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}} \quad A = \frac{1}{2}\frac{1}{1-\rho^{2}} \quad u = \frac{x-\mu_{x}}{\sigma_{x}} \quad v = \frac{y-\mu_{y}}{\sigma_{y}}
+    \]
+    \[ f_{X,Y}(x,y) = C e^{A \cdot (u^{2}-2\rho u v + v^{2})} \]
+    \kunnen{We kunnen de formule nu uitrekenen}
+    \[ \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dx\ dy = \int_{-\infty}^{+\infty} C e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ dx = C\int_{-\infty}^{+\infty}e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ dx \]
+    We voeren een nieuwe integratieveranderlijke in:
+    \[ 
+    \begin{array}{rl}
+      u &= \frac{x-\mu_{x}}{\sigma_{x}}\\
+      du &= \frac{1}{\sigma_{x}}dx\\
+    \end{array}
+    \]
+    \[
+    = C\sigma_{x}\int_{-\infty}^{+\infty}e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ du
+    = C\sigma_{x}\sigma_{X}\int_{-\infty}^{+\infty}e^{-Av^{2}}e^{-A \cdot (u^{2}-2\rho u v)}\ du
+    = C\sigma_{x}e^{-Av^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v}\ du
+    \]
+    We forceren hier een bijzonder product door $+ A\rho^{2}v^{2} - A\rho^{2}v^{2}$ toe te voegen in de exponent.
+    \[
+    = C\sigma_{x}e^{-Av^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v + A\rho^{2}v^{2} - A\rho^{2}v^{2}}\ du 
+    = C\sigma_{x}e^{-Av^{2}-A\rho^{2}v^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v + A\rho^{2}v^{2}}\ du 
+    \]
+    \[
+    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\int_{-\infty}^{+\infty}e^{-A(u-\rho v)^{2}}\ du 
+    \]
+    We voeren nogmaals een nieuwe integratieveranderlijke in:
+    \[ 
+    \begin{array}{rl}
+      z &= \sqrt{2A}(u-\rho v) \\
+      dz &= \sqrt{2A} du\\
+    \end{array}
+    \]
+    $z^{2}$ is dan $2A(u-\rho v)^{2}$.
+    \[
+    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\frac{1}{\sqrt{A}}\int_{-\infty}^{+\infty}e^{-\frac{1}{2}z^{2}}\ dz
+    \]
+    Nu zou je de formule binnen de integraal moeten herkennen.
+    \formularium{Dichtheidsfunctie van een algemene Normaalverdeling}{ $\frac{e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}}{\sigma\sqrt{2}\pi}$}
+    De formule voor de standaard normaalverdeling ziet er als volgt uit:
+    \[ \phi(x) = \frac{e^{-\frac{1}{2}x^{2}}}{\sqrt{2\pi}} \]
+    Omdat dit een dichtheid is, moet de integraal tot $1$ evalueren:
+    \[ 1 = \int_{-\infty}^{+\infty}\frac{e^{-\frac{1}{2}x^{2}}}{\sqrt{2\pi}} \]
+    \[ \sqrt{2\pi} = \int_{-\infty}^{+\infty}e^{-\frac{1}{2}x^{2}} \]
+    De integraal die nog overblijft kunnen we dus vervangen door $\sqrt{2\pi}$.
+    \[
+    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\frac{\sqrt{2\pi}}{\sqrt{2A}}
+    \]
+    We vervangen nu de leesbaarheidsconstanten terug naar de originele waarden en zien dat we al veel kunnen vereenvoudigen.
+    \[
+    = \dfrac{1}{2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}}\sigma_{x}e^{-\left( \frac{1}{2}\frac{1}{1-\rho^{2}}\right)(1-\rho^{2})\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}}\frac{\sqrt{2\pi}}{\sqrt{2\left( \frac{1}{2}\frac{1}{1-\rho^{2}}\right)}}
+    \]
+    \[
+    = \dfrac{1}{\sqrt{2\pi}\sigma_{y}}e^{- \frac{1}{2}\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}}
+    \]
+    We vinden dat $f_{y}(y)$ de dichtheidsfunctie is van een normaal verdeelde stochastische variabele, zoals verwacht.
+  \end{ex-antwoord}
+\end{examenvraag}
+
+\begin{examenvraag}{Tussentijdse Toets 2014}
+  \begin{ex-vraag}
+  Zij $\Omega$ een niet-aftelbare verzameling en zij $\mathcal{A}$ de volgende verzameling:
+  \[ \mathcal{A} = \{ A \in \Omega \mid A \text{ is aftelbaar} \vee A^{C} \text{ is aftelbaar } \} \]
+  Bewijs dat $\mathcal{A}$ een $\sigma$-algebra is.
+  \end{ex-vraag}
+  \begin{ex-antwoord}
+    \begin{proof}
+      \kennen{We gaan eenvoudigweg alle definierende eigenschappen van een $\sigma$-algebra af:}
+      \begin{itemize}
+      \item $\Omega \in \mathcal{A}$\\
+        $\Omega^{C}$ is leeg en dus aftelbaar, dus $\Omega$ zit in $\mathcal{A}$.
+      \item $\forall A \in \mathcal{A}: A^{C}\in \mathcal{A}$\\
+        Kies een willekeurige $A \in \mathcal{A}$. 
+        We onderscheiden twee gevallen.
+        \begin{itemize}
+        \item $A$ is aftelbaar: $A^{C}$ zit dan in $\mathcal{A}$ want $A^{C^{C}} = A$ is aftelbaar.
+        \item $A^{C}$ is aftelbaar: $A$ zit dan in $\mathcal{A}$ want $A^{C}$ is aftelbaar.
+        \end{itemize}
+      \item $\forall (A_{n})_{n}, A\in \mathcal{A}: \bigcup_{n} A_{n} \in \mathcal{A}$\\
+        Fixeer een rij $(A_{n})_{n}$ in $\mathcal{A}$.
+        We onderscheiden opnieuw twee gevallen.
+        \begin{itemize}
+        \item Alle $A_{n}$ zijn aftelbaar: $\bigcup_{n}A_{n}$ is dan aftelbaar en zit dus in $\mathcal{A}$.
+        \item Er is minstens \'e\'en $A_{n}$ niet aftelbaar. Opdat die $A_{m}$ in $\mathcal{A}$ zou zitten moet $A_{m}^{C}$ aftelbaar zijn.
+          $\left(bigcup_{n}A_{n}\right)^{C} = \bigcap_{n}A_{n}^{C}$ is nu aftelbaar omdat $A_{m}$ aftelbaar is.
+          Bijgevolg zit $\bigcup_{n}A_{n}$ ook in $\mathcal{A}$.
+        \end{itemize}
+      \end{itemize}
+    \end{proof}
+  \end{ex-antwoord}
+\end{examenvraag}
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
