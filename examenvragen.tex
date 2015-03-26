@@ -123,7 +123,78 @@
   \end{ex-antwoord}
 \end{examenvraag}
 
+\begin{examenvraag}{Tussentijdse Toets 2014}
+  \begin{ex-vraag}
+    Yumm's is een restaurant dat ook aan huis levert.
+    Op hun website kan je terugvinden dat de gemiddelde wachttijd (tussen het moment waarop je bestelt en het moment waarop het eten geleverd wordt) $60$ minuten bedraagt, met als standaarddeviatie $20$ minuten.
+    Ook restaurant Tasty levert aan huis, gemiddeld gezien met een wachttijd van $75$ minuten met een standaarddeviatie van $10$ minuten.
+    Wanneer je eten bestelt, doe je dat $6$ van de $10$ keer bij Yumm's, en $4$ van de $10$ keer bij Tasty.
+    Indien je veronderstelt dat beide wachttijden normaal verdeeld zijn, geef dan antwoord op de volgende vragen:
+    \begin{itemize}
+    \item Indien je een bestelling geplaatst hebt om $19$ uur, en je eten wordt geleverd tussen $20.15$ uur en $20.30$ uur, hoe groot is dan de kans dat je bij Yumm's besteld hebt?
+    \item Indien je elke week bij Yumm's bestelt, hoe groot is dan de kans dat je eten gedurende \'e\'en jaar ($52$ weken) minstens $10$ keer tussen $20.15$ uur en $20.30$ uur geleverd werd?
+    \end{itemize}
+  \end{ex-vraag}
+  \begin{ex-antwoord}
+    Noem $X$ de wachttijd wanneer je eten bestelt bij Yumm's.
+    We gaan ervan uit dat $X$ normaal verdeeld is.
+    \[ X \sim N(\mu_{X}=60,\sigma_{X}=20) \]
+    Noem $Y$ de wachttijd wanner je eten bestelt bij Tasty.
+    We gaan ervan uit dat ook $Y$ normaal verdeeld is.
+    \[ Y \sim N(\mu_{Y}=75,\sigma_{Y}=10) \]
+    We gaan er ook van uit dat je enkel bij Yumm's of Tasty kan bestellen.
+    \begin{itemize}
+    \item 
+      Merk op dat de wachttijd tussen $75$ en $90$ minuten ligt in dit geval.
+      Noem $A$ de gebeurtenis waarin de wachttijd tussen $75$ en $90$ minuten ligt
+      Noem $B$ de gebeurtenis waarin je bij Yumm's bestelt.
+      We zoeken nu de volgende kans:
+      \[ P(B|A) \]
+      \kennen{We gebruiken de stelling van Bayes}:
+      \[ 
+      P(B|A) = \frac{P(A|B)P(B)}{P(A|B)P(B) + P(A|B^{C})P(B^{C})}
+      \]
+      Hierin kennen we $P(B)$, $P(B^{C})$ en kunnen we $P(A|B)$ en $P(A|B^{C})$ berekenen.
+      \begin{itemize}
+      \item $P(A|B)$:\\
+        $P(A|B)$ is de kans op de gegeven wachttijd, gegeven dat we bij Yumm's bestellen.
+        \[ P(A|B) = P(75 \le X \le 90) \]
+        Omdat $X$ normaal verdeeld is, kunnen we deze kans berekenen met behulp van onze tabellen.
+        \[ P(75 \le X \le 90) = P(\frac{75-60}{20} \le Z \le \frac{90-60}{20}) = P(Z \le 1.5) - P(Z \le 0.75)\]
+        \tabel{Standaard normale verdeling}{$P(Z \le 0.75)=0.733$ en $P(Z \le 1.5) = 0.933$}
+        \[ = 0.933 - 0.773 = \frac{4}{25} = 0.16 \]
+      \item $P(A|B^{C})$:\\
+        $P(A|B^{C})$ is de kans op de gegeven wachttijd, gegeven dat we bij Tasty bestellen.
+        \[ P(A|B^{C} = P(75 \le Y \le 90) \]
+        Omdat $Y$ normaal verdeeld is, kunnen we deze kans berekenen met behulp van onze tabellen.
+        \[ P(75 \le Y \le 90) = P(\frac{75-75}{10} \le Z \le \frac{90-75}{10}) = P(Z \le 1.5) - P(Z \le 0) \]
+        \tabel{Standaard normale verdeling}{$P(Z \le 1.5) = 0.773$ en $P(Z \le 0) = 0.5$}
+        \[ = 0.933 - 0.5 = \frac{433}{1000} = 0.433 \]
+      \end{itemize}
+      We kunnen nu de gevraagde kans uitrekenen:
+      \[ \frac{P(A|B)P(B)}{P(A|B)P(B) + P(A|B^{C})P(B^{C})} = \frac{\frac{4}{25}\frac{6}{10}}{\frac{4}{25}\frac{6}{10} + \frac{433}{1000}\frac{4}{10}} = \frac{240}{673} = 0.3566 \]
 
+    \item 
+      We gaan ervan uit dat je telkens om $19$ uur bestelt.
+      Noem $U$ het aantal keer dat het eten tussen $20.15$ uur en $20.30$ uur toekomt per jaar.
+      De kans dat het eten \'e\'en keer tussen $20.15$ uur en $20.30$ uur toekomt is $0.16$ (zie eerder).
+      \kennen{$U$ is dan binomiaal verdeeld met $p=0.16$}.
+      \[ U \sim B(n=52, p=0.16) \]
+      We zoeken nu de volgende kans:
+      \[ P(U > 9) \]
+      We kunnen stukje bij beetje uitrekenen door $42$ termen uit te schrijven en uit te rekenen, of we kunnen de centrale limietstelling gebruiken:
+      \[ U = 52 X \sim N(52\mu_{X},52\sigma_{X}^{2}) \]
+      We hebben hiervoor $\mu_{X}$ en $\sigma_{X}^{2}$ nodig.
+      \kennen{Aangezien $X$ twee mogelijke uitkomsten heeft, in de zin dat het eten ofwel binnen de grenzen, ofwel buiten de grenzen aankomt, is $X$ Bernoulli-verdeeld met $p=0.16$.}
+      \formularium{Bernoulli verdeling}{$\mu_{X}=p$ en $\sigma_{X}=p(1-p)$}
+      \[ U = 52 X \sim N(\mu_{U}= 52\cdot 0.16,\ \sigma_{U} = 52\cdot 0.16 \cdot 0.84) = N(\mu_{U}=8.32,\sigma_{U}=6.99) \]
+      We kunnen de gezochte kans nu berekenen met de tabellen.
+      \[ P(U > 9) = 1 - P(U \le 9) = 1 - P\left(Z \le \frac{9-8.32}{\sqrt{6.99}} \right) = 1 - P(Z \le 0.4091) \]
+      \tabel{Standaard normale verdeling}{$P(Z \le 0.409) = 0.659$}
+      \[ = 1-0.659 = 0.341 \]
+    \end{itemize}
+  \end{ex-antwoord}
+\end{examenvraag}
 
 \end{document}
 
