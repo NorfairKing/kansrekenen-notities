@@ -1,0 +1,270 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+
+\chapter{Examenvragen}
+\label{cha:examenvragen}
+
+\begin{examenvraag}{Tussentijdse Toets 2014}
+  \begin{ex-vraag}
+    Een stochastisch koppel $(X,Y)$ heeft een bivariate normale verdeling als de gezamelijke verdelingsfunctie van $X$ en $Y$ als volgt gegeven wordt:
+    \[
+    f_{X,Y}(x,y)
+    =
+    \frac
+    {
+      e^{-\frac{1}{2}\frac{1}{1-\rho^{2}}
+        \left(
+          \left(\frac{x-\mu_{x}}{\sigma_{x}}\right)^{2}
+          - 2\rho\left(\frac{x-\mu_{x}}{\sigma_{x}}\right)^{2}\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}
+          + \left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}
+        \right)
+      }
+    }
+    {
+      2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}
+    }
+    \]
+    Bereken de marginale dichtheidsfunctie van $Y$.
+  \end{ex-vraag}
+  \begin{ex-antwoord}
+    \kennen{De formule voor een marginale dichtheidsfunctie gaat als volgt:}
+    \[ f_{y}(y) = \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dx \]
+    We voeren eerst een aantal constanten in, om de leesbaarheid te vergroten:
+    \[ 
+    C = \dfrac{1}{2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}} \quad A = \frac{1}{2}\frac{1}{1-\rho^{2}} \quad u = \frac{x-\mu_{x}}{\sigma_{x}} \quad v = \frac{y-\mu_{y}}{\sigma_{y}}
+    \]
+    \[ f_{X,Y}(x,y) = C e^{A \cdot (u^{2}-2\rho u v + v^{2})} \]
+    \kunnen{We kunnen de formule nu uitrekenen}
+    \[ \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dx\ dy = \int_{-\infty}^{+\infty} C e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ dx = C\int_{-\infty}^{+\infty}e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ dx \]
+    We voeren een nieuwe integratieveranderlijke in:
+    \[ 
+    \begin{array}{rl}
+      u &= \frac{x-\mu_{x}}{\sigma_{x}}\\
+      du &= \frac{1}{\sigma_{x}}dx\\
+    \end{array}
+    \]
+    \[
+    = C\sigma_{x}\int_{-\infty}^{+\infty}e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ du
+    = C\sigma_{x}\sigma_{X}\int_{-\infty}^{+\infty}e^{-Av^{2}}e^{-A \cdot (u^{2}-2\rho u v)}\ du
+    = C\sigma_{x}e^{-Av^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v}\ du
+    \]
+    We forceren hier een bijzonder product door $+ A\rho^{2}v^{2} - A\rho^{2}v^{2}$ toe te voegen in de exponent.
+    \[
+    = C\sigma_{x}e^{-Av^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v + A\rho^{2}v^{2} - A\rho^{2}v^{2}}\ du 
+    = C\sigma_{x}e^{-Av^{2}-A\rho^{2}v^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v + A\rho^{2}v^{2}}\ du 
+    \]
+    \[
+    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\int_{-\infty}^{+\infty}e^{-A(u-\rho v)^{2}}\ du 
+    \]
+    We voeren nogmaals een nieuwe integratieveranderlijke in:
+    \[ 
+    \begin{array}{rl}
+      z &= \sqrt{2A}(u-\rho v) \\
+      dz &= \sqrt{2A} du\\
+    \end{array}
+    \]
+    $z^{2}$ is dan $2A(u-\rho v)^{2}$.
+    \[
+    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\frac{1}{\sqrt{A}}\int_{-\infty}^{+\infty}e^{-\frac{1}{2}z^{2}}\ dz
+    \]
+    Nu zou je de formule binnen de integraal moeten herkennen.
+    \formularium{Dichtheidsfunctie van een algemene Normaalverdeling}{ $\frac{e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}}{\sigma\sqrt{2}\pi}$}
+    De formule voor de standaard normaalverdeling ziet er als volgt uit:
+    \[ \phi(x) = \frac{e^{-\frac{1}{2}x^{2}}}{\sqrt{2\pi}} \]
+    Omdat dit een dichtheid is, moet de integraal tot $1$ evalueren:
+    \[ 1 = \int_{-\infty}^{+\infty}\frac{e^{-\frac{1}{2}x^{2}}}{\sqrt{2\pi}} \]
+    \[ \sqrt{2\pi} = \int_{-\infty}^{+\infty}e^{-\frac{1}{2}x^{2}} \]
+    De integraal die nog overblijft kunnen we dus vervangen door $\sqrt{2\pi}$.
+    \[
+    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\frac{\sqrt{2\pi}}{\sqrt{2A}}
+    \]
+    We vervangen nu de leesbaarheidsconstanten terug naar de originele waarden en zien dat we al veel kunnen vereenvoudigen.
+    \[
+    = \dfrac{1}{2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}}\sigma_{x}e^{-\left( \frac{1}{2}\frac{1}{1-\rho^{2}}\right)(1-\rho^{2})\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}}\frac{\sqrt{2\pi}}{\sqrt{2\left( \frac{1}{2}\frac{1}{1-\rho^{2}}\right)}}
+    \]
+    \[
+    = \dfrac{1}{\sqrt{2\pi}\sigma_{y}}e^{- \frac{1}{2}\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}}
+    \]
+    We vinden dat $f_{y}(y)$ de dichtheidsfunctie is van een normaal verdeelde stochastische variabele, zoals verwacht.
+  \end{ex-antwoord}
+\end{examenvraag}
+
+\begin{examenvraag}{Tussentijdse Toets 2014}
+  \begin{ex-vraag}
+  Zij $\Omega$ een niet-aftelbare verzameling en zij $\mathcal{A}$ de volgende verzameling:
+  \[ \mathcal{A} = \{ A \in \Omega \mid A \text{ is aftelbaar} \vee A^{C} \text{ is aftelbaar } \} \]
+  Bewijs dat $\mathcal{A}$ een $\sigma$-algebra is.
+  \end{ex-vraag}
+  \begin{ex-antwoord}
+    \begin{proof}
+      \kennen{We gaan eenvoudigweg alle definierende eigenschappen van een $\sigma$-algebra af:}
+      \begin{itemize}
+      \item $\Omega \in \mathcal{A}$\\
+        $\Omega^{C}$ is leeg en dus aftelbaar, dus $\Omega$ zit in $\mathcal{A}$.
+      \item $\forall A \in \mathcal{A}: A^{C}\in \mathcal{A}$\\
+        Kies een willekeurige $A \in \mathcal{A}$. 
+        We onderscheiden twee gevallen.
+        \begin{itemize}
+        \item $A$ is aftelbaar: $A^{C}$ zit dan in $\mathcal{A}$ want $A^{C^{C}} = A$ is aftelbaar.
+        \item $A^{C}$ is aftelbaar: $A$ zit dan in $\mathcal{A}$ want $A^{C}$ is aftelbaar.
+        \end{itemize}
+      \item $\forall (A_{n})_{n}, A\in \mathcal{A}: \bigcup_{n} A_{n} \in \mathcal{A}$\\
+        Fixeer een rij $(A_{n})_{n}$ in $\mathcal{A}$.
+        We onderscheiden opnieuw twee gevallen.
+        \begin{itemize}
+        \item Alle $A_{n}$ zijn aftelbaar: $\bigcup_{n}A_{n}$ is dan aftelbaar en zit dus in $\mathcal{A}$.
+        \item Er is minstens \'e\'en $A_{n}$ niet aftelbaar. Opdat die $A_{m}$ in $\mathcal{A}$ zou zitten moet $A_{m}^{C}$ aftelbaar zijn.
+          $\left(bigcup_{n}A_{n}\right)^{C} = \bigcap_{n}A_{n}^{C}$ is nu aftelbaar omdat $A_{m}$ aftelbaar is.
+          Bijgevolg zit $\bigcup_{n}A_{n}$ ook in $\mathcal{A}$.
+        \end{itemize}
+      \end{itemize}
+    \end{proof}
+  \end{ex-antwoord}
+\end{examenvraag}
+
+\begin{examenvraag}{Tussentijdse Toets 2014}
+  \begin{ex-vraag}
+    Yumm's is een restaurant dat ook aan huis levert.
+    Op hun website kan je terugvinden dat de gemiddelde wachttijd (tussen het moment waarop je bestelt en het moment waarop het eten geleverd wordt) $60$ minuten bedraagt, met als standaarddeviatie $20$ minuten.
+    Ook restaurant Tasty levert aan huis, gemiddeld gezien met een wachttijd van $75$ minuten met een standaarddeviatie van $10$ minuten.
+    Wanneer je eten bestelt, doe je dat $6$ van de $10$ keer bij Yumm's, en $4$ van de $10$ keer bij Tasty.
+    Indien je veronderstelt dat beide wachttijden normaal verdeeld zijn, geef dan antwoord op de volgende vragen:
+    \begin{itemize}
+    \item Indien je een bestelling geplaatst hebt om $19$ uur, en je eten wordt geleverd tussen $20.15$ uur en $20.30$ uur, hoe groot is dan de kans dat je bij Yumm's besteld hebt?
+    \item Indien je elke week bij Yumm's bestelt, hoe groot is dan de kans dat je eten gedurende \'e\'en jaar ($52$ weken) minstens $10$ keer tussen $20.15$ uur en $20.30$ uur geleverd werd?
+    \end{itemize}
+  \end{ex-vraag}
+  \begin{ex-antwoord}
+    Noem $X$ de wachttijd wanneer je eten bestelt bij Yumm's.
+    We gaan ervan uit dat $X$ normaal verdeeld is.
+    \[ X \sim N(\mu_{X}=60,\sigma_{X}=20) \]
+    Noem $Y$ de wachttijd wanner je eten bestelt bij Tasty.
+    We gaan ervan uit dat ook $Y$ normaal verdeeld is.
+    \[ Y \sim N(\mu_{Y}=75,\sigma_{Y}=10) \]
+    We gaan er ook van uit dat je enkel bij Yumm's of Tasty kan bestellen.
+    \begin{itemize}
+    \item 
+      Merk op dat de wachttijd tussen $75$ en $90$ minuten ligt in dit geval.
+      Noem $A$ de gebeurtenis waarin de wachttijd tussen $75$ en $90$ minuten ligt
+      Noem $B$ de gebeurtenis waarin je bij Yumm's bestelt.
+      We zoeken nu de volgende kans:
+      \[ P(B|A) \]
+      \kennen{We gebruiken de stelling van Bayes}:
+      \[ 
+      P(B|A) = \frac{P(A|B)P(B)}{P(A|B)P(B) + P(A|B^{C})P(B^{C})}
+      \]
+      Hierin kennen we $P(B)$, $P(B^{C})$ en kunnen we $P(A|B)$ en $P(A|B^{C})$ berekenen.
+      \begin{itemize}
+      \item $P(A|B)$:\\
+        $P(A|B)$ is de kans op de gegeven wachttijd, gegeven dat we bij Yumm's bestellen.
+        \[ P(A|B) = P(75 \le X \le 90) \]
+        Omdat $X$ normaal verdeeld is, kunnen we deze kans berekenen met behulp van onze tabellen.
+        \[ P(75 \le X \le 90) = P(\frac{75-60}{20} \le Z \le \frac{90-60}{20}) = P(Z \le 1.5) - P(Z \le 0.75)\]
+        \tabel{Standaard normale verdeling}{$P(Z \le 0.75)=0.733$ en $P(Z \le 1.5) = 0.933$}
+        \[ = 0.933 - 0.773 = \frac{4}{25} = 0.16 \]
+      \item $P(A|B^{C})$:\\
+        $P(A|B^{C})$ is de kans op de gegeven wachttijd, gegeven dat we bij Tasty bestellen.
+        \[ P(A|B^{C} = P(75 \le Y \le 90) \]
+        Omdat $Y$ normaal verdeeld is, kunnen we deze kans berekenen met behulp van onze tabellen.
+        \[ P(75 \le Y \le 90) = P(\frac{75-75}{10} \le Z \le \frac{90-75}{10}) = P(Z \le 1.5) - P(Z \le 0) \]
+        \tabel{Standaard normale verdeling}{$P(Z \le 1.5) = 0.773$ en $P(Z \le 0) = 0.5$}
+        \[ = 0.933 - 0.5 = \frac{433}{1000} = 0.433 \]
+      \end{itemize}
+      We kunnen nu de gevraagde kans uitrekenen:
+      \[ \frac{P(A|B)P(B)}{P(A|B)P(B) + P(A|B^{C})P(B^{C})} = \frac{\frac{4}{25}\frac{6}{10}}{\frac{4}{25}\frac{6}{10} + \frac{433}{1000}\frac{4}{10}} = \frac{240}{673} = 0.3566 \]
+
+    \item 
+      We gaan ervan uit dat je telkens om $19$ uur bestelt.
+      Noem $U$ het aantal keer dat het eten tussen $20.15$ uur en $20.30$ uur toekomt per jaar.
+      De kans dat het eten \'e\'en keer tussen $20.15$ uur en $20.30$ uur toekomt is $0.16$ (zie eerder).
+      \kennen{$U$ is dan binomiaal verdeeld met $p=0.16$}.
+      \[ U \sim B(n=52, p=0.16) \]
+      We zoeken nu de volgende kans:
+      \[ P(U > 9) \]
+      We kunnen stukje bij beetje uitrekenen door $42$ termen uit te schrijven en uit te rekenen, of we kunnen de centrale limietstelling gebruiken:
+      \[ U = 52 X \sim N(52\mu_{X},52\sigma_{X}^{2}) \]
+      We hebben hiervoor $\mu_{X}$ en $\sigma_{X}^{2}$ nodig.
+      \kennen{Aangezien $X$ twee mogelijke uitkomsten heeft, in de zin dat het eten ofwel binnen de grenzen, ofwel buiten de grenzen aankomt, is $X$ Bernoulli-verdeeld met $p=0.16$.}
+      \formularium{Bernoulli verdeling}{$\mu_{X}=p$ en $\sigma_{X}=p(1-p)$}
+      \[ U = 52 X \sim N(\mu_{U}= 52\cdot 0.16,\ \sigma_{U} = 52\cdot 0.16 \cdot 0.84) = N(\mu_{U}=8.32,\sigma_{U}=6.99) \]
+      We kunnen de gezochte kans nu berekenen met de tabellen.
+      \[ P(U \ge 10) = 1 - P(U \le 10) = 1 - P\left(Z \le \frac{10-0.5-8.32}{\sqrt{6.99}} \right) = 1 - P(Z \le 0.45) \]
+      \tabel{Standaard normale verdeling}{$P(Z \le 0.674) = 0.326$}
+      \[ = 1-0.674 = 0.326 \]
+    \end{itemize}
+  \end{ex-antwoord}
+\end{examenvraag}
+
+
+\begin{examenvraag}{Tussentijdse Toets 2014}
+  \begin{ex-vraag}
+    Beschouw een toevalsvariabele $X$ met de volgende cumulatieve verdelingsfunctie.
+    \[ F_{X}(x) = 1 - e^{-\left(\frac{x}{\alpha}\right)^{\beta}} \quad x \ge 0 \]
+    Met parameters $\alpha$ en $\beta$.
+    Deze verdelingsfunctie beschrijft de Weibull verdeling.
+    \begin{itemize}
+    \item Bepaal de dichtheidsfunctie van $X$.
+    \item Stel $Y = \left(\frac{X}{\alpha}\right)^{\beta}$, wat kan je vertellen over de verdeling van $Y$?
+    \item Hoe kunnen we stochastische veranderlijken komende van de Weibull verdeling genereren, vertrekkende van $U \sim U\interval{0}{1}$? 
+    \end{itemize}
+  \end{ex-vraag}
+  \begin{ex-antwoord}
+    \begin{itemize}
+    \item
+      \kennen{De dichtheidsfunctie van $X$ is de afgeleide van de cumulatieve verdelingsfunctie.}
+      \[ f_{X} = \frac{dF_{X}(x)}{dx} = e^{-\left(\frac{x}{\alpha}\right)^{\beta}}\frac{\beta}{\alpha^{\beta}}x^{\beta-1} \]
+      \needed
+    \item 
+      Noem $g$ de functie die $X$ op $Y$ afbeeldt:
+      \[ g:\ \mathbb{R}^{+} \rightarrow \mathbb{R}^{+}:\ x \mapsto y = g(x) = \left(\frac{x}{\alpha}\right)^{\beta} \]
+      De inverse functie noemen we $h$:
+      \[ h = g^{-1}: y \mapsto x = h(y) = \alpha\sqrt[\beta]{y} \]
+      \kennen{We kunnen nu $f_{Y}$ berekenen vanuit $f_{X}$:}
+      \[ f_{Y}(y) = f_{X}(h(y))|h'(y)| = e^{-\left(\frac{\alpha\sqrt[\beta]{y}}{\alpha}\right)^{\beta}}\frac{\beta}{\alpha^{\beta}}\left(\alpha\sqrt[\beta]{y}\right)^{\beta-1} \frac{\alpha}{\beta}y^{\frac{1-\beta}{\beta}} = e^{-y} \]
+      \formularium{$\mathcal{E}$}{$f(x)$ voor $\mathcal{E}(1)$ is $e^{-x}$ voor $x>0$.}
+      Nu blijkt het volgende:
+      \[ X \sim \mathcal{E}(1) \]
+      \clarify{meer uitleg, waarom deze werkwijze?}
+    \item Gegeven $U \sim U\interval{0}{1}$:
+      \[
+      \begin{array}{rl}
+        F_{X} &= 1 - e^{-\left(\frac{x}{\alpha}\right)^{\beta}}\\
+        z &= 1 - e^{-\left(\frac{x}{\alpha}\right)^{\beta}}\\
+        x &= a\sqrt[\beta]{-\ln(1-z)}\\
+        F_{X}^{-1} &= a\sqrt[\beta]{-\ln(1-z)}\\
+      \end{array}
+      \]
+      \clarify{meer uitleg, waarom deze werkwijze?}
+    \end{itemize}
+  \end{ex-antwoord}
+\end{examenvraag}
+
+\begin{oef}{Tussentijdse Toets 2014}
+  \begin{ex-vraag}
+    Zij $X_{1}$ een exponentieel-verdeelde stochastische variabele met dichtheid $f_{X_{1}}$: 
+    \[ f_{X_{1}}(x) = \frac{1}{6}e^{-\frac{x}{6}} \quad x \ge 0 \]
+    Zij $X_{2}$ een een $\chi^{2}$ verdeelde stochastische variabele met dichtheid $f_{X_{2}}$: 
+    \[ f_{X_{2}}(x) = \frac{e^{-\frac{x}{2}}x^{2-1}}{2^{2}\Gamma(2)} \]
+    Wat is de verdeling van $X_{1} + 3X_{2}$ als $X_{1}$ en $X_{2}$ onafhankelijk zijn?
+  \end{ex-vraag}
+  \begin{ex-antwoord}
+    We bekijken de momentgenererende functies van $X_{1}$ en $X_{2}$.
+    Omdat $X_{1}$ en $X_{2}$ onafhankelijk zijn, is de momentgenerenede functie van $X_{1} + 3X_{2}$ eenvoudig te berekenen:
+    \[ M_{X_{1}+3X_{2}}(t) = M_{X_{1}}(t)M_{3X_{2}}(t) = M_{X_{1}}(t)M_{X_{2}}(3t) \]
+    \formularium{Exponentiele verdeling}{$M_{X_{1}}(t) = \frac{1}{\sqrt{1-6t}}$ voor $t < \alpha$ ($\alpha = \nicefrac{1}{6}$)}
+    \formularium{$\chi^{2}$-verdeling}{$M_{X_{2}}(t) = \frac{1}{1-2t} $ ($n = 4$)}
+    We vinden de momentgenererende functie:
+    \[ M_{X_{1}+3X_{2}}(t) = \frac{1}{\sqrt[3]{1-6t}} \]
+    Kijken we nu terug naar het formularium, dan vinden we de verdeling van $X_{1} + 3X_{2}$.
+    \formularium{$\Gamma$-verdeling}{$M_{\Gamma_{3,6}}= \frac{1}{\sqrt[3]{1-6t}}$}
+    \[ X_{1} + 3X_{2} \sim \Gamma(3,6) \]
+  \end{ex-antwoord}
+\end{oef}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

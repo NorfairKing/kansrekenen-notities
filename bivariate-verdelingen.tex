@@ -1,0 +1,226 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+\chapter{Bivariate verdelingen}
+\label{cha:bivar-verd}
+
+\section{Verdeling van een stochastisch koppel}
+\label{sec:verdeling-van-een}
+
+\begin{de}
+  Zij $X$ en $Y$ twee stochastische veranderlijken in een kansruimte $\Omega,\mathcal{A},P$.
+  Een \term{stochastische vector} van dimensie $2$ of \term{stochastisch koppel} is een koppel stochastische veranderlijken $(X,Y)$:
+  \[ (X,Y):\ \Omega \rightarrow \mathbb{R}^{2}:\ \omega \rightarrow (X(\omega),Y(\omega)) \]
+  \[ \Omega,\mathcal{A},P \overset{(X,Y)}{\rightarrow} \mathbb{R}^{2},\mathcal{B}(\mathbb{R}^{2}), P_{X,Y} \]
+  Hierin is $\mathcal{B}(\mathbb{R}^{2})$ de kleinste $\sigma$-algebra die de deelverzameling van de vorm $]-\infty,a_{1}]\times]-\infty,a_{2}]$ met $a_{1},a_{2}\in\mathbb{R}$ bevat.
+  \[ P_{X,Y}(]-\infty,x]\times]-\infty,y] = P(X^{1}(]-\infty,x])\cap Y^{-1}(]-\infty,y])) \]
+  \[ F_{X,Y} = P(X \le x, Y\le y) \]
+  $F_{X,Y}(x,y)$ is stijgend in elk argument.
+  $F_{X,Y}(x,y)$ is rechts congruent in elk argument.
+  \[ \lim_{x\rightarrow -\infty} F_{X,Y}(x,y) = 0 \text{ en } \lim_{x\rightarrow +\infty} F_{X,Y}(x,y) = 1 \]
+\TODO{dit beter uitschrijven}
+\end{de}
+
+discreet:
+\[ \forall x,y \in \mathbb{R}:\ P(\{X=x\},\{Y=y\}) = P(X=x,Y=y) \]
+\[ \forall x,y \in \mathbb{R}:\ P(X=x,Y=y) \ge 0 \]
+\[ \sum_{x}\sum_{y}P(X=x,Y=y) = 1 \]
+\[ P(B) = \sum_{(x,y)\in B}P(X=x,Y=y) \]
+
+continu:
+\[ \forall x,y \in \mathbb{R}:\ F_{X,Y}(x,y) = \int_{-\infty}^{x}\int_{-\infty}^{y}f_{X,Y}(u,v)\ dv\ du \]
+\[ \forall x,y \in \mathbb{R}:\ f_{X,Y}(x,y) \ge 0 \]
+\[ \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f_{X,Y}(u,v)\ dv\ du = 1 \]
+\[ f_{X,Y}(x,y) = \frac{\partial^{2}F_{X,Y}(x,y)}{\partial x \partial y} \]
+
+\subsection{Marginale verdeling}
+\label{sec:marginale-verdeling}
+
+\begin{de}
+  Zij $(X_{1},X_{2})$ een koppel stochastische veranderlijken met gezamenlijke verdelingsfunctie $F_{X_{1},X_{2}}(x_{1},x_{2})$, dan noemen we de verdelingsfunctie van $X_{i}$ de \term{marginale verdelingsfunctie} van $F_{X_{1},X_{2}}$.
+  \[ F_{X_{1}}(x_{1}) = F_{X_{1},X_{2}}(x_{1},+\infty) \]
+\end{de}
+
+
+  Voor een koppel discrete stochastische veranderlijken spreken we over een \term{marginale kansverdeling} $P(X_{i} = x_{i})$:
+  \[ P(X_{1}=x_{1}) = \sum_{x_{2}}P(X_{1}=x_{1},X_{2}=x_{2}) \]
+
+
+  Voor een koppel continue stochastische veranderlijken spreken we over een \term{marginale kansdichtheidsfunctie} $f_{X_{i}}(x_{i})$.
+  \[ f_{X_{1}}(x_{1}) = \int_{-\infty}^{+\infty}f_{X_{1},X_{2}}(x_{1},x_{2})dx_{2} \]
+
+
+\subsection{Onafhankelijkheid}
+\label{sec:onafhankelijkheid}
+
+\begin{de}
+  Twee stochastische veranderlijken $X$ en $Y$ in een kansruimte $\Omega,\mathcal{A},P$ heten \term{onafhankelijk} als voor alle $B_{X},B_{Y} \in \mathcal{B}(\mathbb{R})$ de volgende gebeurtenissen onderling onafhankelijk zijn.
+  \[ \{ X \in B_{X}\} \text{ en } \{ Y \in B_{Y} \} \]
+  \[ F_{X,Y}(x,y) = F_{X}(x)F_{Y}(y) \]
+\end{de}
+
+
+  Voor een koppel discrete stochastische veranderlijken:
+  \[ P(X=x,Y=y) = P(X=x)P(Y=y) \]
+
+
+
+  Voor een koppel continue stochastische veranderlijken:
+  \[ f_{X,Y}(x,y) = f_{X}(x)f_{Y}(y) \]
+
+
+
+\subsection{Voorwaardelijke verdeling}
+\label{sec:voorw-verd}
+
+\begin{de}
+  Zij $(X,Y)$ een discrete stochastische vector in een kansruimte $\Omega,\mathcal{A},P$ met gezamelijke kansverdeling $P(X=x,Y=y)$.
+  De \term{voorwaardelijke verdeling} van $X$ gegeven $Y=y$ is $P(X=x|Y=y)$.
+  \[
+  P(X=x|Y=y) = \frac{P(X=x,Y=y)}{P(Y=y)} \text{ als } P(Y=y) > 0
+  \]
+\end{de}
+
+\begin{de}
+  Zij $(X,Y)$ een continue stochastische vector in een kansruimte $\Omega,\mathcal{A},P$ met gezamelijke dichtheidsfunctie $f_{X,Y}$.
+  De \term{voorwaardelijke dichtheidsfunctie} van $X$ gegeven $Y=y$ is $f_{X|Y}(x|y)$.
+  \[
+  f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_{Y}(y)}
+  \]
+\end{de}
+
+\section{Karakteristieken van een stochastisch koppel}
+\label{sec:karakt-van-een}
+
+\subsection{Momenten en momentgenererende functie}
+\label{sec:moment-en-momentg}
+
+\begin{de}
+  Zij $X,Y$ een stochastisch koppel en $g: \mathbb{R}^{2} \rightarrow \mathbb{R}$ een Borel-meetbare functie.
+  De \term{verwachtingswaarde} van $g(X,Y)$ is dan als volgt gedefinieerd.
+  Voor een discreet koppel:
+  \[ E[g(X,Y)] = \sum_{x}\sum_{y}g(x,y)P(X=x,Y=y) \]
+  Voor een continu koppel:
+  \[ E[g(X,Y)] = \int_{-\infty}^{+\infty}g(x,y)f_{X,Y}(x,y)\ dx\ dy \]
+  ... als ze bestaat.
+\end{de}
+
+\begin{de}
+  Ruwe momenten:
+  stel $g(x,y) = x^{r_{x}}y^{r_{y}}$
+  \[ E[X^{r_{x}}Y^{r_{y}}] \]
+\TODO{wut}
+\end{de}
+
+\begin{de}
+  Centrale momenten
+  stel $g(x,y) = (x-\mu_{x})^{r_{x}}(y-\mu_{y})^{r_{y}}$
+  \[ E[(X-\mu_{x})^{r_{x}}(Y-\mu_{y})^{r_{y}}] \]
+\end{de}
+
+\begin{de}
+  gezamelijke momentgenererende functie
+  stel $g(x,y) = e^{t_{x}x+t_{y}y}$
+  \[ M_{X,Y}(t_{x},t_{y}) = E[e^{t_{x}X}e^{t_{y}Y}] \]
+\end{de}
+
+
+\subsection{Covariantie en correlatie}
+\label{sec:covar-en-corr}
+
+\begin{de}
+  De \term{covariantie} van $X$ en $Y$ wordt gedefinieerd als $Cov(X,Y)$:
+  \[ Cov(X,Y) = E[(X-E[X])(Y-E[Y])] \]
+\end{de}
+
+\TODO{specifiek voor discrete e continue koppels}
+
+\begin{de}
+  De \term{correlatieco\"efficient} van $X$ en $Y$ wordt gedefinieerd als $Corr(X,Y)$:
+  \[ Corr(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var[X]Var[Y]}} \]
+\end{de}
+
+\subsection{Eigenschappen}
+\label{sec:eigenschappen}
+
+\begin{st}
+  Zij $X$ en $Y$ twee onafhankelijke stochastische veranderlijken en $g:\ \mathbb{R}^{2} \rightarrow \mathbb{R}$ een Borel-meetbare functie zodat $\forall x,y\in \mathbb{R}: g(x,y) =g_{x}(x)g_{y}(y)$ geldt:
+  \[ E[g(x,y)] = E[g_{x}(x)]E[g_{y}(y)] \]
+\end{st}
+
+\begin{gev}
+  \[ M_{X,Y}(t_{x},t_{y}) = M_{X}(t_{x}) M_{Y}(t_{y}) \]
+\extra{bewijs}
+\end{gev}
+
+\begin{st}
+  \[ |Cov(X,Y)| \le \sqrt{Var[X]Var[Y]} \]
+\extra{bewijs}
+\end{st}
+
+\begin{st}
+  Als $X$ en $Y$ onafhankelijk zijn:
+  \[ E[XY] = E[X]E[Y] \text{ en } Cov(X,Y) = 0 \]
+\extra{bewijs}
+\end{st}
+
+\begin{gev}
+  \[ -1 \le Corr(X,Y) \le 1 \]
+\extra{bewijs}
+\end{gev}
+
+\begin{gev}
+  $Y = aX+b$
+  \[ Corr(X,Y) = sgn(a) \]
+\extra{bewijs}
+\end{gev}
+
+\begin{st}
+  \[ E[aX + bY] = aE[X] + bE[Y] \]
+\extra{bewijs}
+\end{st}
+
+\begin{st}
+  \[ Var[aX+bY]  a^{2}Var[X] + b^{2}Var[Y] + 2abCov(X,Y) \]
+\extra{bewijs}
+\end{st}
+
+\begin{gev}
+  $X$ en $Y$ onafhankelijk:
+  \[ Var[aX+bY]  a^{2}Var[X] + b^{2}Var[Y]\]
+  \extra{bewijs}
+\end{gev}
+
+\section{Bivariate normale verdeling}
+\label{sec:bivar-norm-verd}
+
+\begin{de}
+  Een stochastisch koppel $(X,Y)$ heeft een \term{bivariate normale verdeling} als de gezamelijke verdelingsfunctie van $X$ en $Y$ gegeven wordt door $f_{X,Y}$ als volgt:
+  \[
+  f_{X,Y}(x,y)
+  =
+  \frac
+  {
+    e^{-\frac{1}{2}\frac{1}{1-\rho^{2}}
+      \left(
+          \left(\frac{x-\mu_{x}}{\sigma_{x}}\right)^{2}
+        - 2\rho\left(\frac{x-\mu_{x}}{\sigma_{x}}\right)^{2}\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}
+        + \left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}
+      \right)
+      }
+  }
+  {
+    2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}
+  }
+  \]
+  met $\mu_{x},\mu_{y}\in \mathbb{R}$, $\sigma_{x},\sigma_{y}\in \mathbb{R}_{0}^{+}$ en $\rho \in [0,1]$.
+\TODO{ meer uitleg hierbij}
+\end{de}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

@@ -1,0 +1,887 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+
+
+\chapter{Stochastische Veranderlijken}
+\label{cha:stoch-verand}
+
+\section{Inleiding}
+\label{sec:inleiding}
+
+\begin{de}
+  $\mathcal{B}(\mathbb{R})$ is de $\sigma$-algebra voortgebracht door $\mathcal{C} = \{ ]-\infty,a]\mid -\infty < a < +\infty \}$.
+\end{de}
+
+\begin{de}
+  Zij $\Omega, \mathcal{A}, P$ een kansruimte.
+  Een re\"ee functie $X$ als volgt noemen we een \term{stochastische veranderlijke}, een \term{stochastische variabele}, een \term{stochastiek}, een \term{toevalsvariabele} of een term{random variabele}.
+  \[ X:\ \Omega \rightarrow \mathbb{R} \]
+  \[ \forall B\in \mathcal{B}(\mathbb{R}):\ X^{-1}(B) = \{\omega \mid X(\omega) \in B \} \]
+  We noemen $X$ dan een $\mathcal{A}$-\term{meetbare afbeelding}.
+\end{de}
+
+\begin{de}
+  Een $\mathcal{B}(\mathbb{R})$-meetbare afbeelding in de meetbare ruimte $\mathbb{R},\mathcal{B}(\mathbb{R})$ noemen we \term{Borel-meetbaar}.
+\end{de}
+
+\begin{st}
+  Een afbeelding $X: \mathbb{R} \rightarrow \mathbb{R}$ is een stochastische variabele in de meetbare ruimte $\mathbb{R},\mathcal{B}(\mathbb{R})$ als en slechts als het volgende geldt:
+  \[ \forall a \in \mathbb{R}:\ X^{-1}(]-\infty,a]) = \{ \omega\mid X(\omega) \le a\} \in \mathcal{A} \]
+  \zb
+\end{st}
+
+\begin{st}
+  Een Borel-meetbare afbeelding introduceert een \term{kansmaat} $P_{X}(B)$ op $\mathcal{B}(\mathbb{R})$.
+  \[ P_{X}(B) = P(X \in B) = P(X^{-1}(B)) \]
+  \[ P_{X}(B) = P(\{\omega \in \Omega \mid X(\omega) \in B \}) \]
+\extra{bewijs}
+\end{st}
+
+\begin{de}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte en $X: \Omega \rightarrow \mathbb{R}$ een stochastische veranderlijke, dan definieren we de overeenkomstige \term{verdelingsfunctie} $F_{X}$ als volgt:
+  \[ F: \mathbb{R} \rightarrow \mathbb{R}:\ F_{X}(a) = P_{X}(]-\infty,a]) = P(\{\omega\mid X(\omega) \le a\}) = P(X \le a) \]
+\end{de}
+
+\begin{st}
+  Zij $X$ een stochastische veranderlijke in de kansruimte $\Omega,\mathcal{A},P$, dan is de afbeelding $F_{X}$ een verdelingsfunctie als de volgende beweringen gelden.
+  \begin{enumerate}
+  \item $F_{X}$ is monotoon stijgend.
+    \[ \forall a,b\in \mathbb{R}:\ a\le b \Rightarrow F_{X}(a) \le F_{X}(b) \]
+  \item $\lim_{a\rightarrow +\infty}F_{X}(a) = 1$ en $\lim_{a \rightarrow -\infty}F_{X}(a) = 0$
+  \item $F_{X}$ is rechts continu.
+    \[ \forall a\in\mathbb{R}:\ \lim_{h \overset{>}{\rightarrow} 0}F_{X}(a+h) = F_{X}(a) \]
+  \end{enumerate}
+\zb
+\end{st}
+
+\begin{st}
+  Zij $F_{X}$ een verdelingsfunctie voor een kansruimte $\Omega,\mathcal{A},P)$.
+  \[ P(a < X \le b) = F_{X}(b) - F_{X}(a) \]
+\extra{bewijs}
+\end{st}
+
+
+\begin{st}
+  Zij $F_{X}$ een verdelingsfunctie voor een kansruimte $\Omega,\mathcal{A},P)$.
+  \[ P(X > a) = 1-F_{X}(a) \]
+\extra{bewijs}
+\end{st}
+
+\begin{de}
+  De \term{kwantielfunctie} $Q_{X}$ voor een kansruimte $\Omega,\mathcal{A},P)$ is de inverse functie van de verdelingsfunctie $F_{X}$.
+  De waarde $Q_{X}(p)$ is de kleinste waarde $a$ waarvoor $F_{X}(a) \ge p$ geldt.
+\end{de}
+
+\begin{de}
+  Het $25\%$, $50\%$ en $75\%$ kwantiel worden respectievelijk het eerste, tweede en derde \term{kwartiel} genoemd.
+\end{de}
+
+\begin{de}
+  Het tweede kwartiel wordt ook wel de \term{mediaan} genoemd.
+\end{de}
+
+\section{Types stochastische veranderlijken}
+\label{sec:types-stoch-verand}
+
+\subsection{Discrete stochastische veranderlijken}
+\label{sec:discr-stoch-verand}
+
+\begin{de}
+  We noemen een stochastische veranderlijke $X$ in een kansruimte $\Omega,\mathcal{A},P$ \term{discreet} als het beeld $p_{i}$ van $X$ slechts in een aftelbaar aantal punten $x_{i}$ niet nul is.
+  \[ p_{i} = P(\{\omega \in \Omega \mid X(\omega) = x_{i}\}) = P(X = x_{i}) \]
+\end{de}
+
+\begin{de}
+  We noemen de rij $(p_{i})_{i}$ de \term{discrete verdeling} van een discrete stochastische veranderlijke $X$ als het volgende geldt:
+  \[ \forall i:\ p_{i} \ge 0 \quad\text{ en }\quad \sum_{i}p_{i} = 1 \]
+\end{de}
+
+\begin{st}
+  De kansverdeling van een discrete stochastische veranderlijke $X$ heeft een eenvoudigere formule:
+  \[ F_{X}(a) = P(X \le a) = \sum_{x_{i}\le a}p_{i} \]
+\extra{bewijs}
+\end{st}
+
+\subsection{Continue stochastische veranderlijken}
+\label{sec:cont-stoch-verand}
+
+\begin{de}
+  We noemen een stochastische veranderlijke $X$ in een kansruimte $\Omega,\mathcal{A},P$ \term{continu} als de kans op elk punt nul is...
+  \[ \forall x\in \Omega: P_{X}(\{x\}) = 0 \]
+  ... en de verdelingsfunctie $F_{X}$ een continue functie is.
+\end{de}
+
+\begin{de}
+  Wanneer de verdelingdsfunctie $F_{X}$ van een continu\"e stochastische veranderlijke continu afleidbaar is, defini\"eren we de \term{dichtheidsfunctie} of \term{kansdichtheid} $f_{X}$ als volgt:
+  \[ f_{X}(x):\ \mathbb{R} \rightarrow \mathbb{R}:\ x \rightarrow f_{X}(x) = \frac{dF_{X}(x)}{dx} \]
+\end{de}
+
+\begin{st}
+  De kansverdeling van een continu\"e stochastische veranderlijke $X$ valt te berekenen met een integraal:
+  \[ F_{X}(a) = P(X \le a) = \int_{-\infty}^{a}f_{X}(x)dx \]
+\extra{bewijs}
+\end{st}
+
+\begin{st}
+  Zij $F_{X}$ de kansverdeling van een continu\"e stochastische veranderlijke $X$.
+  \[ F_{X}(b) - F_{X}(a) = P(a<X\le b) = \int_{a}^{b}f_{X}(x)dx \]
+\extra{bewijs}
+\end{st}
+
+\begin{st}
+  Zij $F_{X}$ de kansverdeling van een continu\"e stochastische veranderlijke $X$.
+  \[ P_{X}(]a,b[) = P_{X}([a,b[) = P_{X}(]a,b]) = P_{X}([a,b]) \]
+\extra{bewijs}
+\end{st}
+
+\section{Momenten van een stochastische veranderlijken}
+\label{sec:momenten-van-een}
+
+\subsection{Verwachtingswaarde en variantie}
+\label{sec:verw-en-vari}
+
+\begin{de}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte, $X$ een stochastische veranderlijke met verdelingsfunctie $F_{X}$, dan definiert men de \term{verwachtingswaarde} van $X$ als $E[X]$:
+  \[
+  E[X]
+  = \sum_{-\infty}^{+\infty}xdF(x)(x)
+  =
+  \left\{
+    \begin{array}{c l}
+      \sum_{i}x_{i}p_{i} &\text{ als } F_{X} \text{ discreet is} \\
+      \int_{-\infty}^{+\infty}xf_{X}(x)dx &\text{ als } F_{X} \text{ continu is} 
+    \end{array}
+  \right.
+  \]
+\end{de}
+
+\begin{opm}
+  Merk op dat $E[X]$ niet steeds bestaat.
+\end{opm}
+
+\begin{st}
+  Beschouw een Borel-meetbare afbeelding $g:\ \mathbb{R} \rightarrow \mathbb{R}$, dan is $g \circ X$ opnieuw een stochastische verabele.
+  \extra{bewijs}
+\end{st}
+
+\begin{ei}
+  Zij $X: \Omega \rightarrow \mathbb{R}$ een stochastische variabele en $a\in \mathbb{R}$ een constante.
+  \[ E[aX] = aE[X] \]
+\extra{bewijs}
+\end{ei}
+
+\begin{ei}
+  Zij $X: \Omega \rightarrow \mathbb{R}$ een stochastische variabele en $b\in \mathbb{R}$ een constante.
+  \[ E[X+b] = E[X] + b \]
+\extra{bewijs}
+\end{ei}
+
+\begin{ei}
+  Zij $X: \Omega \rightarrow \mathbb{R}$ een stochastische variabele en $b\in \mathbb{R}$ een constante.
+  \[ E[b] = b \]
+\extra{bewijs}
+\end{ei}
+
+\begin{ei}
+  \[ |E[X]| \le E[|X|] \]
+\extra{bewijs}
+\end{ei}
+
+\begin{de}
+  De verwachtingswaarde $E[X]$ wordt ook wel het \term{eerste moment} genoemd.
+\end{de}
+
+\begin{de}
+  Het \term{eerste absolute moment} definieren we als $E[|X|]$.
+\end{de}
+
+\begin{de}
+  De \term{variantie} van een stochastische veranderlijke $X$ definieren we als $Var[X]$:
+  \[ Var[X] = E[(X-E[X])^{2}] \]
+\end{de}
+
+\begin{de}
+  De \term{standaardafwijking} van een stochastische veranderlijke $X$ definieren we als $\sqrt{Var[X]}$.
+\end{de}
+
+\begin{st}
+  We kunnen $Var[X]$ eenvoudig berekenen.
+  \[
+  Var[X]
+  =
+  \left\{
+    \begin{array}{c l}
+      \sum_{i}(x_{i}-E[X])^{2}p_{i} &\text{ als } F_{X} \text{ discreet is} \\
+      \int_{-\infty}^{+\infty}(x-E[X])^{2}f_{X}(x)dx &\text{ als } F_{X} \text{ continu is} 
+    \end{array}
+  \right.
+  \]
+\extra{bewijs}
+\end{st}
+
+\begin{ei}
+  Zij $X: \Omega \rightarrow \mathbb{R}$ een stochastische variabele en $a\in \mathbb{R}$ een constante.
+  \[ Var[aX] = a^{2}Var[X] \]
+\TODO{bewijs: oefening}
+\end{ei}
+
+\begin{ei}
+  Zij $X: \Omega \rightarrow \mathbb{R}$ een stochastische variabele en $b\in \mathbb{R}$ een constante.
+  \[ Var[X+b] = Var[X] \]
+\TODO{bewijs: oefening}
+\end{ei}
+
+\begin{ei}
+  Zij $X: \Omega \rightarrow \mathbb{R}$ een stochastische variabele en $b\in \mathbb{R}$ een constante.
+  \[ Var[b] = 0 \]
+\TODO{bewijs: oefening}
+\end{ei}
+
+\subsection{Som en product van stochastische veranderlijken}
+\label{sec:som-en-product}
+
+\begin{de}
+  Zij $X$ en $Y$ beide stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$, dan definieren we de \term{som van stochastische variabelen} als $X+Y$:
+  \[ (X+Y)(\omega) = X(\omega) + Y(\omega) \]
+\end{de}
+
+\begin{st}
+  De som van twee stochastische variabelen is opnieuw een stochastische variabele.
+\extra{bewijs}
+\end{st}
+
+\begin{de}
+  Zij $X$ en $Y$ beide stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$, dan definieren we het \term{product van stochastische variabelen} als $XY$:
+  \[ (X+Y)(\omega) = X(\omega)Y(\omega) \]
+\end{de}
+
+\begin{st}
+  Het product van twee stochastische variabelen is opnieuw een stochastische variabele.
+\extra{bewijs}
+\end{st}
+
+\begin{ei}
+  Zij $X$ en $Y$ beide stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
+  \[ E[X+Y] = E[X] + E[Y] \]
+\TODO{bewijs p 44}
+\end{ei}
+
+\begin{de}
+  Twee stochastische variabelen $X$ en $Y$ in een kansruimte $\Omega,\mathcal{A},P$ noemen we \term{onafhankelijk} als het volgende geldt:
+  \[ P((X\in A)\cap (Y\in B)) = P(X\in A)P(Y\in A) \]
+\end{de}
+
+\begin{ei}
+  Zij $X$ en $Y$ twee onafhankelijke stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
+  \[ E[XY] = E[X] E[Y] \]
+\TODO{bewijs p 45}
+\end{ei}
+
+\begin{ei}
+  Zij $X$ en $Y$ twee onafhankelijke stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
+  \[ Var[X+Y] = Var[X] + Var[Y] \]
+\TODO{bewijs p 45}
+\end{ei}
+
+\begin{ei}
+  Zij $X$ en $Y$ twee onafhankelijke stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
+  \[ Vay[XY] = Var[X]Var[Y] + E[X]^{2}Var[Y] + Var[X]E[Y]^{2} \]
+\TODO{bewijs p 45}
+\end{ei}
+
+\begin{st}
+  \[ Var[X] = E[X^{2}] - E[X]^{2} \]
+\TODO{bewijs p 46}
+\end{st}
+
+\subsection{Ongelijkheden}
+\label{sec:ongelijkheden}
+
+\subsubsection{Grenzen voor het eerste absolute moment}
+\label{sec:grenzen-voor-het}
+
+\begin{st}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte en $X$ een willekeurige stochastische variabele op $\Omega$.
+  \[ \sum_{n=1}^{\infty}P(|X| \ge n) \le E(|X|) \le 1 + \sum_{n=1}^{\infty}P(|X| \ge n) \]
+\TODO{bewijs p 47}
+\end{st}
+
+\begin{gev}
+  $E(|X|)$ bestaat als en slechts als $\sum_{n=1}^{\infty}P(|X| \ge n)$ convergeert.
+\end{gev}
+
+\begin{st}
+  Zij $X$ een stochastische variabele, dan bestaat $E[|X|^{k}]$ voor alle $k$ kleiner dan $n$ als $E[|X|^{n}]$ bestaat.
+\extra{bewijs}
+\end{st}
+
+\begin{gev}
+  Zij $X$ een positieve stochastische veranderlijke die alleen gehele waarden kan aannemen.
+  \[ E[X] = \sum_{n=1}^{\infty}P(X\ge n) \]
+\extra{bewijs}
+\end{gev}
+
+\subsubsection{De ongelijkheid van Chebyshev}
+\label{sec:de-ongelijkheid-van}
+
+\begin{st}
+  De \term{ongelijkheid van Chebyshev}\\
+  Zij $X$ een stochastische variabele en $\phi:\mathbb{R} \rightarrow \mathbb{R}$ een functe zodat $E[\phi(X)]$ bestaat.
+  \begin{enumerate}
+  \item Als $\phi$ positief, even en niet-dalend is voor alle $x\ge 0$ geldt het volgende:
+    \[ \forall a \ge 0:\ P(|X| \ge a) \le \frac{E[\phi(X)]}{\phi(a)} \]
+  \item Als $\phi$ positief en niet-dalend is voor alle $x\in\mathbb{R}$ geldt het volgende:
+    \[ \forall a \in \mathbb{R}:\ P(X \ge a) \le \frac{E[\phi(X)]}{\phi(a)} \]
+  \end{enumerate}
+\TODO{bewijs p 50}
+\end{st}
+
+\begin{gev}
+  Zij $X$ een stochastische variabele met $E[|X|^{n}] < \infty, n>0$, dan geldt het volgende:
+  \[ \forall a> 0:\ P(|X| \ge a) \le a^{-n}E[|X|^{n}] \]
+  Zij bovendien $E[X] = \mu$ en $Var[X] = sigma^{2} < \infty$, dan geldt ook:
+  \[ \forall a > 0:\ P(|X-\mu| \ge a) \le \frac{\sigma^{2}}{a^{2}} \]
+\end{gev}
+
+\subsection{Hogere momenten en momentgenererende functie}
+\label{sec:hogere-momenten-en}
+
+\begin{de}
+  Voor elk natuurlijk getal $k\ge 1$ definieert men het \term{ruwe moment} van orde $k$ als $\alpha_{k}(X)$...
+  \[ \alpha_{k}(X) =E[X^{k}] \]
+  ... en het \term{centrale moment} van orde $k$ als $\mu_{k}(X)$.
+  \[ \mu_{k}(X) = E[(X-E[X])^{k}] \]
+\end{de}
+
+\begin{de}
+  De \term{momentgenererende functie} (MGF) van $X$ is gedefinieerd als $M_{X}(t)$.
+  \[
+  M_{X}:\ \mathbb{R} \rightarrow \mathbb{R}^{+}:\ t \rightarrow M_{X}(t) = E[e^{tX}]
+  = \left\{
+    \begin{array}{cl}
+      \sum_{i}e^{tx}p_{i} & \text{ als } F_{X} \text{ discreet is}\\
+      \int_{-\infty}^{+\infty}e^{tx}f(x)dx & \text{ als } F_{X} \text{ continu is}
+    \end{array}
+    \right.
+  \]
+\end{de}
+
+\begin{st}
+  \[ M_{X}(t) = \sum_{i=1}^{\infty} \frac{\alpha_{i}t^{i}}{i!} \]
+\extra{bewijs}
+\end{st}
+
+\begin{st}
+  \[ \alpha_{k} = \left. \frac{d^{k}}{dt^{k}}M_{X}(t) \right|_{t=0} \]
+\extra{bewijs}
+\end{st}
+
+\begin{st}
+  Zij $X$ en $Y$ twee stochastische veranderlijken zodat $Y=aX+b$.
+  \[ M_{Y}(t) = e^{bt}M_{X}(at) \]
+\extra{bewijs}
+\end{st}
+
+\begin{ei}
+  Zij $X$ en $Y$ onafhankelijke stochastische veranderlijken, dan geldt het volgende:
+  \[ \forall t: M_{X+Y}(t) = M_{X}(t)M_{Y}(t) \]
+\TODO{bewijs p 53}
+\end{ei}
+
+
+\section{Kentallen}
+\label{sec:kentallen}
+
+
+\subsection{Kentallen van locatie}
+\label{sec:kent-van-locat}
+
+\subsubsection{Gemiddelde}
+\label{sec:gemiddelde}
+
+\begin{de}
+  We definieren het \term{gemiddelde} $\mu(X)$ van een stochastische variabele $X$ als $E[X]$.
+\end{de}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    Voordelen & Nadelen\\
+    \hline \hline
+    Eenvoudig & Niet robuust\\
+    Expliciet &\\
+    Lineair &\\
+    \hline
+  \end{tabular}
+\end{figure}
+
+\subsubsection{Mediaan}
+\label{sec:mediaan}
+
+\begin{de}
+  We definieren de \term{mediaan} $Med(X)$ van een stochastische variabele $X$ als het tweede kwartiel:
+  \begin{enumerate}
+  \item $F^{-1}(\nicefrac{1}{2})$ als er precies \'e\'en $x$ bestaat zodat $F(x) = \nicefrac{1}{2}$ geldt.
+  \item Het punt waar $F$ een discontinu\"e sprong maakt van $<\nicefrac{1}{2}$ naar $>\nicefrac{1}{2}$ als er g\'e\'en zo'n $x$-en bestaan
+  \item Het middelpunt van het interval waarop $F(x) = \nicefrac{1}{2}$ geldt als er meerdere van zo'n $x$-en bestaan.
+  \end{enumerate}
+\end{de}
+
+\begin{opm}
+  Via dezelfde regels kunnen we de kwantielfunctie definieren zodat elk beeld ervan bestaat.
+\end{opm}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    Voordelen & Nadelen\\
+    \hline \hline
+    Robuuster & Niet altijd eenvoudig te berekenen\\
+    Bestaat altijd  &\\
+    \hline
+  \end{tabular}
+\end{figure}
+
+\begin{st}
+  Als een verdeling $f$ symmetrisch is ten opzichte van een middelpunt $c$...:
+  \[ \forall t:\ f(c-t) = f(c+t) \]
+  ... dan is $c$ zowel het gemiddelde als de mediaan van de bijhorende stochastische variabele.
+\extra{bewijs}
+\end{st}
+
+\subsubsection{Modus}
+\label{sec:modus}
+
+\begin{de}
+  De \term{modus} van een stochastische variabele wordt gedefinieerd als de meest voorkomende waarde.
+\end{de}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    Voordelen & Nadelen\\
+    \hline \hline
+     & Niet altijd uniek\\
+    \hline
+  \end{tabular}
+\end{figure}
+
+\begin{de}
+  Een verdeling met twee modi noemt men een \term{bimodiale verdeling}.
+\end{de}
+
+\begin{de}
+  Een verdeling met meer dan twee modi noemen we een \term{multimodiale verdeling}.
+\end{de}
+
+\subsection{Kentallen van schaal}
+\label{sec:kentallen-van-schaal}
+
+\subsubsection{Variantie en standaardafwijking}
+\label{sec:vari-en-stand}
+
+\begin{de}
+  De \term{variantie} van een stochastische veranderlijke $X$ definieren we als $Var[X]$ met notatie $\sigma(X)^{2}$.
+\end{de}
+
+\begin{de}
+  De \term{standaardafwijking} van een stochastische veranderlijke $X$ definieren we als $\sigma = \sqrt{Var[X]}$.
+\end{de}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    Voordelen & Nadelen\\
+    \hline \hline
+    Makkelijk te berekenen & Niet altijd uniek\\
+    Mooie eigenschappen & Niet robuust\\
+    \hline
+  \end{tabular}
+\end{figure}
+
+\subsubsection{Interkwartiel}
+\label{sec:interkwartiel}
+
+\begin{de}
+  Het \term{interkwartiel} (\term{IQR}) of de \term{interkwartielafstand} is gedefinieerd als de afstand tussen het eerste en het derde kwartiel.
+  \[ IQR = F^{-1}(\nicefrac{3}{4}) = F^{-1}(\nicefrac{1}{4}) \]
+\end{de}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    Voordelen & Nadelen\\
+    \hline \hline
+    Bestaat altijd & \\
+    Robuust & \\
+    \hline
+  \end{tabular}
+\end{figure}
+
+\subsubsection{Median absolute deviation}
+\label{sec:medi-absol-devi}
+
+\begin{de}
+  De \term{median absolute deviation} (\term{MAD}) is gegeven door de mediane absolute afwijking van de mediaan.
+  \[ MAD = Med|X - Med(X)| \]
+\end{de}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    Voordelen & Nadelen\\
+    \hline \hline
+    Bestaat altijd & \\
+    Nog robuuster & \\
+    \hline
+  \end{tabular}
+\end{figure}
+
+\begin{st}
+  Voor symmetrische verdelingen is het interkwartiel precies gelijk aan twee keer de MAD.
+\end{st}
+
+\subsubsection{Variantiebreedte}
+\label{sec:variantiebreedte}
+
+\begin{de}
+  De \term{variantiebreedte} is de totale breedte waarover de kansmassa zich uitstrekt.
+\end{de}
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    Voordelen & Nadelen\\
+    \hline \hline
+    & Meestal $+\infty$ \\
+    & Niet robuust\\
+    \hline
+  \end{tabular}
+\end{figure}
+
+\subsubsection{Variatieco\"efficient}
+\label{sec:variatiecoefficient}
+
+\begin{de}
+  De \term{variatieco\"efficient} $\nu(X)$ van een stochastische variabele $X$ vergelijkt de standaardafwijking met het gemiddelde.
+  \[ \nu(X) = \frac{\sqrt{Var[X]}}{E[X]} \]
+\end{de}
+
+\extra{voordelen en nadelen}
+
+\subsection{Kentallen van scheefheid}
+\label{sec:kent-van-sche}
+
+
+\begin{de}
+  De \term{scheefheidsco\"efficient} van een stochastische variable definieren we als $\gamma_{1}$.
+  \[ \gamma_{1} = \frac{\mu_{3}}{\sigma^{3}} \]
+\end{de}
+
+\extra{voordelen en nadelen}
+\extra{andere kentallen van scheefheid}
+
+
+\section{Belangrijke verdelingen}
+\label{sec:belangr-verd}
+
+\subsection{Discrete verdelingen}
+\label{sec:discrete-verdelingen}
+
+\subsubsection{Discrete uniforme verdeling}
+\label{sec:discr-unif-verd}
+
+\begin{de}
+  De \term{discrete uniforme verdeling} is gedefinieerd op een eindig universum $\Omega=\{x_{1},\dotsc,x_{n}\}$.
+  \[ \forall i \in \{1,\dotsc,n\}:\ p_{i} = P(\{x_{i}\}) = \nicefrac{1}{n} \]
+\end{de}
+
+\subsubsection{Bernoulli verdeling}
+\label{sec:bernoulli-verdeling}
+
+\begin{de}
+  Een \term{Bernoulli verdeling} is gedefinieerd voor een Bernoulli experiment.
+  \[ P(X=1) = p \quad\text{ en }\quad P(X=0) = q = 1-p \]
+  We noemen $p$ de \term{kans op succes}.
+  We noteren een stochastische variabele met een Bernoulli verdeling als volgt:
+  \[ X \sim \mathcal{B}(1,p) \]
+\end{de}
+
+
+\subsubsection{Binomiaalverdeleing}
+\label{sec:binomiaalverdeleing}
+
+\begin{de}
+  Een \term{binomiaalverdeling} is de verdeling van de som $Y$ van $n$ bernoulli-verdeelde stochastische veranderlijken $X_{i}$ met slaagkans $p$.
+  \[ Y = \sum_{i=1}^{n}X_{i}\]
+  \[ Y \sim \mathcal{B}(n,p) \]
+  $\Omega$ is dus $\{1,\dotsc,n\}$.
+  \[ P(Y=k) = \binom{n}{k}p^{k}q^{n-k} \]
+\end{de}
+
+\subsubsection{Geometrische verdeling}
+\label{sec:geom-verd}
+
+\begin{de}
+  Een \term{Geometrische verdeling} is de verdeling die optreedt als we een bernoulli experiment met slaagkans $\theta$ uitvoeren tot het slaagt.
+  \[ P(X=i) = (1-\theta)^{i}p \]
+  \[ X \sim Geom(\theta) \]
+\end{de}
+
+
+\subsubsection{Negatief binomiaalverdeling}
+\label{sec:negat-binom}
+
+\begin{de}
+  Een \term{Geometrische verdeling} is de verdeling die optreedt als we een bernoulli experiment met slaagkans $p$ uitvoeren tot het $r$ keer slaagt.
+  \[ P(X=i) = \binom{i+r-1}{i}(1-\theta)^{r}\theta^{i} \]
+  \[ X \sim NB(r,\theta) \]
+\end{de}
+
+
+\subsubsection{Hypergeometrische verdeling}
+\label{sec:hyperg-verd}
+
+\begin{de}
+  Een \term{hypergeometrische verdeling} is een verdeling $Y$ over een universum $\{1,\dotsc,n\}$ als volgt:
+  \[ P(Y = i) = \frac{\binom{s}{i}\binom{N-s}{n-i}}{\binom{N}{n}}\]
+  \[ Y \sim \mathcal{H}(N,s,n) \]
+\end{de}
+\extra{meer uitleg?}
+
+\subsubsection{Poissonverdeling}
+\label{sec:poissonverdeling}
+
+\begin{de}
+  De \term{Poissonverdeling} $\mathcal{P}(\alpha)$ met parameter $a\in \mathbb{R}^{+}$ is gedefinieerd op $\Omega = \mathbb{N}$ als volgt:
+  \[ p_{i} = P(X=i) = \frac{\alpha^{i}}{i!}e^{-\alpha} \]
+\end{de}
+
+\subsection{Continue verdelingen}
+\label{sec:continue-verdelingen}
+
+\subsubsection{Continue uniforme verdelingen}
+\label{sec:cont-unif-verd}
+
+\begin{de}
+  De stochastische variabele $X$ volgt een \term{continue uniforme verdeling} op $[a,b]$ als $X$ de volgende dichtheid heeft.
+  \[ f_{a,b}(x) = \frac{1}{b-a}\mathbb{1}_{[a,b]}(x) \]
+\end{de}
+
+\subsubsection{Exponentiele verdeling}
+\label{sec:expon-verd}
+
+\begin{de}
+  De \term{exponentiele verdeling} met parameter $a$ is een stochastische veranderlijke met de volgende dichtheidsfunctie.
+  \[
+  f_{a}(t) =
+  \left\{
+    \begin{array}{cl}
+      ae^{-at} &\text{ als } t \ge 0\\
+      0      &\text{ als } t < 0\\
+    \end{array}
+  \right.
+  \]
+  \[ X \sim \varepsilon(\alpha) \]
+\end{de}
+
+\subsubsection{Univariate normale verdeling}
+\label{sec:univ-norm-verd}
+
+\begin{de}
+  De \term{standaard normale verdeling} $\mathcal{N}(0,1)$ is gedefinieerd door haar dichtheidsfunctie $\phi(x)$:
+  \[ \phi(x) = \frac{e^{-\frac{1}{2}x^{2}}}{\sqrt{2\pi}} \]
+\end{de}
+
+\begin{de}
+  Een stochastische veranderlijke die standaard normaal verdeeld is wordt genoteerd met $Z$.
+\end{de}
+
+\begin{de}
+  De verdelingsfunctie van een standaard normale verdeling noteren we als $\Phi(x)$.
+  \[ \Phi(x) = \int_{-\infty}^{x}\phi(t)dt \]
+\end{de}
+
+\begin{de}
+  De \term{algemene normale verdeling} $\mathcal{N}(\mu,\sigma^{2})$ met $\mu \in \mathbb{R}$ en $\sigma \in \mathbb{R}^{+}$ is de verdeling van $X = \sigma Z + \mu$.
+  \[ f_{\mu, \sigma} = \frac{e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}}{\sigma\sqrt{2}\pi} \]
+\end{de}
+
+\begin{st}
+  \[ F_{X}(x) = F_{Z} \left( \frac{x-\mu}{\sigma} \right) = \Phi\left( \frac{x-\mu}{\sigma} \right) \]
+\end{st}
+
+\subsubsection{$\chi_{n}^2$-verdeling}
+\label{sec:chi_n2-verdeling}
+
+
+\begin{de}
+  De \term{gammafunctie} is als volgt gedefinieerd:
+  \[
+  \Gamma(t) = \int_{0}^{\infty}x^{t-1}e^{-x}dx \text{ voor } t > 0
+  \]
+\end{de}
+
+\begin{st}
+  \[ \forall t \in \mathbb{R}^{+}: \Gamma(t+1) = t\gamma(t) \]
+  \extra{bewijs}
+\end{st}
+
+\begin{st}
+  \[ \forall n \in \mathbb{N}: \Gamma(n+1) = n! \]
+  \extra{bewijs}
+\end{st}
+
+\begin{st}
+  \[ \Gamma\left(\frac{1}{2}\right) = \sqrt{\pi} \]
+  \extra{bewijs}
+\end{st}
+
+\begin{st}
+  De \term{formule van Stirling}
+  \[
+  \Gamma(t) \sim \left(\frac{t-1}{e}\right)^{t-1}\sqrt{2\pi(t-1)}
+  \]
+  \[
+  \lim_{t\rightarrow \infty}\frac{\Gamma(t)}{\left(\frac{t-1}{e}\right)^{t-1}\sqrt{2\pi(t-1)}} = 1
+  \]
+ \TODO{wut}
+\end{st}
+
+\begin{de}
+  Zij $Z_{1}, \dotsc, Z_{n}$ $n$ standaard normale verdelingen.
+  De som $X$ van deze $Z_{i}$ noemen we \term{chi-kwadraat} verdeeld met $n$ vrijheidsgraden.
+  \[ X \sim \chi_{n}^{2} \]
+  \[
+  f_{\chi^{2}_{n}}(x) =
+  \left\{
+    \begin{array}{ll}
+      \frac{e^{-\frac{x}{2}}x^{\frac{n}{2} - 1}}{2^{\frac{n}{2}}\Gamma\left(\frac{n}{2}\right)} & x > 0\\
+      0 & x \le 0
+    \end{array}
+  \right.
+  \]
+\end{de}
+
+\subsubsection{Gammaverdeling}
+\label{sec:gammaverdeling}
+
+\begin{de}
+  De \term{gammaverdeling} met parameters $\gamma, \beta \in \mathbb{R}^{+}$ is gedefinieerd door de dichtheidsfuncite $f_{\gamma,\beta}$:
+  \[ f_{\gamma,\beta} = \frac{x^{\gamma-1}e^{-\frac{x}{\beta}}}{\beta^{\gamma}\Gamma(\gamma)}\mathbb{1}_{x > 0} \]
+  \[ X \sim \Gamma_{\gamma,\beta} \]
+\end{de}
+
+\subsubsection{$t_n$ verdeling}
+\label{sec:t_n-verdeling}
+
+\begin{de}
+  De \term{Student verdeling} met $n$ vrijheidsgraden is gedefinieerd als de verdeling van $T$:
+  \[ T = \frac{Z}{\sqrt{\nicefrac{X}{n}}} \]
+\end{de}
+
+\begin{st}
+  De verdeling is symmetrisch met dichtheid $f_{t_{n}}(t)$
+  \[ f_{t_{n}}(t) = \frac{K_{n}}{\left(1+\frac{t^{2}}{n}\right)^{\frac{n+1}{2}}} \]
+  Waarbij:
+  \[ K_{n} = \frac{\Gamma\left(\frac{n+1}{2}\right)}{\sqrt{n\pi}\Gamma\left(\frac{n}{2}\right)} \]
+\zb
+\end{st}
+
+\subsubsection{Cauchy verdeling}
+\label{sec:cauchy-verdeling}
+
+\begin{de}
+  De \term{Cauchy verdeling} is de $t_{1}$ verdeling.
+\end{de}
+
+\begin{ei}
+  Zij $X$ en $Y$ twee standaard normaal verdeelde stochastische variabelen, dan is $\frac{X}{Y}$ Cauchy verdeeld.
+  \TODO{bewijs p 71}
+\end{ei}
+
+\TODO{opmerkingen hier}
+
+\subsubsection{$F$-verdeling}
+\label{sec:f-verdeling}
+
+\begin{de}
+  Zij $ W\sim \chi_{m}^{2}$ en $V \sim \chi_{n}^{2}$ onafhankelijk, dan noemt men de verdeling van $X$ de \term{$F$-verdeling}.
+  \[ X = \frac{\nicefrac{W}{m}}{\nicefrac{V}{n}} \]
+  \[ X \sim F_{m,n} \]
+\end{de}
+
+\begin{st}
+  De dichtheidsfunctie van de $F_{m,n}$-verdeling is $f_{m,n}$
+  \[
+  f_{m,n} = 
+  \left\{
+    \begin{array}{ll}
+      K_{m,n}\frac{x^{\frac{m}{2}-1}}{(n+mx)^{\frac{n+m}{2}}} & x > 0\\
+      0 & x \le 0
+    \end{array}
+  \right.
+  \]
+  \[
+  K_{m,n} = \frac{m^{\frac{m}{2}}n^{\frac{n}{2}}\Gamma\left(\frac{m+n}{2}\right)}{\Gamma\left(\frac{m}{2}\right)\Gamma\left(\frac{n}{2}\right)}
+  \]
+\end{st}
+
+\subsubsection{Lognormale verdeling}
+\label{sec:lognormale-verdeling}
+
+\begin{de}
+  Een stochastische variabele is \term{lognormaal verdeeld} met parameters $\mu \in\mathbb{R}$ en $\sigma \in \mathbb{R}^{+}$ als het volgende geldt:
+  \[ ln(Y) = N(\mu,\sigma^{2})\]
+\end{de}
+
+\section{Transformatie van stochastische veranderlijken}
+\label{sec:transf-van-stoch}
+
+\subsection{Monotone transformatie}
+\label{sec:monot-transf}
+
+\begin{st}
+  Zij $X$ een continue stochastische veranderlijke met dichtheidsdfunctie $f_{X}$ zodat $f_{X}(x)=0$ voor $x\not\in S$. Zijn $h: \mathbb{R} \rightarrow \mathbb{R}$ een functie zodat $U=h(X)$ opnieuw een stochastische veranderlijke is. Zij bovendien $h$ een differentieerbare, strikt stijgende of strikt dalende functie op $S$, dan is de dichtheidsfunctie van $U$ $f_{U}$:
+  \[
+  f_{U}(u) = 
+  \left\{
+    \begin{array}{ll}
+      f_{X}(h^{-1}(u)) \left| \frac{dh^{-1}(u)}{du} \right|& u\in h(S)\\
+      0 & u \not \in h(S)
+    \end{array}
+  \right.
+  \]
+\extra{bewijs}
+\end{st}
+
+\subsection{Integraaltransformatie}
+\label{sec:integr}
+
+\begin{ei}
+  Zij $X$ een continue stochastische veranderlijke met verdelingsfunctie $F_{X}$ strikt stijgend op $F_{X}^{-1}(]0,1[)$ en beschouw de transformatie $U=F_{X}(X)$, dan geldt $U \sim \mathcal{U}[0,1]$.
+\extra{bewijs}
+\end{ei}
+
+\subsection{Genereren van stochastische veranderlijken}
+\label{sec:gener-van-stoch}
+
+\begin{ei}
+  Zij $U \sim \mathcal{U}[0,1]$ en beschouw de transformatie $X = F^{-1}(U)$, dan is $F$ de verdelingsfunctie van $X$.
+\extra{bewijs}
+\end{ei}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

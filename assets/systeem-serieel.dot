@@ -1,0 +1,21 @@
+graph serieel {
+    node[shape=none,label=""];
+    start;
+    end;
+
+
+    subgraph cluster_system {
+        graph[style=dashed];
+        node[shape=rectangle];
+        a[label="a"];
+        b[label="b"];
+
+        a -- b;
+        
+    }
+
+    start -- a;
+    b -- end;
+
+    rankdir=LR;
+}

@@ -4,8 +4,6 @@
 \chapter{Voorbeelden}
 \label{cha:voorbeelden}
 
-
-
 \section{Combinatoriek}
 \subsection*{Variaties}
 \begin{vb}
@@ -18,8 +16,14 @@
 \end{vb}
 
 \subsection*{Permutaties}
+
 \begin{vb}
-  Het aantal manieren om $5$ personen aan een ronde tafel te zetten is $P_{5}$.
+  Het aantal manieren om $5$ mensen aan een tafel te zetten is $P_{5}$.
+\end{vb}
+
+\begin{vb}
+  Het aantal manieren om $5$ personen aan een ronde tafel te zetten is $P_{4}$.
+  Omdat de tafel rond is kunnen we \'e\'en persoon vast kiezen en de andere vier op de vier overige plaatsen zetten.
 \end{vb}
 
 \subsection*{Herhalingspermutaties}
@@ -28,10 +32,6 @@
 \subsection*{Combinaties}
 \begin{vb}  
   Het aantal manieren om een groepje van $4$ studenten uit $10$ aan te duiden is $C^{4}_{10}$.
-\end{vb}
-
-\begin{vb}
-  Het aantal manieren om twee teams van $6$ uit $12$ spelers te kiezen is $\nicefrac{C^{6}_{12}}{2}$.
 \end{vb}
 
 \begin{vb}
@@ -45,9 +45,58 @@
 \subsection*{Herhalingscombinaties}
 \extra{voorbeeld}
 
+\subsection{Gemengde voorbeelden}
+
+\begin{vb}
+  Het aantal manieren om twee teams van $6$ uit $12$ spelers te kiezen is $\nicefrac{C^{6}_{12}}{2}$.
+  We kiezen $6$ mensen uit $12$ om een team te vormen.
+  De andere $6$ mensen vormen dan het andere team.
+  We delen door twee omdat het niet uitmaakt wie de tegenstanders zijn.
+\end{vb}
+
+
+
 \newpage 
 \section{Kansruimten}
-\extra{voorbeelden van sigma-algebra}
+
+\begin{vb}
+  Het gooien van een dobbelsteen, met mogelijke uitkomsten $\Omega = \{1,2,3,4,5,6\}$ is een stochastisch experiment.
+\end{vb}
+
+\begin{vb}
+  Bij het gooien van een dobbelsteen is ``het gooien van meer dan drie ogen'' gebeurtenis $A =\{4,5,6\}$.
+\end{vb}
+
+\begin{vb}
+  Het opgooien van een munstuk, met twee mogelijke uitkomsten $\Omega = \{kop, munt\}$ is een bernoulli experiment
+\end{vb}
+
+\begin{vb}
+  Twee personen kiezen lukrook een geheel getal tussen $1$ en $5$, maar mogen niet hetzelfde getal kiezen.
+  Dit is een stochastisch experiment met universum $\Omega = \{ (a,b) \mid a,b \in \{1,2,3,4,5 \} \wedge a \neq b \}$
+\end{vb}
+
+\subsection*{Sigma algebra's}
+
+\begin{vb}
+  Voor het experiment van een worp met een muntstuk met universum $\{kop,munt\}$ is $\mathcal{A} = \{ \emptyset, \{kop\}, \{munt\}, \Omega \}$ een $\sigma$-algebra.
+\end{vb}
+
+\subsection*{Kansmaten}
+
+\subsection*{Traditionele kansruimten}
+\begin{vb}
+  In het experiment van het opgooien van een muntstuk is er voor de meetbare ruimte $\{kop,munt\}, \{ \emptyset, \{kop\}, \{munt\}, \Omega \}$ een uniforme kansmaat:
+  \[ P(\{kop\}) = P(\{munt\}) = \frac{1}{2} \]
+\end{vb}
+\extra{dobbelsteen}
+\extra{kaartspel}
+
+\extra{geiger-muller teller}
+
+\subsection*{Voorwaardelijke kans en onafhankelijkheid}
+\label{sec:voorw-kans-en}
+
 
 
 

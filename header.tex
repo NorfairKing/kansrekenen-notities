@@ -10,6 +10,7 @@
 \newtheorem{vb}[thm]{Voorbeeld}
 \newtheorem{tvb}[thm]{Tegenvoorbeeld}
 \newtheorem{lem}[thm]{Lemma}
+\newtheorem{oef}[thm]{Oefening}
 \newmdtheoremenv{al}[thm]{Algoritme}
 
 \newcommand{\deref}[1]{\footnote{Zie definitie \ref{#1} op pagina \pageref{#1}.}}
@@ -38,5 +39,28 @@
 \newcommand{\term}[1]{\index{#1}\textbf{#1}}
 \newcommand{\zb}[0]{{\footnotesize {\it Zonder bewijs\/}}}
 
-%badges
+% Opzoeken
+\newcommand{\formularium}[2]{(Formularium: #1: #2)}
+\newcommand{\tabel}[2]{(Tabel #1: #2)}
+
+% Badges
 \newcommand{\examen}[0]{\bx{{\bf Examenvraag!}}\\}
+
+% Examenvragen
+\newenvironment{examenvraag}[1]
+{ \par\noindent \underline{ Examenvraag #1:}}
+{ \pagebreak }
+
+\newenvironment{ex-vraag}
+{\begin{mdframed}}
+{\end{mdframed}}
+
+\newenvironment{ex-antwoord}
+{\par\noindent}
+{}
+
+\newcommand{\kennen}[1]{#1 (kennen)}
+\newcommand{\kunnen}[1]{#1 (kunnen)}
+
+% Voor meer plaats tussen wiskunde
+\renewcommand{\arraystretch}{1.25}
