@@ -1,6 +1,7 @@
 _region_.tex
 auto/
 .fmt
+commit.tex
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
