@@ -5,6 +5,53 @@
 \chapter{Examenvragen}
 \label{cha:examenvragen}
 
+\begin{examenvraag}{Tussentijdse Toets 2015}
+  \begin{ex-vraag}
+    Beschouw een systeem dat bestaat uit 4 onafhankelijke componenten $A$, $B$, $C$ en $D$.
+    De component $C$ staat in serie met $B$ en zij staan in parallel met $A$.
+    Dit systeem staan dan op zijn beurt in serie met $D$.
+    De faalkansen van $A$, $C$ en $D$ zijn gekend: $p_{A} = 0.05$, $p_{C}=0.02$, $p_{D}=0.01$.
+    Wat is de faalkans van $B$ als we weten dat de kans dat $B$ faalt gegeven dat het hele systeem $S$ faalt gelijk is aan $0.1$?
+  \end{ex-vraag}
+
+  \begin{ex-antwoord}
+    \begin{itemize}
+    \item Definities:
+      \begin{itemize}
+      \item Noem $p_{i}$ de kans dat systeem $i$ faalt.
+      \item Noem $E$ het serieel systeem van $B$ en $C$
+      \item Noem $F$ het parallel systeem van $A$ en $E$.
+      \item Noem $S$ het hele systeem, dus het seriele systeem van $F$ en $D$.
+      \end{itemize}
+    \item Gegevens:
+      \begin{itemize}
+      \item $p_{A} = 0.05$, $p_{C}=0.02$, $p_{D}=0.01$, $P(B \text{ faalt } \mid S \text{ faalt }) = 0.1$
+      \item $p_{E} = p_{B} + p_{C}$
+      \item $p_{F} = p_{A}p_{E}$
+      \item $p_{S} = p_{E} + p_{F}$
+      \end{itemize}
+    \item $p_{B}$
+    \item Toepassing van de wetten.\\
+      Zoals typisch bij een ``Wie is verantwoordelijk?'' vraag, proberen we de stelling van Bayes toe te passen:
+      \[ P(B|S) = \frac{P(S|B)P(B)}{P(S|B)P(B) + P(S|B^{C})P(B^{C})} \]
+      Als $B$ al gefaald heeft, valt het systeem te reduceren tot het serieel systeem van enkel $A$ en $D$.
+      De kans $P(S|B)$ dat $S$ dan faalt is dus $p_{A}+p_{D}$.
+      Als $B$ zeker niet gefaald heeft, valt $B$ gewoon weg te denken.
+      De kans $P(S|B^{C})$ dat $S$ dan faalt is dus $p_{D} + p_{A}p_{C}$.
+      We kunnen de formule nu herschrijven:
+      \[ P(B|S) = \frac{(p_{A}+p_{D})p_{B}}{(p_{A}+p_{D})p_{B} + (p_{D} + p_{A}p_{C})(1-p_{B})} \]
+      Hierin is alles behalve $p_{B}$ gekend.
+      We vormen dit om:
+      \begin{align*}
+        P(B|S) &= \frac{(p_{A}+p_{D})p_{B}}{(p_{A}+p_{D})p_{B} + (p_{D} + p_{A}p_{C})(1-p_{B})}\\
+        p_{B} &= \frac{P(B|S)(p_{D} + p_{A}p_{C})}{p_{A}+p_{D}+ P(B|S)(p_{D} + p_{A}p_{C}) - P(B|S)(p_{A}+p_{D})}\\
+        p_{B} &= \frac{(0.1)(0.01+(0.05)(0.02))}{0.05+0.01 + (0.1)(0.01 + (0.05)(0.02)) - (0.1)(0.05+0.01)}\\
+        p_{B} &= 0.019963702359346643
+      \end{align*}
+    \end{itemize}
+  \end{ex-antwoord}
+\end{examenvraag}
+
 \begin{examenvraag}{Tussentijdse Toets 2014}
   \begin{ex-vraag}
     Een stochastisch koppel $(X,Y)$ heeft een bivariate normale verdeling als de gezamelijke verdelingsfunctie van $X$ en $Y$ als volgt gegeven wordt:
@@ -27,6 +74,7 @@
     \]
     Bereken de marginale dichtheidsfunctie van $Y$.
   \end{ex-vraag}
+
   \begin{ex-antwoord}
     \kennen{De formule voor een marginale dichtheidsfunctie gaat als volgt:}
     \[ f_{y}(y) = \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dx \]
@@ -96,6 +144,7 @@
   \[ \mathcal{A} = \{ A \in \Omega \mid A \text{ is aftelbaar} \vee A^{C} \text{ is aftelbaar } \} \]
   Bewijs dat $\mathcal{A}$ een $\sigma$-algebra is.
   \end{ex-vraag}
+
   \begin{ex-antwoord}
     \begin{proof}
       \kennen{We gaan eenvoudigweg alle definierende eigenschappen van een $\sigma$-algebra af:}
@@ -135,6 +184,7 @@
     \item Indien je elke week bij Yumm's bestelt, hoe groot is dan de kans dat je eten gedurende \'e\'en jaar ($52$ weken) minstens $10$ keer tussen $20.15$ uur en $20.30$ uur geleverd werd?
     \end{itemize}
   \end{ex-vraag}
+
   \begin{ex-antwoord}
     Noem $X$ de wachttijd wanneer je eten bestelt bij Yumm's.
     We gaan ervan uit dat $X$ normaal verdeeld is.
@@ -209,6 +259,7 @@
     \item Hoe kunnen we stochastische veranderlijken komende van de Weibull verdeling genereren, vertrekkende van $U \sim U\interval{0}{1}$? 
     \end{itemize}
   \end{ex-vraag}
+
   \begin{ex-antwoord}
     \begin{itemize}
     \item
@@ -248,6 +299,7 @@
     \[ f_{X_{2}}(x) = \frac{e^{-\frac{x}{2}}x^{2-1}}{2^{2}\Gamma(2)} \]
     Wat is de verdeling van $X_{1} + 3X_{2}$ als $X_{1}$ en $X_{2}$ onafhankelijk zijn?
   \end{ex-vraag}
+
   \begin{ex-antwoord}
     We bekijken de momentgenererende functies van $X_{1}$ en $X_{2}$.
     Omdat $X_{1}$ en $X_{2}$ onafhankelijk zijn, is de momentgenerenede functie van $X_{1} + 3X_{2}$ eenvoudig te berekenen:
