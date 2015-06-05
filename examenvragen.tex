@@ -5,6 +5,41 @@
 \chapter{Examenvragen}
 \label{cha:examenvragen}
 
+
+\begin{examenvraag}{Tussentijdse Toets 2014}
+  \begin{ex-vraag}
+  Zij $\Omega$ een niet-aftelbare verzameling en zij $\mathcal{A}$ de volgende verzameling:
+  \[ \mathcal{A} = \{ A \in \Omega \mid A \text{ is aftelbaar} \vee A^{C} \text{ is aftelbaar } \} \]
+  Bewijs dat $\mathcal{A}$ een $\sigma$-algebra is.
+  \end{ex-vraag}
+
+  \begin{ex-antwoord}
+    \begin{proof}
+      \kennen{We gaan eenvoudigweg alle definierende eigenschappen van een $\sigma$-algebra af:}
+      \begin{itemize}
+      \item $\Omega \in \mathcal{A}$\\
+        $\Omega^{C}$ is leeg en dus aftelbaar, dus $\Omega$ zit in $\mathcal{A}$.
+      \item $\forall A \in \mathcal{A}: A^{C}\in \mathcal{A}$\\
+        Kies een willekeurige $A \in \mathcal{A}$. 
+        We onderscheiden twee gevallen.
+        \begin{itemize}
+        \item $A$ is aftelbaar: $A^{C}$ zit dan in $\mathcal{A}$ want $A^{C^{C}} = A$ is aftelbaar.
+        \item $A^{C}$ is aftelbaar: $A$ zit dan in $\mathcal{A}$ want $A^{C}$ is aftelbaar.
+        \end{itemize}
+      \item $\forall (A_{n})_{n}, A\in \mathcal{A}: \bigcup_{n} A_{n} \in \mathcal{A}$\\
+        Fixeer een rij $(A_{n})_{n}$ in $\mathcal{A}$.
+        We onderscheiden opnieuw twee gevallen.
+        \begin{itemize}
+        \item Alle $A_{n}$ zijn aftelbaar: $\bigcup_{n}A_{n}$ is dan aftelbaar en zit dus in $\mathcal{A}$.
+        \item Er is minstens \'e\'en $A_{n}$ niet aftelbaar. Opdat die $A_{m}$ in $\mathcal{A}$ zou zitten moet $A_{m}^{C}$ aftelbaar zijn.
+          $\left(bigcup_{n}A_{n}\right)^{C} = \bigcap_{n}A_{n}^{C}$ is nu aftelbaar omdat $A_{m}$ aftelbaar is.
+          Bijgevolg zit $\bigcup_{n}A_{n}$ ook in $\mathcal{A}$.
+        \end{itemize}
+      \end{itemize}
+    \end{proof}
+  \end{ex-antwoord}
+\end{examenvraag}
+
 \begin{examenvraag}{Tussentijdse Toets 2015}
   \begin{ex-vraag}
     Beschouw een systeem dat bestaat uit 4 onafhankelijke componenten $A$, $B$, $C$ en $D$.
@@ -26,29 +61,52 @@
     \item Gegevens:
       \begin{itemize}
       \item $p_{A} = 0.05$, $p_{C}=0.02$, $p_{D}=0.01$, $P(B \text{ faalt } \mid S \text{ faalt }) = 0.1$
-      \item $p_{E} = p_{B} + p_{C}$
+      \item $p_{E} = p_{B} + p_{C} - p_{B}p_{C}$
       \item $p_{F} = p_{A}p_{E}$
-      \item $p_{S} = p_{E} + p_{F}$
+      \item $p_{S} = p_{E} + p_{F} - p_{E}p_{F}$
       \end{itemize}
     \item $p_{B}$
     \item Toepassing van de wetten.\\
-      Zoals typisch bij een ``Wie is verantwoordelijk?'' vraag, proberen we de stelling van Bayes toe te passen:
+      \kennen{Zoals typisch bij een ``Wie is verantwoordelijk?'' vraag, proberen we de stelling van Bayes toe te passen:}
       \[ P(B|S) = \frac{P(S|B)P(B)}{P(S|B)P(B) + P(S|B^{C})P(B^{C})} \]
       Als $B$ al gefaald heeft, valt het systeem te reduceren tot het serieel systeem van enkel $A$ en $D$.
-      De kans $P(S|B)$ dat $S$ dan faalt is dus $p_{A}+p_{D}$.
+      De kans $P(S|B)$ dat $S$ dan faalt is dus $p_{A}+p_{D}-p_{A}p_{D}$.
       Als $B$ zeker niet gefaald heeft, valt $B$ gewoon weg te denken.
-      De kans $P(S|B^{C})$ dat $S$ dan faalt is dus $p_{D} + p_{A}p_{C}$.
+      De kans $P(S|B^{C})$ dat $S$ dan faalt is dus $p_{D} + p_{A}p_{C} - p_{D}p_{A}p_{C}$.
       We kunnen de formule nu herschrijven:
-      \[ P(B|S) = \frac{(p_{A}+p_{D})p_{B}}{(p_{A}+p_{D})p_{B} + (p_{D} + p_{A}p_{C})(1-p_{B})} \]
-      Hierin is alles behalve $p_{B}$ gekend.
-      We vormen dit om:
+      \[ P(B|S) = \frac{(p_{A}+p_{D})p_{B}}{(p_{A}+p_{D}-p_{A}p_{D})p_{B} + (p_{D} + p_{A}p_{C} - p_{D}p_{A}p_{C})(1-p_{B})} \]
+      Hierin is alles behalve $p_{B}$ gekend:
       \begin{align*}
-        P(B|S) &= \frac{(p_{A}+p_{D})p_{B}}{(p_{A}+p_{D})p_{B} + (p_{D} + p_{A}p_{C})(1-p_{B})}\\
-        p_{B} &= \frac{P(B|S)(p_{D} + p_{A}p_{C})}{p_{A}+p_{D}+ P(B|S)(p_{D} + p_{A}p_{C}) - P(B|S)(p_{A}+p_{D})}\\
-        p_{B} &= \frac{(0.1)(0.01+(0.05)(0.02))}{0.05+0.01 + (0.1)(0.01 + (0.05)(0.02)) - (0.1)(0.05+0.01)}\\
-        p_{B} &= 0.019963702359346643
+        P(B|S) &= \frac{(p_{A}+p_{D}-p_{A}p_{D})p_{B}}{(p_{A}+p_{D}-p_{A}p_{D})p_{B} + (p_{D} + p_{A}p_{C} -p_{D}p_{A}p_{C})(1-p_{B})}\\
+        0.1 &= \frac{0.0595 p_{B}}{ 0.0595 p_{B} + 0.01099(1-p_{b})}\\
+        p_{B} &= 0.0201
       \end{align*}
     \end{itemize}
+  \end{ex-antwoord}
+\end{examenvraag}
+
+\begin{examenvraag}{Tussentijdse Toets 2015}
+  \begin{ex-vraag}
+    Een apparaat bestaat uit $2$ componenten en stopt met werken zodra minstens $1$ van de $2$ componenten faalt.
+    Stel $X$ en $Y$ de respectievelijke levensduren (uitgedrukt in uren) van de $2$ componenten.
+    Stel dat de gezamenlijke dichtheidsfunctie van de levensduren gegeven wordt door $f_{X,Y}$:
+    \[
+    f_{X,Y}(x,y) = 
+    \begin{cases}
+      c(x+y) & \text{ als } x\in\interval[open]{0}{3} \text{ en } y \in\interval[open]{0}{3}\\
+      0 & \text{ anders}
+    \end{cases}
+    \]
+    \begin{enumerate}
+    \item Bepaal de kans dat het apparaat binnen het uur faalt.
+    \item Bereken $f_{Y|X}(x|y)$
+    \end{enumerate}
+  \end{ex-vraag}
+
+  \begin{ex-antwoord}
+    \begin{enumerate}
+    \item Het apparaat faalt
+    \end{enumerate}
   \end{ex-antwoord}
 \end{examenvraag}
 
@@ -135,40 +193,6 @@
     = \dfrac{1}{\sqrt{2\pi}\sigma_{y}}e^{- \frac{1}{2}\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}}
     \]
     We vinden dat $f_{y}(y)$ de dichtheidsfunctie is van een normaal verdeelde stochastische variabele, zoals verwacht.
-  \end{ex-antwoord}
-\end{examenvraag}
-
-\begin{examenvraag}{Tussentijdse Toets 2014}
-  \begin{ex-vraag}
-  Zij $\Omega$ een niet-aftelbare verzameling en zij $\mathcal{A}$ de volgende verzameling:
-  \[ \mathcal{A} = \{ A \in \Omega \mid A \text{ is aftelbaar} \vee A^{C} \text{ is aftelbaar } \} \]
-  Bewijs dat $\mathcal{A}$ een $\sigma$-algebra is.
-  \end{ex-vraag}
-
-  \begin{ex-antwoord}
-    \begin{proof}
-      \kennen{We gaan eenvoudigweg alle definierende eigenschappen van een $\sigma$-algebra af:}
-      \begin{itemize}
-      \item $\Omega \in \mathcal{A}$\\
-        $\Omega^{C}$ is leeg en dus aftelbaar, dus $\Omega$ zit in $\mathcal{A}$.
-      \item $\forall A \in \mathcal{A}: A^{C}\in \mathcal{A}$\\
-        Kies een willekeurige $A \in \mathcal{A}$. 
-        We onderscheiden twee gevallen.
-        \begin{itemize}
-        \item $A$ is aftelbaar: $A^{C}$ zit dan in $\mathcal{A}$ want $A^{C^{C}} = A$ is aftelbaar.
-        \item $A^{C}$ is aftelbaar: $A$ zit dan in $\mathcal{A}$ want $A^{C}$ is aftelbaar.
-        \end{itemize}
-      \item $\forall (A_{n})_{n}, A\in \mathcal{A}: \bigcup_{n} A_{n} \in \mathcal{A}$\\
-        Fixeer een rij $(A_{n})_{n}$ in $\mathcal{A}$.
-        We onderscheiden opnieuw twee gevallen.
-        \begin{itemize}
-        \item Alle $A_{n}$ zijn aftelbaar: $\bigcup_{n}A_{n}$ is dan aftelbaar en zit dus in $\mathcal{A}$.
-        \item Er is minstens \'e\'en $A_{n}$ niet aftelbaar. Opdat die $A_{m}$ in $\mathcal{A}$ zou zitten moet $A_{m}^{C}$ aftelbaar zijn.
-          $\left(bigcup_{n}A_{n}\right)^{C} = \bigcap_{n}A_{n}^{C}$ is nu aftelbaar omdat $A_{m}$ aftelbaar is.
-          Bijgevolg zit $\bigcup_{n}A_{n}$ ook in $\mathcal{A}$.
-        \end{itemize}
-      \end{itemize}
-    \end{proof}
   \end{ex-antwoord}
 \end{examenvraag}
 

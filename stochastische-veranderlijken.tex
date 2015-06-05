@@ -14,10 +14,11 @@
 
 \begin{de}
   Zij $\Omega, \mathcal{A}, P$ een kansruimte.
-  Een re\"ee functie $X$ als volgt noemen we een \term{stochastische veranderlijke}, een \term{stochastische variabele}, een \term{stochastiek}, een \term{toevalsvariabele} of een term{random variabele}.
+  Een re\"ee functie $X$ als volgt noemen we een \term{stochastische veranderlijke}, een \term{stochastische variabele}, een \term{stochastiek}, een \term{toevalsvariabele} of een \term{random variabele}.
   \[ X:\ \Omega \rightarrow \mathbb{R} \]
   \[ \forall B\in \mathcal{B}(\mathbb{R}):\ X^{-1}(B) = \{\omega \mid X(\omega) \in B \} \]
   We noemen $X$ dan een $\mathcal{A}$-\term{meetbare afbeelding}.
+  
 \end{de}
 
 \begin{de}
@@ -38,12 +39,12 @@
 \end{st}
 
 \begin{de}
-  Zij $\Omega,\mathcal{A},P$ een kansruimte en $X: \Omega \rightarrow \mathbb{R}$ een stochastische veranderlijke, dan definieren we de overeenkomstige \term{verdelingsfunctie} $F_{X}$ als volgt:
+  Zij $\Omega,\mathcal{A},P$ een kansruimte en $X: \Omega \rightarrow \mathbb{R}$ een stochastische veranderlijke, dan definieren we de overeenkomstige \term{verdelingsfunctie} (of \term{cumulatieve distributiefunctie}) $F_{X}$ als volgt:
   \[ F: \mathbb{R} \rightarrow \mathbb{R}:\ F_{X}(a) = P_{X}(]-\infty,a]) = P(\{\omega\mid X(\omega) \le a\}) = P(X \le a) \]
 \end{de}
 
 \begin{st}
-  Zij $X$ een stochastische veranderlijke in de kansruimte $\Omega,\mathcal{A},P$, dan is de afbeelding $F_{X}$ een verdelingsfunctie als de volgende beweringen gelden.
+  Zij $X$ een stochastische veranderlijke in de kansruimte $\Omega,\mathcal{A},P$, dan is de afbeelding $F_{X}$ een verdelingsfunctie als en slechts als de volgende beweringen gelden.
   \begin{enumerate}
   \item $F_{X}$ is monotoon stijgend.
     \[ \forall a,b\in \mathbb{R}:\ a\le b \Rightarrow F_{X}(a) \le F_{X}(b) \]
