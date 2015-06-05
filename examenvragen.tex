@@ -159,6 +159,59 @@
   \end{ex-antwoord}
 \end{examenvraag}
 
+\begin{examenvraag}{Tussentijdse Toets 2015}
+  \begin{ex-vraag}
+  Veronderstel dat $1$ op $2500$ lampen stuk gaat gedurende een bepaalde dag.
+  In een bedrijf hangen $10000$ lampen.
+  Wat is de kans dat minstens $6$ lampen stuk gaan op een bepaalde dag?
+  \end{ex-vraag}
+
+  \begin{ex-antwoord}
+    Definieer $X$ als het aantal lampen dat stuk gaat en een bepaalde dag.
+    Een lamp die stuk gaat kunnen we als een Bernoulli experiment beschouwen, $X$ is dan Binomiaal verdeeld:
+    \[ X \sim B\left(n=10000,p=\frac{1}{2500}\right)\]
+    Wanneer we hiermee de gevraagde kans $P(X \ge 6)$ willen berekenen, kunnen we twee dingen doen:
+    Ofwel berekenen we de kans meteen met de formule: \formularium{Binomiaal}{$P(X=k) = \binom{n}{k}p^{k}(1-p)^{n-k}$}
+    \[ P(X \ge 6) = \sum_{i=6}^{10000}P(X=i) \]
+    Dit zou heel veel werk kosten.
+    Ofwel berekenen we het complement rechtstreeks met de formule:
+    \[ P(X \ge 6) = \sum_{i=0}^{5}(X=5) \]
+    Dit is nog steeds redelijk wat werk:
+    \begin{align*}
+      P(X \ge 6)
+      &= \sum_{i=0}^{5}\binom{n}{i}p^{i}(1-p)^{n-i}\\
+      &= \left(\frac{2499}{2500}\right)^{10000}\\
+      &+ 10000\left(\frac{1}{2500}\right)\left(\frac{2499}{2500}\right)^{9999}\\
+      &+ 10000\cdot 9999\left(\frac{1}{2500}\right)^{2}\left(\frac{2499}{2500}\right)^{9998}\\
+      &+ 10000\cdot 9999 \cdot 9998\left(\frac{1}{2500}\right)^{3}\left(\frac{2499}{2500}\right)^{9997}\\
+      &+ 10000\cdot 9999 \cdot 9998 \cdot 9997\left(\frac{1}{2500}\right)^{4}\left(\frac{2499}{2500}\right)^{9996}\\
+      &+ 10000\cdot 9999 \cdot 9998 \cdot 9997 \cdot 9998\left(\frac{1}{2500}\right)^{5}\left(\frac{2499}{2500}\right)^{9995}
+    \end{align*}
+    Dit is vooral veel intikwerk.
+    Het kan nog eenvoudiger.
+    \kennen{We kunnen de binomiaalverdeling benaderen, maar afhankelijk van de vuistrekel gebruiken we de stelling van De Moivre-Laplace (als de vuistregel-test slaagt) of de limietstelling van Poisson (als de vuistregel-test niet slaagt}
+    \[ n \ge 30 \text{ maar } np = \frac{10000}{2500} = 4 \not\ge 5 \text{ (ookal geldt } nq = \frac{24990000}{2500} \ge 5 \text{ )}  \]
+    \kennen{Zoals we al hadden kunnen raden uit de opgave (het gaat over een aantal gebeurtenissen in een tijdsinterval), zullen we de binomiaalverdeling inderdaad benaderen met een Poissonverdeling:}
+    \[ B(n,p) \simeq\mathcal{P}(np) \]
+    In ons geval is $np$ gelijk aan $4$.
+    Het antwoord ziet er dan als volgt uit:
+    \[ P(X \ge 6) \approx 1-P(X<6) = 1-\sum_{k=0}^{5}P(X=k) = 1-\sum_{k=0}^{5}\frac{e^{-4}4^{k}}{k!} = 0.21486961296959495 \]
+    Toegegeven, dit is nog steeds redelijk wat werk.
+  \end{ex-antwoord}
+\end{examenvraag}
+
+\begin{examenvraag}{Tussentijdse Toets 2015}
+  \begin{ex-vraag}
+    Eer lampenbedrijf is ge\"interesseerd in het gemiddelde lichtrendement van de lampen.
+    De kans dat het gemiddelde lichtrendement groter is dan $105$ $lumen/Watt$ is gelijk aan $6\%$ en er is $26.6\%$ kans dat het gemiddelde lichtrendement kleiner is dan $98 lumen/Watt$.
+    Wat is dan de kans het gemiddelde lichtrendement tussen $99$ en $104.5 lumen/Watt$ ligt?
+  \end{ex-vraag}
+
+  \begin{ex-antwoord}
+    
+  \end{ex-antwoord}
+\end{examenvraag}
+
 
 \begin{examenvraag}{Tussentijdse Toets 2014}
   \begin{ex-vraag}
