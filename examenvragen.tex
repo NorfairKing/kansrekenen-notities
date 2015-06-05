@@ -85,183 +85,6 @@
   \end{ex-antwoord}
 \end{examenvraag}
 
-\begin{examenvraag}{Tussentijdse Toets 2015}
-  \begin{ex-vraag}
-    Een apparaat bestaat uit $2$ componenten en stopt met werken zodra minstens $1$ van de $2$ componenten faalt.
-    Stel $X$ en $Y$ de respectievelijke levensduren (uitgedrukt in uren) van de $2$ componenten.
-    Stel dat de gezamenlijke dichtheidsfunctie van de levensduren gegeven wordt door $f_{X,Y}$:
-    \[
-    f_{X,Y}(x,y) = 
-    \begin{cases}
-      c(x+y) & \text{ als } x\in\interval[open]{0}{3} \text{ en } y \in\interval[open]{0}{3}\\
-      0 & \text{ anders}
-    \end{cases}
-    \]
-    \begin{enumerate}
-    \item Bereken $c$ op dat $f_{X,Y}$ een dichtheidsfunctie is.
-    \item Bepaal de kans dat het apparaat binnen het uur faalt.
-    \item Bereken $f_{Y|X}(x|y)$
-    \end{enumerate}
-  \end{ex-vraag}
-
-  \begin{ex-antwoord}
-    \begin{enumerate}
-    \item \kennen{We integreren heel de dichtheidsfunctie, dat moet op $1$ uitkomen}
-      \begin{align*}
-        \int_{-\infty}^{+\infty}\int_{-\infty}^{\infty}f_{X,Y}(x,y)\ dy dx
-        &= \int_{0}^{3}\int_{0}^{3}c(x+y)\ dy dx\\
-        &= c\int_{0}^{3}\left.\left(xy + \frac{y^{2}}{2}\right)\right|_{y=0}^{y=3}\ dx\\
-        &= c\int_{0}^{3}3x + \frac{9}{2}\ dx\\
-        &= c\left.\left(\frac{3}{2}x^{2}+\frac{9}{2}x\right)\right|_{x=0}^{x=3}\\
-        &= c\left(\frac{27}{2} + \frac{27}{2}\right)\\
-        &= 27 c
-      \end{align*}
-      $c$ moet dus $\frac{1}{27}$ zijn.
-
-    \item We zoeken $P(X < 1 \cup Y < 1)$.
-      \kunnen{We tekenen het universum en duiden de gebeurtenis aan:}
-      \begin{figure}[H]
-        \centering
-        \begin{tikzpicture}
-          \draw[->] (0,0) -- (6.1,0) node[right] {$x$};
-          \draw[->] (0,0) -- (0,6.2) node[above] {$y$};
-          \node[below] (all) at (6,0) {(3,0)};
-          \node[left] (all) at (0,6) {(0,3)};
-          \node[below left] (all) at (0,0) {(0,0)};
-
-          \node[below] (all) at (2,0) {(1,0)};
-          \node[left] (all) at (0,2) {(0,1)};
-
-          \draw (2,0) -- (2,6) node {};
-          \draw (0,2) -- (6,2) node {};
-          \draw (6,0) -- (6,6) node {};
-          \draw (0,6) -- (6,6) node {};
-          \filldraw[thick,fill=green!80!black,fill opacity=0.4] (0,0) -- (0,6) -- (2,6) -- (2,2)  -- (6,2) -- (6,0) -- cycle;
-        \end{tikzpicture}
-        \caption{Het universum}
-      \end{figure}
-      We zouden dit kunnen uitrekenen als $\int_{0}^{3}\int_{0}^{1}f_{X,Y}(x,y)\ dy dx + \int_{0}^{1}\int_{0}^{3}f_{X,Y}(x,y)\ dy dx - \int_{0}^{1}\int_{0}^{1}f_{X,Y}(x,y)\ dy dx$, maar omdat we eigenlijk niet graag veel integralen uitrekenen kunnen we het eenvoudiger doen door naar te tekening te kijken:
-      \[ P(X < 1 \cup Y < 1) = 1 - \int_{1}^{3}\int_{1}^{3}f_{X,Y}(x,y)\ dy dx \]
-      \kunnen{We rekenen dit uit:}
-      \begin{align*}
-        \int_{1}^{3}\int_{1}^{3}f_{X,Y}(x,y)\ dy dx 
-        &= \int_{1}^{3}\int_{1}^{3}c(x+y)\ dy dx\\
-        &= c\int_{1}^{3}\left.\left(xy+\frac{y^{2}}{2}\right)\right|_{y=1}^{y=3}\ dx\\
-        &= c\int_{1}^{3}\left(3x + \frac{9}{2} - x - \frac{1}{2}\right)\ dx\\
-        &= c\int_{1}^{3}(2x + 4)\ dx\\
-        &= c\left.\left(x^{2} + 4x\right)\right|_{x=1}^{x=3}\\
-        &= c\left(9 + 12 - 1 - 4\right)\\
-        &= 16c
-      \end{align*}
-      Het antwoord is dus $P(X < 1 \cup Y < 1) = 11c$.
-
-    \item \kennen{We berekenen de marginale dichtheidsfunctie als volgt:}
-      \[ f_{Y|X}(y|x) = \frac{f_{X,Y}(x,y)}{f_{X}(x)} \]
-      De teller kennen we al, \kennen{de noemer berekenen we als volgt:}
-      \[ f_{X}(x) = \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dy \]
-      \begin{align*}
-        \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dy
-        &= \int_{0}^{3}c(x+y)\ dy\\
-        &= c\left.\left(xy + \frac{y^{2}}{2}\right)\right|_{y=0}^{y=3}\\
-        &= c\left(3x + \frac{9}{2}\right)
-      \end{align*}
-      We kunnen nu de marginale dichtheidsfunctie berekenen:
-      \begin{align*}
-        \frac{f_{X,Y}(x,y)}{f_{X}(x)}
-        &= \frac{c(x+y)}{c\left(3x + \frac{9}{2}\right)}\\
-        &= \frac{x+y}{3\left(x+\frac{3}{2}\right)}
-      \end{align*}
-      Het definitiegebied is $x\in\interval{0}{3}, y\in\interval{0}{3}$.
-    \end{enumerate}
-  \end{ex-antwoord}
-\end{examenvraag}
-
-\begin{examenvraag}{Tussentijdse Toets 2014}
-  \begin{ex-vraag}
-    Een stochastisch koppel $(X,Y)$ heeft een bivariate normale verdeling als de gezamelijke verdelingsfunctie van $X$ en $Y$ als volgt gegeven wordt:
-    \[
-    f_{X,Y}(x,y)
-    =
-    \frac
-    {
-      e^{-\frac{1}{2}\frac{1}{1-\rho^{2}}
-        \left(
-          \left(\frac{x-\mu_{x}}{\sigma_{x}}\right)^{2}
-          - 2\rho\left(\frac{x-\mu_{x}}{\sigma_{x}}\right)^{2}\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}
-          + \left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}
-        \right)
-      }
-    }
-    {
-      2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}
-    }
-    \]
-    Bereken de marginale dichtheidsfunctie van $Y$.
-  \end{ex-vraag}
-
-  \begin{ex-antwoord}
-    \kennen{De formule voor een marginale dichtheidsfunctie gaat als volgt:}
-    \[ f_{y}(y) = \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dx \]
-    We voeren eerst een aantal constanten in, om de leesbaarheid te vergroten:
-    \[ 
-    C = \dfrac{1}{2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}} \quad A = \frac{1}{2}\frac{1}{1-\rho^{2}} \quad u = \frac{x-\mu_{x}}{\sigma_{x}} \quad v = \frac{y-\mu_{y}}{\sigma_{y}}
-    \]
-    \[ f_{X,Y}(x,y) = C e^{A \cdot (u^{2}-2\rho u v + v^{2})} \]
-    \kunnen{We kunnen de formule nu uitrekenen}
-    \[ \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dx\ dy = \int_{-\infty}^{+\infty} C e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ dx = C\int_{-\infty}^{+\infty}e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ dx \]
-    We voeren een nieuwe integratieveranderlijke in:
-    \[ 
-    \begin{array}{rl}
-      u &= \frac{x-\mu_{x}}{\sigma_{x}}\\
-      du &= \frac{1}{\sigma_{x}}dx\\
-    \end{array}
-    \]
-    \[
-    = C\sigma_{x}\int_{-\infty}^{+\infty}e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ du
-    = C\sigma_{x}\sigma_{X}\int_{-\infty}^{+\infty}e^{-Av^{2}}e^{-A \cdot (u^{2}-2\rho u v)}\ du
-    = C\sigma_{x}e^{-Av^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v}\ du
-    \]
-    We forceren hier een bijzonder product door $+ A\rho^{2}v^{2} - A\rho^{2}v^{2}$ toe te voegen in de exponent.
-    \[
-    = C\sigma_{x}e^{-Av^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v + A\rho^{2}v^{2} - A\rho^{2}v^{2}}\ du 
-    = C\sigma_{x}e^{-Av^{2}-A\rho^{2}v^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v + A\rho^{2}v^{2}}\ du 
-    \]
-    \[
-    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\int_{-\infty}^{+\infty}e^{-A(u-\rho v)^{2}}\ du 
-    \]
-    We voeren nogmaals een nieuwe integratieveranderlijke in:
-    \[ 
-    \begin{array}{rl}
-      z &= \sqrt{2A}(u-\rho v) \\
-      dz &= \sqrt{2A} du\\
-    \end{array}
-    \]
-    $z^{2}$ is dan $2A(u-\rho v)^{2}$.
-    \[
-    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\frac{1}{\sqrt{A}}\int_{-\infty}^{+\infty}e^{-\frac{1}{2}z^{2}}\ dz
-    \]
-    Nu zou je de formule binnen de integraal moeten herkennen.
-    \formularium{Dichtheidsfunctie van een algemene Normaalverdeling}{ $\frac{e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}}{\sigma\sqrt{2}\pi}$}
-    De formule voor de standaard normaalverdeling ziet er als volgt uit:
-    \[ \phi(x) = \frac{e^{-\frac{1}{2}x^{2}}}{\sqrt{2\pi}} \]
-    Omdat dit een dichtheid is, moet de integraal tot $1$ evalueren:
-    \[ 1 = \int_{-\infty}^{+\infty}\frac{e^{-\frac{1}{2}x^{2}}}{\sqrt{2\pi}} \]
-    \[ \sqrt{2\pi} = \int_{-\infty}^{+\infty}e^{-\frac{1}{2}x^{2}} \]
-    De integraal die nog overblijft kunnen we dus vervangen door $\sqrt{2\pi}$.
-    \[
-    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\frac{\sqrt{2\pi}}{\sqrt{2A}}
-    \]
-    We vervangen nu de leesbaarheidsconstanten terug naar de originele waarden en zien dat we al veel kunnen vereenvoudigen.
-    \[
-    = \dfrac{1}{2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}}\sigma_{x}e^{-\left( \frac{1}{2}\frac{1}{1-\rho^{2}}\right)(1-\rho^{2})\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}}\frac{\sqrt{2\pi}}{\sqrt{2\left( \frac{1}{2}\frac{1}{1-\rho^{2}}\right)}}
-    \]
-    \[
-    = \dfrac{1}{\sqrt{2\pi}\sigma_{y}}e^{- \frac{1}{2}\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}}
-    \]
-    We vinden dat $f_{y}(y)$ de dichtheidsfunctie is van een normaal verdeelde stochastische variabele, zoals verwacht.
-  \end{ex-antwoord}
-\end{examenvraag}
-
 \begin{examenvraag}{Tussentijdse Toets 2014}
   \begin{ex-vraag}
     Yumm's is een restaurant dat ook aan huis levert.
@@ -381,7 +204,7 @@
   \end{ex-antwoord}
 \end{examenvraag}
 
-\begin{oef}{Tussentijdse Toets 2014}
+\begin{examenvraag}{Tussentijdse Toets 2014}
   \begin{ex-vraag}
     Zij $X_{1}$ een exponentieel-verdeelde stochastische variabele met dichtheid $f_{X_{1}}$: 
     \[ f_{X_{1}}(x) = \frac{1}{6}e^{-\frac{x}{6}} \quad x \ge 0 \]
@@ -402,7 +225,228 @@
     \formularium{$\Gamma$-verdeling}{$M_{\Gamma_{3,6}}= \frac{1}{\sqrt[3]{1-6t}}$}
     \[ X_{1} + 3X_{2} \sim \Gamma(3,6) \]
   \end{ex-antwoord}
-\end{oef}
+\end{examenvraag}
+
+\begin{examenvraag}{Tussentijdse Toets 2015}
+  \begin{ex-vraag}
+    Een discrete variabele $X$ heeft volgende momentgenererende functie:
+    \[ M_{X}(t) = \frac{1}{4}\left( e^{-2t} + e^{-t} + e^{t} + e^{2t} \right) \]
+    \begin{itemize}
+    \item Bereken de variantie van $X$.
+    \item Geef, gebruik makende van de variantie, een ondergrens voor de kans $P(|X| < \frac{7}{4})$.
+    \end{itemize}
+
+  \end{ex-vraag}
+
+  \begin{ex-antwoord}
+    \begin{itemize}
+    \item \kennen{De variantie van een toevalsvariabele valt als volgt te berekenen:}
+      \[ Var[X] = E[X^{2}] - E[X]^{2} \]
+      \kennen{$E[X^{i}]$ valt te berekenen als $\left.\frac{d^{i}}{dt^{i}}M_{X}(t)\right|_{t=0}$,} dus we kunnen de variantie berekenen aan de hand hiervan:
+      \begin{align*}
+        E[X]
+        &= \left.\frac{d}{dt}M_{X}(t)\right|_{t=0}\\
+        &= \left.\frac{d}{dt}\left(\frac{1}{4}\left( e^{-2t} + e^{-t} + e^{t} + e^{2t} \right)\right)\right|_{t=0}\\
+        &= \frac{1}{4}\left.\frac{d}{dt}\left(e^{-2t} + e^{-t} + e^{t} + e^{2t}\right)\right|_{t=0}\\
+        &= \frac{1}{4}\left.\left(-2e^{-2t} -e^{-t} + e^{t} + 2e^{2t}\right)\right|_{t=0}\\
+        &= \frac{1}{4}\left(-2-1+1+2\right) \\
+        &= 0
+      \end{align*}
+      \begin{align*}
+        E[X^{2}]
+        &= \left.\frac{d^{2}}{dt^{2}}M_{X}(t)\right|_{t=0}\\
+        &= \frac{1}{4}\left.\frac{d}{dt}\left( -2e^{-2t} - e^{-t} + e^{t} + 2e^{2t} \right)\right|_{t=0}\\
+        &= \frac{1}{4}\left.\left( 4e^{-2t} + e^{-t} + e^{t} + 4e^{2t} \right)\right|_{t=0}\\
+        &= \frac{1}{4}\left( 4+1+1+4 \right)\\
+        &= \frac{5}{2}
+      \end{align*}
+      De variantie is dus $\frac{10}{4}$.
+    \item \kennen{De ongelijkheid van Chebyschev leert ons dat we een afschatting kunnen maken voor een kans van de voor $P(|X| \ge a)$ als we de variantie en het gemiddelde kennen van $X$.}
+      \[ \forall a \ge 0:\ P(|X-\mu| \ge a) \le \frac{\sigma^{2}}{a^{2}} \]
+      In dit geval betekent dat het volgende:
+      \[ P\left(|X| \ge \frac{7}{4}\right) \le \frac{\frac{5}{2}}{\left(\frac{7}{4}\right)^{2}} = \frac{40}{49} \]
+      Dit geeft het volgende als antwoord:
+      \[ P\left( |X| < \frac{7}{4} \right) = 1 - P\left(|X| \ge \frac{7}{4}\right) \ge 1 - \frac{40}{49} = \frac{9}{49} \]
+    \end{itemize}
+  \end{ex-antwoord}
+\end{examenvraag}
+
+\begin{examenvraag}{Tussentijdse Toets 2014}
+  \begin{ex-vraag}
+    Een stochastisch koppel $(X,Y)$ heeft een bivariate normale verdeling als de gezamelijke verdelingsfunctie van $X$ en $Y$ als volgt gegeven wordt:
+    \[
+    f_{X,Y}(x,y)
+    =
+    \frac
+    {
+      e^{-\frac{1}{2}\frac{1}{1-\rho^{2}}
+        \left(
+          \left(\frac{x-\mu_{x}}{\sigma_{x}}\right)^{2}
+          - 2\rho\left(\frac{x-\mu_{x}}{\sigma_{x}}\right)^{2}\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}
+          + \left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}
+        \right)
+      }
+    }
+    {
+      2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}
+    }
+    \]
+    Bereken de marginale dichtheidsfunctie van $Y$.
+  \end{ex-vraag}
+
+  \begin{ex-antwoord}
+    \kennen{De formule voor een marginale dichtheidsfunctie gaat als volgt:}
+    \[ f_{y}(y) = \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dx \]
+    We voeren eerst een aantal constanten in, om de leesbaarheid te vergroten:
+    \[ 
+    C = \dfrac{1}{2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}} \quad A = \frac{1}{2}\frac{1}{1-\rho^{2}} \quad u = \frac{x-\mu_{x}}{\sigma_{x}} \quad v = \frac{y-\mu_{y}}{\sigma_{y}}
+    \]
+    \[ f_{X,Y}(x,y) = C e^{A \cdot (u^{2}-2\rho u v + v^{2})} \]
+    \kunnen{We kunnen de formule nu uitrekenen}
+    \[ \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dx\ dy = \int_{-\infty}^{+\infty} C e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ dx = C\int_{-\infty}^{+\infty}e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ dx \]
+    We voeren een nieuwe integratieveranderlijke in:
+    \[ 
+    \begin{array}{rl}
+      u &= \frac{x-\mu_{x}}{\sigma_{x}}\\
+      du &= \frac{1}{\sigma_{x}}dx\\
+    \end{array}
+    \]
+    \[
+    = C\sigma_{x}\int_{-\infty}^{+\infty}e^{-A \cdot (u^{2}-2\rho u v + v^{2})}\ du
+    = C\sigma_{x}\sigma_{X}\int_{-\infty}^{+\infty}e^{-Av^{2}}e^{-A \cdot (u^{2}-2\rho u v)}\ du
+    = C\sigma_{x}e^{-Av^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v}\ du
+    \]
+    We forceren hier een bijzonder product door $+ A\rho^{2}v^{2} - A\rho^{2}v^{2}$ toe te voegen in de exponent.
+    \[
+    = C\sigma_{x}e^{-Av^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v + A\rho^{2}v^{2} - A\rho^{2}v^{2}}\ du 
+    = C\sigma_{x}e^{-Av^{2}-A\rho^{2}v^{2}}\int_{-\infty}^{+\infty}e^{-Au^{2}+2A\rho u v + A\rho^{2}v^{2}}\ du 
+    \]
+    \[
+    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\int_{-\infty}^{+\infty}e^{-A(u-\rho v)^{2}}\ du 
+    \]
+    We voeren nogmaals een nieuwe integratieveranderlijke in:
+    \[ 
+    \begin{array}{rl}
+      z &= \sqrt{2A}(u-\rho v) \\
+      dz &= \sqrt{2A} du\\
+    \end{array}
+    \]
+    $z^{2}$ is dan $2A(u-\rho v)^{2}$.
+    \[
+    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\frac{1}{\sqrt{A}}\int_{-\infty}^{+\infty}e^{-\frac{1}{2}z^{2}}\ dz
+    \]
+    Nu zou je de formule binnen de integraal moeten herkennen.
+    \formularium{Dichtheidsfunctie van een algemene Normaalverdeling}{ $\frac{e^{-\frac{(x-\mu)^{2}}{2\sigma^{2}}}}{\sigma\sqrt{2}\pi}$}
+    De formule voor de standaard normaalverdeling ziet er als volgt uit:
+    \[ \phi(x) = \frac{e^{-\frac{1}{2}x^{2}}}{\sqrt{2\pi}} \]
+    Omdat dit een dichtheid is, moet de integraal tot $1$ evalueren:
+    \[ 1 = \int_{-\infty}^{+\infty}\frac{e^{-\frac{1}{2}x^{2}}}{\sqrt{2\pi}} \]
+    \[ \sqrt{2\pi} = \int_{-\infty}^{+\infty}e^{-\frac{1}{2}x^{2}} \]
+    De integraal die nog overblijft kunnen we dus vervangen door $\sqrt{2\pi}$.
+    \[
+    = C\sigma_{x}e^{-A(1-\rho^{2})v^{2}}\frac{\sqrt{2\pi}}{\sqrt{2A}}
+    \]
+    We vervangen nu de leesbaarheidsconstanten terug naar de originele waarden en zien dat we al veel kunnen vereenvoudigen.
+    \[
+    = \dfrac{1}{2\pi\sigma_{x}\sigma_{y}\sqrt{1-\rho^{2}}}\sigma_{x}e^{-\left( \frac{1}{2}\frac{1}{1-\rho^{2}}\right)(1-\rho^{2})\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}}\frac{\sqrt{2\pi}}{\sqrt{2\left( \frac{1}{2}\frac{1}{1-\rho^{2}}\right)}}
+    \]
+    \[
+    = \dfrac{1}{\sqrt{2\pi}\sigma_{y}}e^{- \frac{1}{2}\left(\frac{y-\mu_{y}}{\sigma_{y}}\right)^{2}}
+    \]
+    We vinden dat $f_{y}(y)$ de dichtheidsfunctie is van een normaal verdeelde stochastische variabele, zoals verwacht.
+  \end{ex-antwoord}
+\end{examenvraag}
+
+\begin{examenvraag}{Tussentijdse Toets 2015}
+  \begin{ex-vraag}
+    Een apparaat bestaat uit $2$ componenten en stopt met werken zodra minstens $1$ van de $2$ componenten faalt.
+    Stel $X$ en $Y$ de respectievelijke levensduren (uitgedrukt in uren) van de $2$ componenten.
+    Stel dat de gezamenlijke dichtheidsfunctie van de levensduren gegeven wordt door $f_{X,Y}$:
+    \[
+    f_{X,Y}(x,y) = 
+    \begin{cases}
+      c(x+y) & \text{ als } x\in\interval[open]{0}{3} \text{ en } y \in\interval[open]{0}{3}\\
+      0 & \text{ anders}
+    \end{cases}
+    \]
+    \begin{enumerate}
+    \item Bereken $c$ op dat $f_{X,Y}$ een dichtheidsfunctie is.
+    \item Bepaal de kans dat het apparaat binnen het uur faalt.
+    \item Bereken $f_{Y|X}(x|y)$
+    \end{enumerate}
+  \end{ex-vraag}
+
+  \begin{ex-antwoord}
+    \begin{enumerate}
+    \item \kennen{We integreren heel de dichtheidsfunctie, dat moet op $1$ uitkomen}
+      \begin{align*}
+        \int_{-\infty}^{+\infty}\int_{-\infty}^{\infty}f_{X,Y}(x,y)\ dy dx
+        &= \int_{0}^{3}\int_{0}^{3}c(x+y)\ dy dx\\
+        &= c\int_{0}^{3}\left.\left(xy + \frac{y^{2}}{2}\right)\right|_{y=0}^{y=3}\ dx\\
+        &= c\int_{0}^{3}3x + \frac{9}{2}\ dx\\
+        &= c\left.\left(\frac{3}{2}x^{2}+\frac{9}{2}x\right)\right|_{x=0}^{x=3}\\
+        &= c\left(\frac{27}{2} + \frac{27}{2}\right)\\
+        &= 27 c
+      \end{align*}
+      $c$ moet dus $\frac{1}{27}$ zijn.
+
+    \item We zoeken $P(X < 1 \cup Y < 1)$.
+      \kunnen{We tekenen het universum en duiden de gebeurtenis aan:}
+      \begin{figure}[H]
+        \centering
+        \begin{tikzpicture}
+          \draw[->] (0,0) -- (6.1,0) node[right] {$x$};
+          \draw[->] (0,0) -- (0,6.2) node[above] {$y$};
+          \node[below] (all) at (6,0) {(3,0)};
+          \node[left] (all) at (0,6) {(0,3)};
+          \node[below left] (all) at (0,0) {(0,0)};
+
+          \node[below] (all) at (2,0) {(1,0)};
+          \node[left] (all) at (0,2) {(0,1)};
+
+          \draw (2,0) -- (2,6) node {};
+          \draw (0,2) -- (6,2) node {};
+          \draw (6,0) -- (6,6) node {};
+          \draw (0,6) -- (6,6) node {};
+          \filldraw[thick,fill=green!80!black,fill opacity=0.4] (0,0) -- (0,6) -- (2,6) -- (2,2)  -- (6,2) -- (6,0) -- cycle;
+        \end{tikzpicture}
+        \caption{Het universum}
+      \end{figure}
+      We zouden dit kunnen uitrekenen als $\int_{0}^{3}\int_{0}^{1}f_{X,Y}(x,y)\ dy dx + \int_{0}^{1}\int_{0}^{3}f_{X,Y}(x,y)\ dy dx - \int_{0}^{1}\int_{0}^{1}f_{X,Y}(x,y)\ dy dx$, maar omdat we eigenlijk niet graag veel integralen uitrekenen kunnen we het eenvoudiger doen door naar te tekening te kijken:
+      \[ P(X < 1 \cup Y < 1) = 1 - \int_{1}^{3}\int_{1}^{3}f_{X,Y}(x,y)\ dy dx \]
+      \kunnen{We rekenen dit uit:}
+      \begin{align*}
+        \int_{1}^{3}\int_{1}^{3}f_{X,Y}(x,y)\ dy dx 
+        &= \int_{1}^{3}\int_{1}^{3}c(x+y)\ dy dx\\
+        &= c\int_{1}^{3}\left.\left(xy+\frac{y^{2}}{2}\right)\right|_{y=1}^{y=3}\ dx\\
+        &= c\int_{1}^{3}\left(3x + \frac{9}{2} - x - \frac{1}{2}\right)\ dx\\
+        &= c\int_{1}^{3}(2x + 4)\ dx\\
+        &= c\left.\left(x^{2} + 4x\right)\right|_{x=1}^{x=3}\\
+        &= c\left(9 + 12 - 1 - 4\right)\\
+        &= 16c
+      \end{align*}
+      Het antwoord is dus $P(X < 1 \cup Y < 1) = 11c$.
+
+    \item \kennen{We berekenen de marginale dichtheidsfunctie als volgt:}
+      \[ f_{Y|X}(y|x) = \frac{f_{X,Y}(x,y)}{f_{X}(x)} \]
+      De teller kennen we al, \kennen{de noemer berekenen we als volgt:}
+      \[ f_{X}(x) = \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dy \]
+      \begin{align*}
+        \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dy
+        &= \int_{0}^{3}c(x+y)\ dy\\
+        &= c\left.\left(xy + \frac{y^{2}}{2}\right)\right|_{y=0}^{y=3}\\
+        &= c\left(3x + \frac{9}{2}\right)
+      \end{align*}
+      We kunnen nu de marginale dichtheidsfunctie berekenen:
+      \begin{align*}
+        \frac{f_{X,Y}(x,y)}{f_{X}(x)}
+        &= \frac{c(x+y)}{c\left(3x + \frac{9}{2}\right)}\\
+        &= \frac{x+y}{3\left(x+\frac{3}{2}\right)}
+      \end{align*}
+      Het definitiegebied is $x\in\interval{0}{3}, y\in\interval{0}{3}$.
+    \end{enumerate}
+  \end{ex-antwoord}
+\end{examenvraag}
 
 \end{document}
 
