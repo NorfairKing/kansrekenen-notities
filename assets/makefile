@@ -1,9 +1,9 @@
 GRAPHVIZCC  = dot
 DOT_EXT     = dot
-OUT_FORMAT  = png
-OUT_EXT     = png
+OUT_FORMAT  = eps
+OUT_EXT     = eps
 
-ILLUSTRATIONS = systeem-serieel.png systeem-parallel.png
+ILLUSTRATIONS = systeem-serieel.eps systeem-parallel.eps
 
 all: graphviz_illustrations
 

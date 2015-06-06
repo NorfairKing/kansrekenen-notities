@@ -268,7 +268,7 @@
   De $\sigma$-algebra $\sigma(\mathcal{C})$ \term{voortgebracht door} $\mathcal{C}$ is de kleinste $\sigma$-algebra die $\mathcal{C}$ bevat.
 
   \begin{itemize}
-  \item $\sigma(\mathcal{C}$ is een $\sigma$-algebra.
+  \item $\sigma(\mathcal{C})$ is een $\sigma$-algebra.
   \item $\mathcal{C} \subseteq \sigma(\mathcal{C})$
   \item Elke $\sigma$-algebra $\mathcal{A}$ met $\mathcal{C} \subseteq \mathcal{A}$ omvat $\sigma(\mathcal{C})$.
   \end{itemize}
@@ -278,7 +278,7 @@
   De $\sigma$-algebra opgespannen door een collectie deelverzamelingen van een universum is uniek.
 
   \begin{proof}
-    Als er immers nog een (even kleine) sigma algebra zou zijn die aan de voorwaarde voldoet dan zouden ze gelijk zijn volgens de derde eigenschap.
+    Als er immers nog een (even kleine) sigma algebra zou zijn die aan de voorwaarde voldoet dan zouden ze gelijk zijn volgens de tweede en derde eigenschap.
   \end{proof}
 \end{st}
 
@@ -310,11 +310,12 @@
   \[ \{ \interval{a}{b} \mid a,b\in \mathbb{R} \} \]  
 \end{de}
 
-\begin{st}
-  Het \term{theorema van Vitali}\\
-  Er bestaat geen uniforme kansverdeling op het interval $[0,1]$.
-\zb
-\end{st}
+%\begin{st}
+%  Het \term{theorema van Vitali}\\
+%  Er bestaat geen uniforme kansverdeling op het interval $[0,1]$.
+%\zb
+%\end{st}
+\extra{goede uitleg van het theorema van Vitali}
 
 \section{Voorwaardelijke kans en onafhankelijkheid}
 \label{sec:voorwaardelijke-kans-en-onafhankelijkheid}
@@ -426,6 +427,7 @@
       &= P(B \cap \Omega) = P(B)\\
     \end{array}
     \]
+    Merk op dat de derde gelijkheid enkel geldt omdat $X$ een partitie is van $Q$ en de verzamelingen $(B \cap A)$ daarom disjunct zijn.
   \end{proof}
 \end{st}
 
@@ -570,13 +572,13 @@
 \begin{figure}[H]
   \caption{Een serieel systeem}
   \centering
-    \includegraphics[width=0.5\textwidth]{assets/systeem-serieel.png}
+    \includegraphics[width=0.5\textwidth]{assets/systeem-serieel.eps}
 \end{figure}
 
 \begin{figure}[H]
   \caption{Een parallel systeem}
   \centering
-    \includegraphics[width=0.5\textwidth]{assets/systeem-parallel.png}
+    \includegraphics[width=0.5\textwidth]{assets/systeem-parallel.eps}
 \end{figure}
 
 \begin{de}
