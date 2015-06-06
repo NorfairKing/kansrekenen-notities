@@ -45,6 +45,9 @@
 % Voor kleuren
 \usepackage{color}
 
+% Om termen te doorstrepen
+\usepackage{cancel}
+
 % Om pdf's te importeren
 \usepackage{pdfpages}
 
@@ -64,3 +67,11 @@
 
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
+
+% Voor automatisch geschaalde intervallen.
+\usepackage{letltxmacro}
+\LetLtxMacro\oldint\interval
+\renewcommand{\interval}[3][]{\oldint[#1,scaled]{#2}{#3}}
+
+%Voor mooie '1' symbolen
+\usepackage{bbm}

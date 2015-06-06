@@ -223,19 +223,51 @@
 \begin{ei}
   Zij $X: \Omega \rightarrow \mathbb{R}$ een stochastische variabele en $a\in \mathbb{R}$ een constante.
   \[ Var[aX] = a^{2}Var[X] \]
-\TODO{bewijs: oefening}
+
+  \begin{proof}
+    \begin{align*}
+      Var[aX]
+      &= E\left[\left(aX - E[aX]\right)^{2}\right]\\
+      &= E\left[a^{2}X^{2} + E[aX]^{2} - 2aXE[aX]\right]\\
+      &= E\left[a^{2}\left(X^{2}+E[X]^{2} - 2XE[X]\right)\right]\\
+      &= a^{2}E\left[\left(X - E[X]\right)^{2}\right]\\
+      &= a^{2}Var[X]
+    \end{align*}
+  \end{proof}
 \end{ei}
 
 \begin{ei}
   Zij $X: \Omega \rightarrow \mathbb{R}$ een stochastische variabele en $b\in \mathbb{R}$ een constante.
   \[ Var[X+b] = Var[X] \]
-\TODO{bewijs: oefening}
+
+  \begin{proof}
+    \begin{align*}
+      Var[X+b]
+      &= E\left[\left((X+b) - E[X+b]\right)^{2}\right]\\
+      &= E\left[(X+b)^{2} + E[X+b]^{2} -2(X+b)E[X+b]\right]\\
+      &= E\left[X^{2} + 2bX+b^{2} + (E[X]+b)^{2} - 2(X+b)(E[X]+b)\right]\\
+      &= E\left[X^{2} + 2bX+b^{2} + E[X]^{2} + 2bE[X] + b^{2} - 2XE[X] -2Xb -2bE[X] -2b^{2}\right]\\
+      &= E\left[X^{2} + \cancel{2bX} + \cancel{b^{2}} + E[X]^{2} + \cancel{2bE[X]} + \cancel{b^{2}} - 2XE[X] -\cancel{2bX} -\cancel{2bE[X]} - \cancel{2b^{2}}\right]\\
+      &= E\left[X^{2} + E[X]^{2} - 2XE[X]\right]\\
+      &= E\left[\left(X - E[X]\right)^{2}\right]\\
+      &= Var[X]
+    \end{align*}
+  \end{proof}
 \end{ei}
 
 \begin{ei}
   Zij $X: \Omega \rightarrow \mathbb{R}$ een stochastische variabele en $b\in \mathbb{R}$ een constante.
   \[ Var[b] = 0 \]
-\TODO{bewijs: oefening}
+
+  \begin{proof}
+    Dit volgt meteen uit $E[b] = 0$.
+    \begin{align*}
+      Var[b]
+      = E\left[\left(b - E[b]\right)^{2}\right]
+      = E\left[b^{2}\right]
+      = 0
+    \end{align*}
+  \end{proof}
 \end{ei}
 
 \subsection{Som en product van stochastische veranderlijken}
@@ -264,7 +296,16 @@
 \begin{ei}
   Zij $X$ en $Y$ beide stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
   \[ E[X+Y] = E[X] + E[Y] \]
-\TODO{bewijs p 44}
+
+  \begin{proof}
+    We bewijzen dit enkel in het geval dat $\Omega = \{\omega_{1},\omega_{2},\dotsc\}$ aftelbaar is.
+    \begin{align*}
+      E[X+Y]
+      &= \sum_{i}(X+Y)(\omega_{i})P(\{\omega_{i}\})\\
+      &= \sum_{i}X(\omega_{i})P(\{\omega_{i}\}) + \sum_{i}Y(\omega_{i})P(\{\omega_{i}\})\\
+      &= E[X] + E[Y]
+    \end{align*}
+  \end{proof}
 \end{ei}
 
 \begin{de}
@@ -273,26 +314,64 @@
 \end{de}
 
 \begin{ei}
-  Zij $X$ en $Y$ twee onafhankelijke stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
+  Zij $X$ en $Y$ twee \textbf{onafhankelijke} stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
   \[ E[XY] = E[X] E[Y] \]
-\TODO{bewijs p 45}
+
+  \begin{proof}
+    Gevalsonderscheid:
+    \begin{itemize}
+    \item $X$ en $Y$ zijn discreet.
+      \begin{align*}
+        E[XY]
+        &= \sum_{j}\sum_{k}x_{j}x_{k}P(X=x_{j},Y=y_{k})\\
+        &= \sum_{j}\sum_{k}x_{j}x_{k}P(X=x_{j})P(Y=y_{k})\\
+        &= \left( \sum_{j}x_{j}P(X=x_{j}) \right)\left( \sum_{k}x_{k}P(Y=y_{k}) \right)
+        &= E[X]E[Y]
+      \end{align*}
+      \extra{bewijs de andere gevallen}
+    \end{itemize}
+  \end{proof}
 \end{ei}
 
 \begin{ei}
-  Zij $X$ en $Y$ twee onafhankelijke stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
+  Zij $X$ en $Y$ twee \textbf{onafhankelijke} stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
   \[ Var[X+Y] = Var[X] + Var[Y] \]
-\TODO{bewijs p 45}
+
+  \begin{proof}
+    \begin{align*}
+      Var[X+Y]
+      &= E\left[\left((X + Y) - E[X+Y]\right)^{2}\right]\\
+      &= E\left[\left((X + Y) - (E[X] + E[Y])\right)^{2}\right]\\
+      &= E\left[\left((X - E[X]) + (Y - E[Y])\right)^{2}\right]\\
+      &= E\left[(X - E[X])^{2} + (Y - E[Y])^{2} + 2(X - E[X])(Y - E[Y])\right]\\
+      &= E\left[(X - E[X])^{2}\right] + E\left[(Y - E[Y])^{2}\right] + E\left[2(X - E[X])(Y - E[Y])\right]\\
+      &= Var[X] + Var[Y] + 2E\left[X-E[X]\right]E\left[Y-E[Y]\right]\\
+      &= Var[X] + Var[Y] + 2(E[X] - E[X])(E[Y]-E[Y])\\
+      &= Var[X] + Var[Y]
+    \end{align*}
+  \end{proof}
 \end{ei}
 
 \begin{ei}
-  Zij $X$ en $Y$ twee onafhankelijke stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
-  \[ Vay[XY] = Var[X]Var[Y] + E[X]^{2}Var[Y] + Var[X]E[Y]^{2} \]
-\TODO{bewijs p 45}
+  Zij $X$ en $Y$ twee \textbf{onafhankelijke} stochastische variabelen in een kansruimte $\Omega,\mathcal{A},P$.
+  \[ Vay[XY] = Var[X]Var[Y] + E[X]^{2}Var[Y] + Var[X]E[Y]^{2} \ge Var[X]Var[Y] \]
+
+\extra{bewijs}
 \end{ei}
 
 \begin{st}
   \[ Var[X] = E[X^{2}] - E[X]^{2} \]
-\TODO{bewijs p 46}
+
+  \begin{proof}
+    \begin{align*}
+      Var[X]
+      &= E\left[(X-E[X])^{2}\right]\\
+      &= E\left[X^{2}+E[X]^{2} - 2XE[X]\right]\\
+      &= E\left[X^{2}\right] E\left[E[X]^{2}\right] -2E\left[X E[X]\right]\\
+      &= E\left[X^{2}\right] + E[X]^{2} - 2E[X]E[X]\\
+      &= E\left[X^{2}\right] - E[X]^{2}
+    \end{align*}
+  \end{proof}
 \end{st}
 
 \subsection{Ongelijkheden}
@@ -303,12 +382,63 @@
 
 \begin{st}
   Zij $\Omega,\mathcal{A},P$ een kansruimte en $X$ een willekeurige stochastische variabele op $\Omega$.
-  \[ \sum_{n=1}^{\infty}P(|X| \ge n) \le E(|X|) \le 1 + \sum_{n=1}^{\infty}P(|X| \ge n) \]
-\TODO{bewijs p 47}
+  Als $E[|X|]$ bestaat, dan bestaat ook $E[X]$.
+\extra{bewijs} 
+\end{st}
+
+\begin{st}
+  Zij $\Omega,\mathcal{A},P$ een kansruimte en $X$ een willekeurige stochastische variabele op $\Omega$.
+  \[ E[|X|] \in \interval{\sum_{n=1}^{\infty}P(|X| \ge n)}{1 + \sum_{n=1}^{\infty}P(|X| \ge n)} \]
+
+  \begin{proof}
+    Gevalsonderscheid:
+    \begin{itemize}
+    \item $X$ is een discrete stochastische variabele
+\extra{bewijs}
+    \item $X$ is een continue stochastische variabele:\\
+      Beschouw de volgende partitie van $\mathbb{R}$:
+      \[ \mathbb{R} = \interval[open]{-\infty}{\infty} = \bigcup_{n=0}^{\infty}\left\{ x \in\mathbb{R} \mid |x| \in \interval[open right]{n}{n+1} \right\} \]
+      Benoem hierin $A_{n}= \left\{ x \in\mathbb{R} \mid |x| \in \interval[open right]{n}{n+1} \right\}$.
+      Merk op dat we $A_{n}$ dan kunnen herschrijven als volgt:
+      \[ A_{n} = \interval[open left]{-(n+1)}{-n} \cup \interval[open right]{n}{n+1} \]
+      We herschrijven $E[|X|]$ aan de hand van deze partitie:
+      \begin{align}
+        E[|X|]
+        = \int_{\mathbb{R}}|x|f_{X}(x)\ dx
+        = \sum_{n}\int_{x\in A_{n}}|x|f_{X}(x)\ dx'
+      \end{align}
+      Als $x$ tot een bepaalde $A_{n}$ behoort, geldt $|x| \in \interval[open right]{n}{n+1}$ en dus het volgende: (vermenigvuldig beide kanten met $\1_{A_{n}}(x)$.
+      \[ |x| \1_{A_{n}}(x) \in \interval{n\1_{A_{n}}(x)}{(n+1)\1_{A_{n}}(x)} \]
+      Hieruit volgt meteen het volgende (someer en integreer beide kanten):
+      \[
+      \sum_{n=0}^{\infty}\int_{\mathbb{R}}|x|\1_{A_{n}}(x)f_{X}(x)\ dx
+      \in
+      \interval
+      {\sum_{n=0}^{\infty}\int_{\mathbb{R}}n\1_{A_{n}}(x)f_{X}(x)\ dx}
+      {\sum_{n=0}^{\infty}\int_{\mathbb{R}}(n+1)\1_{A_{n}}(x)f_{X}(x)\ dx}
+      \]
+      We weten het volgende:
+      \[ \sum_{n}\int_{\mathbb{R}}\1_{A_{n}}(x)f_{X}(x) = \sum_{n}P(X\in A_{n}) = P(X\in\mathbb{R}) = 1 \]
+      Hieruit volgt meteen dit:
+      \[ E[|X|] \in \interval{\sum_{n}nP(X\in A_{n})}{\sum_{n}nP(X\in A_{n}) + 1} \]
+      Er rest ons nog aan te tonen dat $\sum_{n}nP(X\in A_{n})$ gelijk is aan $sum_{n}P(|X| \ge n)$:
+      \begin{align*}
+        \sum_{n}P(|X| \ge n)
+        &= \sum_{n}P\left(\bigcup_{m=n}^{\infty}\left\{ |X| \in \interval{m}{m+1} \right\}\right)\\
+        &= \sum_{n}\sum_{m=n}P(\left\{ |X| \in \interval{m}{m+1} \right\})\\
+        &= \sum_{n}\sum_{m=n}P(X\in A_{m})\\
+        &= \sum_{m}\sum_{n=1}^{m}P(X\in A_{m})\\
+        &= \sum_{m}mP(X\in A_{m})
+      \end{align*}
+      Merk op dat die tweede gelijkheid enkel geldt omdat de $A_{n}$ een partitie vormen.
+      In de vierde gelijkheid is de wet van Fubini toegepast.
+    \end{itemize}
+  \end{proof}
 \end{st}
 
 \begin{gev}
   $E(|X|)$ bestaat als en slechts als $\sum_{n=1}^{\infty}P(|X| \ge n)$ convergeert.
+  \extra{bewijs: werk uit}
 \end{gev}
 
 \begin{st}
@@ -334,13 +464,50 @@
   \item Als $\phi$ positief en niet-dalend is voor alle $x\in\mathbb{R}$ geldt het volgende:
     \[ \forall a \in \mathbb{R}:\ P(X \ge a) \le \frac{E[\phi(X)]}{\phi(a)} \]
   \end{enumerate}
-\TODO{bewijs p 50}
+
+  \begin{proof}
+    Gevalsonderscheid:
+    \begin{itemize}
+    \item $X$ is een discrete stochastische variabele.
+      \extra{bewijs afmaken}
+    \item $X$ is een continue stochastische variabele. 
+      We berekenen eenvoudigweg de verwachtingswaarde:
+      \begin{enumerate}
+      \item 
+        \begin{align*}
+          E[\phi(X)]
+          &= \int_{\mathbb{R}}\phi(x)f_{X}(x)\ dx\\
+          &= \int_{-\infty}^{a}\phi(x)f_{X}(x)\ dx + \int_{-a}^{a}\phi(x)f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
+          &\ge \int_{-\infty}^{a}\phi(x)f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
+          &\ge \phi(-a)\int_{-\infty}^{a}f_{X}(x)\ dx + \phi(a)\int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
+          &= \phi(a) \left( \int_{-\infty}^{a}f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\right)\\
+          &= \phi(a) \left(P(X \le a) + P(X \ge a)\right)\\
+          &= \phi(a)P(|X| \ge a)
+        \end{align*}
+        Merk op dat de derde gelijkheid enkel geldt omdat $\phi$ even is.
+        De tweede ongelijkheid geldt omad
+        Hieruit volgt rechtstreeks de stelling.
+      \item
+        \begin{align*}
+          E[\phi(X)]
+          &= \int_{\mathbb{R}}\phi(x)f_{X}(x)\ dx\\
+          &= \int_{-\infty}^{a}\phi(x)f_{X}(x)\ dx + \int_{-a}^{a}\phi(x)f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
+          &\ge \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
+          &\ge \phi(a)\int_{a}^{+\infty}f_{X}(x)\ dx\\
+          &= \phi(a)P(X \ge a)
+        \end{align*}
+        Hieruit volgt rechtstreeks de stelling.        
+      \end{enumerate}
+    \end{itemize}
+  \end{proof}
 \end{st}
 
 \begin{gev}
   Zij $X$ een stochastische variabele met $E[|X|^{n}] < \infty, n>0$, dan geldt het volgende:
   \[ \forall a> 0:\ P(|X| \ge a) \le a^{-n}E[|X|^{n}] \]
-  Zij bovendien $E[X] = \mu$ en $Var[X] = sigma^{2} < \infty$, dan geldt ook:
+\end{gev}
+\begin{gev}
+  Zij $X$ een stochastische variabele met $E[|X|^{n}] < \infty, n>0$, $E[X] = \mu$ en $Var[X] = sigma^{2} < \infty$, dan geldt:
   \[ \forall a > 0:\ P(|X-\mu| \ge a) \le \frac{\sigma^{2}}{a^{2}} \]
 \end{gev}
 
@@ -354,10 +521,14 @@
   \[ \mu_{k}(X) = E[(X-E[X])^{k}] \]
 \end{de}
 
+\begin{opm}
+  Het eerste ruwe moment is dus het gemiddelde en het tweede centrale moment is de variantie.
+\end{opm}
+
 \begin{de}
   De \term{momentgenererende functie} (MGF) van $X$ is gedefinieerd als $M_{X}(t)$.
   \[
-  M_{X}:\ \mathbb{R} \rightarrow \mathbb{R}^{+}:\ t \rightarrow M_{X}(t) = E[e^{tX}]
+  M_{X}:\ \mathbb{R} \rightarrow \mathbb{R}^{+}_{0}:\ t \rightarrow M_{X}(t) = E[e^{tX}]
   = \left\{
     \begin{array}{cl}
       \sum_{i}e^{tx}p_{i} & \text{ als } F_{X} \text{ discreet is}\\
@@ -369,24 +540,51 @@
 
 \begin{st}
   \[ M_{X}(t) = \sum_{i=1}^{\infty} \frac{\alpha_{i}t^{i}}{i!} \]
-\extra{bewijs}
+
+  \begin{proof}
+    We gebruiken de Taylorontwikkeling van $e^{tX}$ rond $0$:
+    \[ e^{tX} = \sum_{k}\frac{tX^{X}}{k!} \]
+    We nemen nu van beide leden de verwachtingswaarde:
+    \[
+    E\left[e^{tX}\right]
+    = E\left[\sum_{k}\frac{X^{tk}}{k!}\right]
+    = \sum_{k}\frac{t^{k}}{k!}E\left[X^{k}\right]
+    = \sum_{i=1} \frac{\alpha_{i}t^{i}}{i!}
+    \]
+  \end{proof}
 \end{st}
 
-\begin{st}
+\begin{gev}
   \[ \alpha_{k} = \left. \frac{d^{k}}{dt^{k}}M_{X}(t) \right|_{t=0} \]
+\extra{werk uit}
+\end{gev}
+
+\begin{st}
+  Twee kansmaten zijn gelijk als en slechts hun MGF gelijk zijn.
 \extra{bewijs}
 \end{st}
 
 \begin{st}
   Zij $X$ en $Y$ twee stochastische veranderlijken zodat $Y=aX+b$.
   \[ M_{Y}(t) = e^{bt}M_{X}(at) \]
-\extra{bewijs}
+
+  \begin{proof}
+    \begin{align*}
+      M_{Y}(t) = E\left[e^{tY}\right] = E\left[e^{t(aX+b)}\right] = E\left[e^{taX}e^{tb}\right] = e^{tb}E\left[e^{taX}\right] = e^{bt}M_{X}(at)
+    \end{align*}
+  \end{proof}
 \end{st}
 
 \begin{ei}
   Zij $X$ en $Y$ onafhankelijke stochastische veranderlijken, dan geldt het volgende:
-  \[ \forall t: M_{X+Y}(t) = M_{X}(t)M_{Y}(t) \]
-\TODO{bewijs p 53}
+  \[ \forall t\in\mathbb{R}: M_{X+Y}(t) = M_{X}(t)M_{Y}(t) \]
+
+  \begin{proof}
+    Kies $t\in\mathbb{R}$ willekeurig.
+    \begin{align*}
+      M_{X+Y}(t) = E\left[e^{t(X+Y)}\right] = E\left[e^{tX}e^{tY}\right] = E\left[e^{tX}\right]E\left[e^{tY}\right] = M_{X}(t)M_{Y}(t)
+    \end{align*}
+  \end{proof}
 \end{ei}
 
 
@@ -411,11 +609,19 @@
     Voordelen & Nadelen\\
     \hline \hline
     Eenvoudig & Niet robuust\\
-    Expliciet &\\
+    Expliciet & Hoeft niet te bestaan\\
     Lineair &\\
     \hline
   \end{tabular}
 \end{figure}
+
+\begin{st}
+  Als een verdeling $f$ symmetrisch is ten opzichte van een middelpunt $c$...:
+  \[ \forall t:\ f(c-t) = f(c+t) \]
+  ... dan is $c$ zowel het gemiddelde van de bijhorende stochastische variabele als het gemiddelde bestaat.
+\extra{bewijs}
+\end{st}
+
 
 \subsubsection{Mediaan}
 \label{sec:mediaan}
@@ -448,7 +654,13 @@
 \begin{st}
   Als een verdeling $f$ symmetrisch is ten opzichte van een middelpunt $c$...:
   \[ \forall t:\ f(c-t) = f(c+t) \]
-  ... dan is $c$ zowel het gemiddelde als de mediaan van de bijhorende stochastische variabele.
+  ... dan is $c$ de mediaan van de bijhorende stochastische variabele.
+\extra{bewijs}
+\end{st}
+
+\begin{st}
+  Zij $g$ een monotone re\"ele functie en $X$ een stochastische variabele:
+  \[ Med(g(X)) = g(Med(x)) \]
 \extra{bewijs}
 \end{st}
 
@@ -498,7 +710,7 @@
     \hline
     Voordelen & Nadelen\\
     \hline \hline
-    Makkelijk te berekenen & Niet altijd uniek\\
+    Makkelijk te berekenen & Hoeft niet te bestaan\\
     Mooie eigenschappen & Niet robuust\\
     \hline
   \end{tabular}
@@ -518,7 +730,7 @@
     \hline
     Voordelen & Nadelen\\
     \hline \hline
-    Bestaat altijd & \\
+    Bestaat altijd & Bezit niet veel informatie\\
     Robuust & \\
     \hline
   \end{tabular}
@@ -538,8 +750,8 @@
     \hline
     Voordelen & Nadelen\\
     \hline \hline
-    Bestaat altijd & \\
-    Nog robuuster & \\
+    Bestaat altijd & Niet even eenvoudig\\
+    Nog robuuster & Bezit niet veel informatie\\
     \hline
   \end{tabular}
 \end{figure}
@@ -552,7 +764,7 @@
 \label{sec:variantiebreedte}
 
 \begin{de}
-  De \term{variantiebreedte} is de totale breedte waarover de kansmassa zich uitstrekt.
+  De \term{variantiebreedte} (\term{range}) is de totale breedte waarover de kansmassa zich uitstrekt.
 \end{de}
 
 \begin{figure}[H]
@@ -580,6 +792,14 @@
 \subsection{Kentallen van scheefheid}
 \label{sec:kent-van-sche}
 
+\subsubsection{Derde contrale moment}
+
+\begin{de}
+  Het \term{derde centrale moment} $\mu_{3}$ wordt nul wanneer de verdeling van $X$ symmetrisch is.
+  \[ \mu_{3}(X) = E\left[\left(X-E[X]\right)^{2}\right] \]
+\end{de}
+
+\subsubsection{Scheefheidscoefficient}
 
 \begin{de}
   De \term{scheefheidsco\"efficient} van een stochastische variable definieren we als $\gamma_{1}$.
@@ -587,7 +807,6 @@
 \end{de}
 
 \extra{voordelen en nadelen}
-\extra{andere kentallen van scheefheid}
 
 
 \section{Belangrijke verdelingen}
