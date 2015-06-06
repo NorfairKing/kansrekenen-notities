@@ -823,12 +823,18 @@
   \[ \forall i \in \{1,\dotsc,n\}:\ p_{i} = P(\{x_{i}\}) = \nicefrac{1}{n} \]
 \end{de}
 
+
 \subsubsection{Bernoulli verdeling}
 \label{sec:bernoulli-verdeling}
 
 \begin{de}
   Een \term{Bernoulli verdeling} is gedefinieerd voor een Bernoulli experiment.
-  \[ P(X=1) = p \quad\text{ en }\quad P(X=0) = q = 1-p \]
+  \[
+  \begin{cases}
+    P(X=1) &= p\\
+    P(X=0) &= q = 1-p
+  \end{cases}
+  \]
   We noemen $p$ de \term{kans op succes}.
   We noteren een stochastische variabele met een Bernoulli verdeling als volgt:
   \[ X \sim \mathcal{B}(1,p) \]
@@ -873,8 +879,9 @@
   Een \term{hypergeometrische verdeling} is een verdeling $Y$ over een universum $\{1,\dotsc,n\}$ als volgt:
   \[ P(Y = i) = \frac{\binom{s}{i}\binom{N-s}{n-i}}{\binom{N}{n}}\]
   \[ Y \sim \mathcal{H}(N,s,n) \]
+  Deze verdeling bekomen we als we $n$ experimienten doen die op $s$ manieren kunnen slagen en $N-s$ manieren kunnen falen, maar wel maar $1$ keer per maniet.
+  $Y$ is dan de verdeling van het aantal successen
 \end{de}
-\extra{meer uitleg?}
 
 \subsubsection{Poissonverdeling}
 \label{sec:poissonverdeling}
@@ -882,6 +889,8 @@
 \begin{de}
   De \term{Poissonverdeling} $\mathcal{P}(\alpha)$ met parameter $a\in \mathbb{R}^{+}$ is gedefinieerd op $\Omega = \mathbb{N}$ als volgt:
   \[ p_{i} = P(X=i) = \frac{\alpha^{i}}{i!}e^{-\alpha} \]
+  Deze verdeling bekone we als we bekijken hoeveel keer een bepaalde gebeurtenis voorvalt binnen een vast interval.
+  $\alpha$ wordt de risicoparameter genoemd.
 \end{de}
 
 \subsection{Continue verdelingen}
@@ -892,7 +901,7 @@
 
 \begin{de}
   De stochastische variabele $X$ volgt een \term{continue uniforme verdeling} op $[a,b]$ als $X$ de volgende dichtheid heeft.
-  \[ f_{a,b}(x) = \frac{1}{b-a}\mathbb{1}_{[a,b]}(x) \]
+  \[ f_{a,b}(x) = \frac{1}{b-a}\1_{[a,b]}(x) \]
 \end{de}
 
 \subsubsection{Exponentiele verdeling}
@@ -936,11 +945,12 @@
 
 \begin{st}
   \[ F_{X}(x) = F_{Z} \left( \frac{x-\mu}{\sigma} \right) = \Phi\left( \frac{x-\mu}{\sigma} \right) \]
+\extra{bewijs: dit is wel belangrijk.}
 \end{st}
+
 
 \subsubsection{$\chi_{n}^2$-verdeling}
 \label{sec:chi_n2-verdeling}
-
 
 \begin{de}
   De \term{gammafunctie} is als volgt gedefinieerd:
@@ -972,7 +982,7 @@
   \[
   \lim_{t\rightarrow \infty}\frac{\Gamma(t)}{\left(\frac{t-1}{e}\right)^{t-1}\sqrt{2\pi(t-1)}} = 1
   \]
- \TODO{wut}
+ \extra{bewijs: waarom staat dit hier eigenlijk? gebruiken we het ooit?}
 \end{st}
 
 \begin{de}
@@ -988,6 +998,7 @@
     \end{array}
   \right.
   \]
+  Deze verdeling bekomen we als we de afstand van een pijl tot het centrum van een schietroos bekijken in een $n$-dimensionale boogschietwedstrijd.
 \end{de}
 
 \subsubsection{Gammaverdeling}
@@ -998,6 +1009,11 @@
   \[ f_{\gamma,\beta} = \frac{x^{\gamma-1}e^{-\frac{x}{\beta}}}{\beta^{\gamma}\Gamma(\gamma)}\mathbb{1}_{x > 0} \]
   \[ X \sim \Gamma_{\gamma,\beta} \]
 \end{de}
+
+\begin{opm}
+  Deze verdeling wordt vaak gebruikt om wachttijden te modelleren.
+\clarify{hoe dan?}
+\end{opm}
 
 \subsubsection{$t_n$ verdeling}
 \label{sec:t_n-verdeling}
@@ -1023,17 +1039,28 @@
 \end{de}
 
 \begin{ei}
-  Zij $X$ en $Y$ twee standaard normaal verdeelde stochastische variabelen, dan is $\frac{X}{Y}$ Cauchy verdeeld.
-  \TODO{bewijs p 71}
+  Zij $X$ en $Y$ twee standaard normaal verdeelde stochastische variabelen, dan is $\nicefrac{X}{Y}$ Cauchy verdeeld.
+
+  \begin{proof}
+    \[ \nicefrac{X}{Y} \sim \nicefrac{X}{\sqrt{Y^{2}}} \sim t_{1} \]
+  \end{proof}
 \end{ei}
 
-\TODO{opmerkingen hier}
+\begin{st}
+  De dichtheidsfunctie van een Cauchyverdeling:
+  \[ f(x) = \frac{1}{\pi}\frac{1}{1+x^{2}} \]
+\end{st}
+
+\begin{st}
+  De verdelingsfunctie van en Cauchyverdeling:
+  \[ \frac{1}{\pi}\arctan(x) + \frac{1}{2} \]
+\end{st}
 
 \subsubsection{$F$-verdeling}
 \label{sec:f-verdeling}
 
 \begin{de}
-  Zij $ W\sim \chi_{m}^{2}$ en $V \sim \chi_{n}^{2}$ onafhankelijk, dan noemt men de verdeling van $X$ de \term{$F$-verdeling}.
+  Zij $ W\sim \chi_{m}^{2}$ en $V \sim \chi_{n}^{2}$ onafhankelijk, dan noemt men de verdeling van $X$ de \term{$F$-verdeling} van $m$ vrijheidsgraden in de teller en $n$ vrijheidsgraden in de noemer.
   \[ X = \frac{\nicefrac{W}{m}}{\nicefrac{V}{n}} \]
   \[ X \sim F_{m,n} \]
 \end{de}
@@ -1052,6 +1079,7 @@
   \[
   K_{m,n} = \frac{m^{\frac{m}{2}}n^{\frac{n}{2}}\Gamma\left(\frac{m+n}{2}\right)}{\Gamma\left(\frac{m}{2}\right)\Gamma\left(\frac{n}{2}\right)}
   \]
+  \zb
 \end{st}
 
 \subsubsection{Lognormale verdeling}
@@ -1060,6 +1088,7 @@
 \begin{de}
   Een stochastische variabele is \term{lognormaal verdeeld} met parameters $\mu \in\mathbb{R}$ en $\sigma \in \mathbb{R}^{+}$ als het volgende geldt:
   \[ ln(Y) = N(\mu,\sigma^{2})\]
+  't Is te zeggen, Als $X$ normaal verdeeld is, noemt men $e^{X}$ lognormaal verdeeld.
 \end{de}
 
 \section{Transformatie van stochastische veranderlijken}
