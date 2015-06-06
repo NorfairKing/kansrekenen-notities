@@ -202,13 +202,87 @@
 
 \begin{examenvraag}{Tussentijdse Toets 2015}
   \begin{ex-vraag}
-    Eer lampenbedrijf is ge\"interesseerd in het gemiddelde lichtrendement van de lampen.
+    Een lampenbedrijf is ge\"interesseerd in het gemiddelde lichtrendement van de lampen.
+    In het bedrijf hangen $10000$ lampen.
     De kans dat het gemiddelde lichtrendement groter is dan $105$ $lumen/Watt$ is gelijk aan $6\%$ en er is $26.6\%$ kans dat het gemiddelde lichtrendement kleiner is dan $98 lumen/Watt$.
     Wat is dan de kans het gemiddelde lichtrendement tussen $99$ en $104.5 lumen/Watt$ ligt?
   \end{ex-vraag}
 
   \begin{ex-antwoord}
-    
+    Noem $Y$ het gemiddeld lichtrendement van een lamp.
+    De vraag spreekt over $10000$ gemiddeldes.
+    \kennen{Dit zou u meteen moeten doen denken aan de centrale limietstelling.
+    Omdat we over zodanig veel lampen spreken zal $Y$ benaderd kunnen worden met $N(\mu,\sigma^{2})$}
+    Gegeven is $P(Y > 105) = 0.06$ en $P(Y \le 98) = 0.266$.
+    Omdat $Y$ normaal verdeeld is betekent dit het volgende:
+    \[ P\left(Z > \frac{105 - \mu}{\sigma}\right) = 0.06 \quad\text{ en }\quad P\left(Z \le \frac{98-\mu}{\sigma}\right) = 0.266\]
+    \tabel{Standaard normale verdeling}{$P(Z \le 1.555) = 0.94$ en $P(Z \le 0.625) = 0.734$}
+    Vanuit de tabel vinden we het volgende:
+    \[
+    P\left(Z > \frac{105 - \mu}{\sigma}\right)
+    = 1 - P\left(Z \le \frac{105 - \mu}{\sigma}\right)
+    = 1 - P(Z \le 1.555)
+    = 0.94
+    = 1-0.06
+    \Rightarrow
+    \frac{105-\mu}{\sigma}
+    = 1.555
+    \]
+    \[ P\left(Z \le \frac{98-\mu}{\sigma}\right)
+    = 1 - P\left(Z \le -\frac{98-\mu}{\sigma}\right)
+    = 1 - P(Z \le 0.63)
+    = 0.743
+    = 1 - 0.266
+    \Rightarrow
+    \frac{98-\mu}{\sigma}
+    = -0.625
+    \]
+    \kunnen{Nu lossen we dit stelsel op om $\mu$ en $\sigma$ te vinden:}
+    \begin{align*}
+      \begin{cases}
+        \frac{105-\mu}{\sigma}
+        &= 1.555\\
+        \frac{98-\mu}{\sigma}
+        &= -0.625
+      \end{cases}
+      \longrightarrow
+      \begin{cases}
+        105-\mu
+        &= 1.555\sigma\\
+        98-\mu
+        &= -0.625\sigma
+      \end{cases}
+      \longrightarrow
+      \begin{cases}
+        7
+        &= 2.18\sigma\\
+        98-\mu
+        &= -0.625\sigma
+      \end{cases}\\
+      \longrightarrow
+      \begin{cases}
+        \sigma
+        &= 3.21\sigma\\
+        98-\mu
+        &= -(0.625)(3.21)
+      \end{cases}
+      \longrightarrow
+      \begin{cases}
+        \sigma
+        &= 3.21\sigma\\
+        \mu
+        &= 100.025
+      \end{cases}
+    \end{align*}
+    \kunnen{We rekenen nu de gevraagde kans $P(99 \le Y \le 104.5)$ uit:}
+    \begin{align*}
+      P(99 \le Y \le 104.5)
+      &= P(-0.32 \le Z \le 1.39)\\
+      &= P(Z \le 1.39) - P(Z \le -0.32)\\
+      &= P(Z \le 1.39) - (1-(Z \le 0.32))
+    \end{align*}
+    \tabel{Standaard normale verdeling}{$P(Z \le 1.39) = 0.918$ en $P(Z \le 0.32) = 0.626$}
+    \[ P(Z \le 1.39) - (1-(Z \le 0.32)) = 0.918 - (1-0.626) = 0.544\]
   \end{ex-antwoord}
 \end{examenvraag}
 
