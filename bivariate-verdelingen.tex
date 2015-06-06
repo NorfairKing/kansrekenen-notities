@@ -8,30 +8,50 @@
 \label{sec:verdeling-van-een}
 
 \begin{de}
+  $\mathcal{B}(\mathbb{R}^{2})$ is de kleinste $\sigma$-algebra die de deelverzamelingen (van $\mathbb{R}^{2}$) van de vorm $]-\infty,a_{1}]\times]-\infty,a_{2}]$ met $a_{1},a_{2}\in\mathbb{R}$ bevat.
+\end{de}
+
+\begin{de}
   Zij $X$ en $Y$ twee stochastische veranderlijken in een kansruimte $\Omega,\mathcal{A},P$.
   Een \term{stochastische vector} van dimensie $2$ of \term{stochastisch koppel} is een koppel stochastische veranderlijken $(X,Y)$:
   \[ (X,Y):\ \Omega \rightarrow \mathbb{R}^{2}:\ \omega \rightarrow (X(\omega),Y(\omega)) \]
   \[ \Omega,\mathcal{A},P \overset{(X,Y)}{\rightarrow} \mathbb{R}^{2},\mathcal{B}(\mathbb{R}^{2}), P_{X,Y} \]
-  Hierin is $\mathcal{B}(\mathbb{R}^{2})$ de kleinste $\sigma$-algebra die de deelverzameling van de vorm $]-\infty,a_{1}]\times]-\infty,a_{2}]$ met $a_{1},a_{2}\in\mathbb{R}$ bevat.
+  Er wordt dan een kansmaat $P_{X,Y}$ ge\"induceerd door $(X,Y)$:
   \[ P_{X,Y}(]-\infty,x]\times]-\infty,y] = P(X^{1}(]-\infty,x])\cap Y^{-1}(]-\infty,y])) \]
   \[ F_{X,Y} = P(X \le x, Y\le y) \]
-  $F_{X,Y}(x,y)$ is stijgend in elk argument.
-  $F_{X,Y}(x,y)$ is rechts congruent in elk argument.
-  \[ \lim_{x\rightarrow -\infty} F_{X,Y}(x,y) = 0 \text{ en } \lim_{x\rightarrow +\infty} F_{X,Y}(x,y) = 1 \]
-\TODO{dit beter uitschrijven}
+\end{de}
+\begin{de}
+  Dit leidt tot een \term{gezamenlijke verdelingsfunctie} $F_{X,Y}$ van een stochastisch koppel $(X,Y)$
+  \[ F_{X,Y}(x,y) = P(X\le x, Y\le y) \]
+  \begin{itemize}
+  \item $F_{X,Y}(x,y)$ is stijgend in elk argument.
+  \item $F_{X,Y}(x,y)$ is rechts congruent in elk argument.
+  \item 
+    \[ 
+    \begin{cases}
+      \lim_{x\rightarrow -\infty} F_{X,Y}(x,y) = \lim_{y\rightarrow -\infty} F_{X,Y}(x,y) = 0\\
+      \lim_{x\rightarrow +\infty,y\rightarrow +\infty} F_{X,Y}(x,y) = 1
+    \end{cases}
+    \]
+  \end{itemize}
 \end{de}
 
-discreet:
-\[ \forall x,y \in \mathbb{R}:\ P(\{X=x\},\{Y=y\}) = P(X=x,Y=y) \]
-\[ \forall x,y \in \mathbb{R}:\ P(X=x,Y=y) \ge 0 \]
-\[ \sum_{x}\sum_{y}P(X=x,Y=y) = 1 \]
-\[ P(B) = \sum_{(x,y)\in B}P(X=x,Y=y) \]
+\begin{de}
+  De kan bij een stochastisch koppel van discrete variabelen $(X,Y)$:
+  \[ \forall x,y \in \mathbb{R}:\ P(\{X=x\},\{Y=y\}) = P(X=x,Y=y) \]
+  \[ \forall x,y \in \mathbb{R}:\ P(X=x,Y=y) \ge 0 \]
+  \[ \sum_{x}\sum_{y}P(X=x,Y=y) = 1 \]
+  \[ \forall B \subseteq \mathbb{R}:\ P(B) = \sum_{(x,y)\in B}P(X=x,Y=y) \]
+\end{de}
 
-continu:
-\[ \forall x,y \in \mathbb{R}:\ F_{X,Y}(x,y) = \int_{-\infty}^{x}\int_{-\infty}^{y}f_{X,Y}(u,v)\ dv\ du \]
-\[ \forall x,y \in \mathbb{R}:\ f_{X,Y}(x,y) \ge 0 \]
-\[ \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f_{X,Y}(u,v)\ dv\ du = 1 \]
-\[ f_{X,Y}(x,y) = \frac{\partial^{2}F_{X,Y}(x,y)}{\partial x \partial y} \]
+\begin{de}
+  De \term{gezamenlijke dichtheidsfunctie} $f_{X,Y}$ van een stochastisch koppel van continue variabelen $(X,Y)$:
+  \[ F_{X,Y}(x,y) = \int_{-\infty}^{x}\int_{-\infty}^{y}f_{X,Y}(u,v)\ dvdu \]
+  \[ f_{X,Y}(x,y) = \frac{\partial^{2}F_{X,Y}(x,y)}{\partial x \partial y} \]
+  \[ \forall x,y \in \mathbb{R}:\ f_{X,Y}(x,y) \ge 0 \]
+  \[ \int_{-\infty}^{+\infty}\int_{-\infty}^{+\infty}f_{X,Y}(u,v)\ dv\ du = 1 \]
+\end{de}
+
 
 \subsection{Marginale verdeling}
 \label{sec:marginale-verdeling}
@@ -39,16 +59,13 @@ continu:
 \begin{de}
   Zij $(X_{1},X_{2})$ een koppel stochastische veranderlijken met gezamenlijke verdelingsfunctie $F_{X_{1},X_{2}}(x_{1},x_{2})$, dan noemen we de verdelingsfunctie van $X_{i}$ de \term{marginale verdelingsfunctie} van $F_{X_{1},X_{2}}$.
   \[ F_{X_{1}}(x_{1}) = F_{X_{1},X_{2}}(x_{1},+\infty) \]
+  \begin{itemize}
+  \item Voor een koppel discrete stochastische veranderlijken spreken we over een \term{marginale kansverdeling} $P(X_{i} = x_{i})$:
+    \[ P(X_{1}=x_{1}) = \sum_{x_{2}}P(X_{1}=x_{1},X_{2}=x_{2}) \]
+  \item Voor een koppel continue stochastische veranderlijken spreken we over een \term{marginale kansdichtheidsfunctie} $f_{X_{i}}(x_{i})$.
+    \[ f_{X_{1}}(x_{1}) = \int_{-\infty}^{+\infty}f_{X_{1},X_{2}}(x_{1},x_{2})dx_{2} \]
+  \end{itemize}
 \end{de}
-
-
-  Voor een koppel discrete stochastische veranderlijken spreken we over een \term{marginale kansverdeling} $P(X_{i} = x_{i})$:
-  \[ P(X_{1}=x_{1}) = \sum_{x_{2}}P(X_{1}=x_{1},X_{2}=x_{2}) \]
-
-
-  Voor een koppel continue stochastische veranderlijken spreken we over een \term{marginale kansdichtheidsfunctie} $f_{X_{i}}(x_{i})$.
-  \[ f_{X_{1}}(x_{1}) = \int_{-\infty}^{+\infty}f_{X_{1},X_{2}}(x_{1},x_{2})dx_{2} \]
-
 
 \subsection{Onafhankelijkheid}
 \label{sec:onafhankelijkheid}
@@ -57,17 +74,13 @@ continu:
   Twee stochastische veranderlijken $X$ en $Y$ in een kansruimte $\Omega,\mathcal{A},P$ heten \term{onafhankelijk} als voor alle $B_{X},B_{Y} \in \mathcal{B}(\mathbb{R})$ de volgende gebeurtenissen onderling onafhankelijk zijn.
   \[ \{ X \in B_{X}\} \text{ en } \{ Y \in B_{Y} \} \]
   \[ F_{X,Y}(x,y) = F_{X}(x)F_{Y}(y) \]
+  \begin{itemize}
+  \item Voor een koppel discrete stochastische veranderlijken:
+    \[ P(X=x,Y=y) = P(X=x)P(Y=y) \]
+  \item Voor een koppel continue stochastische veranderlijken:
+    \[ f_{X,Y}(x,y) = f_{X}(x)f_{Y}(y) \]
+  \end{itemize}
 \end{de}
-
-
-  Voor een koppel discrete stochastische veranderlijken:
-  \[ P(X=x,Y=y) = P(X=x)P(Y=y) \]
-
-
-
-  Voor een koppel continue stochastische veranderlijken:
-  \[ f_{X,Y}(x,y) = f_{X}(x)f_{Y}(y) \]
-
 
 
 \subsection{Voorwaardelijke verdeling}
@@ -88,6 +101,7 @@ continu:
   f_{X|Y}(x|y) = \frac{f_{X,Y}(x,y)}{f_{Y}(y)}
   \]
 \end{de}
+\extra{nagaan dat dit echt dichtheidsfuncties zijn p 82}
 
 \section{Karakteristieken van een stochastisch koppel}
 \label{sec:karakt-van-een}
@@ -97,29 +111,39 @@ continu:
 
 \begin{de}
   Zij $X,Y$ een stochastisch koppel en $g: \mathbb{R}^{2} \rightarrow \mathbb{R}$ een Borel-meetbare functie.
-  De \term{verwachtingswaarde} van $g(X,Y)$ is dan als volgt gedefinieerd.
-  Voor een discreet koppel:
-  \[ E[g(X,Y)] = \sum_{x}\sum_{y}g(x,y)P(X=x,Y=y) \]
-  Voor een continu koppel:
-  \[ E[g(X,Y)] = \int_{-\infty}^{+\infty}g(x,y)f_{X,Y}(x,y)\ dx\ dy \]
-  ... als ze bestaat.
+  De verwachtingswaarde van $g(X,Y)$ is dan als volgt gedefinieerd als ze bestaat.
+  \begin{itemize}
+  \item  Voor een discreet koppel:
+    \[ E[g(X,Y)] = \sum_{x}\sum_{y}g(x,y)P(X=x,Y=y) \]
+  \item Voor een continu koppel:
+    \[ E[g(X,Y)] = \int_{-\infty}^{+\infty}g(x,y)f_{X,Y}(x,y)\ dx\ dy \]
+  \end{itemize}
 \end{de}
+
+\begin{opm}
+  Het bestaan hangt af van het bestaan van ... 
+  \begin{itemize}
+  \item  Voor een discreet koppel:
+    \[ E[g(X,Y)] = \sum_{x}\sum_{y}|g(x,y)|P(X=x,Y=y) \]
+  \item Voor een continu koppel:
+    \[ E[g(X,Y)] = \int_{-\infty}^{+\infty}|g(x,y)|f_{X,Y}(x,y)\ dx\ dy \]
+  \end{itemize}
+\end{opm}
 
 \begin{de}
   Ruwe momenten:
   stel $g(x,y) = x^{r_{x}}y^{r_{y}}$
   \[ E[X^{r_{x}}Y^{r_{y}}] \]
-\TODO{wut}
 \end{de}
 
 \begin{de}
-  Centrale momenten
+  Centrale momenten:
   stel $g(x,y) = (x-\mu_{x})^{r_{x}}(y-\mu_{y})^{r_{y}}$
   \[ E[(X-\mu_{x})^{r_{x}}(Y-\mu_{y})^{r_{y}}] \]
 \end{de}
 
 \begin{de}
-  gezamelijke momentgenererende functie
+  Gezamelijke momentgenererende functie
   stel $g(x,y) = e^{t_{x}x+t_{y}y}$
   \[ M_{X,Y}(t_{x},t_{y}) = E[e^{t_{x}X}e^{t_{y}Y}] \]
 \end{de}
@@ -131,14 +155,21 @@ continu:
 \begin{de}
   De \term{covariantie} van $X$ en $Y$ wordt gedefinieerd als $Cov(X,Y)$:
   \[ Cov(X,Y) = E[(X-E[X])(Y-E[Y])] \]
-\end{de}
 
-\TODO{specifiek voor discrete e continue koppels}
+  \begin{itemize}
+  \item Voor een discreet koppel:
+    \[ Cov(X_{1},X_{2}) = \sum_{x_{1}}\sum_{x_{2}}\left(x_{1}-E\left[X_{1}\right]\right)\left(x_{2}-E\left[X_{2}\right]\right)P(X_{1} = x_{1}, X_{2} = x_{2}) \]
+  \item Voor een continu koppel:
+    \[ Cov(X_{1},X_{2}) = \int_{\mathbb{R}}\int_{\mathbb{R}}\left(x_{1}-E\left[X_{1}\right]\right)\left(x_{2}-E\left[X_{2}\right]\right)f_{X_{1},X_{2}}(x_{1},x_{2})\ dx_{1}dx_{2} \]
+  \end{itemize}
+\end{de}
 
 \begin{de}
   De \term{correlatieco\"efficient} van $X$ en $Y$ wordt gedefinieerd als $Corr(X,Y)$:
   \[ Corr(X,Y) = \frac{Cov(X,Y)}{\sqrt{Var[X]Var[Y]}} \]
 \end{de}
+
+
 
 \subsection{Eigenschappen}
 \label{sec:eigenschappen}
@@ -181,7 +212,7 @@ continu:
 \end{st}
 
 \begin{st}
-  \[ Var[aX+bY]  a^{2}Var[X] + b^{2}Var[Y] + 2abCov(X,Y) \]
+  \[ Var[aX+bY] = a^{2}Var[X] + b^{2}Var[Y] + 2abCov(X,Y) \]
 \extra{bewijs}
 \end{st}
 
@@ -214,7 +245,6 @@ continu:
   }
   \]
   met $\mu_{x},\mu_{y}\in \mathbb{R}$, $\sigma_{x},\sigma_{y}\in \mathbb{R}_{0}^{+}$ en $\rho \in [0,1]$.
-\TODO{ meer uitleg hierbij}
 \end{de}
 
 
