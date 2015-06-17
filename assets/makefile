@@ -3,7 +3,7 @@ DOT_EXT     = dot
 OUT_FORMAT  = eps
 OUT_EXT     = eps
 
-ILLUSTRATIONS = systeem-serieel.eps systeem-parallel.eps
+ILLUSTRATIONS = systeem-serieel.eps systeem-parallel.eps benaderingen.eps
 
 all: graphviz_illustrations
 

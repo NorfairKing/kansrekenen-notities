@@ -575,6 +575,80 @@
   \end{ex-antwoord}
 \end{examenvraag}
 
+\iffalse
+\begin{examenvraag}{Juni 2014}
+  \begin{ex-vraag}
+    In een fabriek zijn er $500$ LEDs van elke kleur: rood, groen en blauw.
+    De kans dat er op een bepaalde dag \'e\'en LED stuk gaat is $0.1\%$.
+    Bereken de kans dat er op een bepaalde dag $40$ LED's stuk gaan van elke kleur.
+  \end{ex-vraag}
+
+  \begin{ex-antwoord}
+    We spreken in heel de oplossing over die bepaalde dag.
+    Noem $R$ het aantal rode LEDs dat kapot gaat, $B$ het aantal blauwe LEDs dat kapot gaat en $G$ het aantal groene LEDs dat kapot gaat.
+    Gevraagd is dan de volgende kans:
+    \[ P(R \ge 40, B \ge 40, G \ge 40) \]
+    Wanneer we ervan uitgaan dat de kleur van een LED onafhankelijk is van de kans dat hij kapot gaat, komt dit op het volgende neer:
+    \[ P(R \ge 40)^{3} \]
+    We kunnen een LED die kapot gaat als een 'succes' beschouwen.\footnote{Ironisch h\'e!}
+    De succeskans is dan $p=0.001$ en $R$ is dan binomiaal verdeeld:
+    \[ R \sim B(n=500,p=0.001) \]
+    We kunnen nu de gevraagde kans uitrekenen, maar dit zal waarschijnlijk veel langer duren dan er tijd voor is op het examen dus we zullen de kans moeten gaan benaderen.
+    \kennen{We gaan het diagram van de benaderingen af.\figref{fig:benaderingen}}
+    \begin{itemize}
+    \item $n = 500 > 30$ geldt, dus we moeten inderdaad een benadering maken.
+    \item $np = 0.5 < 5$ geldt, dus we zullen $R$ benaderen met een Poissonverdeling waarin $\alpha = 0.5$ geldt.
+    \end{itemize}
+    De gevraagde kans benaderen we dan als volgt:
+    \[ P(R \ge 40) \approx P(\mathcal{P}(\alpha=0.5) \ge 40)  \]
+    \kunnen{De normale verdeling kunnen we opzoeken}
+    \[ P(\mathcal{N}(\mu = 0.5, \sigma=0.5) \ge 40) = P\left(Z \ge \frac{40-0.5}{\sqrt{0.5}}\right) = 1 - P(Z \le 55.86) \]
+  \end{ex-antwoord}
+\end{examenvraag}
+\fi
+
+\begin{examenvraag}{Augustus 2013}
+  \begin{ex-vraag}
+    Het gewicht van een zak wortelen van het merk Flandria is normaal verdeeld met gemiddeld gewicht $10kg$ en variantie $2kg^2$.
+    Een zak wortelen wordt afgekeurd als hij minder weegt dan een ondergrens $g$ of meer dan $11kg$.
+    \begin{enumerate}
+    \item Wat is $g$ als maximaal $1\%$ van de zakken afgekeurd mag worden wegens 'te licht'.
+    \item Hoe groot is de kans dat $50$ zakken samen tussen $490kg$ en $530kg$ wegens.
+    \end{enumerate}
+  \end{ex-vraag}
+
+  \begin{ex-antwoord}
+    \begin{enumerate}
+    \item
+      Zij $X$ de stochastische variabele het gewicht van een zak wortelen voorstelt.
+      Als er maximaal $1\%$ van de zakken afgekeurd mag worden omdat ze te licht zijn, moet de kans dat een zak minder dan $g\ kg$ weegt kleiner dan $1\%$ zijn.
+      Gevraagd is dus de kleinste $g$ die aan volgende ongelijkheid voldoet:
+      \[ P(X < g) \le 0.01 \]
+      Omdat $X$ normaal verdeeld is, is dit equivalent met de volgende ongelijkheid:
+      \[ P\left(Z < \frac{g-10}{2}\right) \le 0.01 \]
+      \tabel{Standaard Normale Verdeling}{$P(Z \le 2.31) = 0.99$}
+      We vinden dat $\frac{g-10}{2}$ minimaal $-2.32$ mag zijn.
+      \[ \frac{g-10}{2} = -2.31 \Rightarrow g = 5.38 \]
+      Het antwoord is dus dat $g$ mininmaal $5.38$ moet zijn.
+    \item
+      Noem $Y$ de stochastisch variabele die de som het gewicht van $50$ willekeurige zakken wortelen voorstelt.
+      \[ Y = 50 \cdot X \]
+      De gevraagde kans ziet er dan als volgt uit:
+      \[ P(490 \le Y \le 530) \]
+      Volgens de centrale limietstelling kunnen we de verdeling van $Y$ benaderen met een Normale verdeling als volgt:
+      \[ Y \sim \mathcal{N}(\mu = 50 \cdot 10,\ \sigma^{2} = 50 \cdot 2) \]
+      Omdat $Y$ normaal verdeeld is kunnen we de gevraagde kans herschrijven als volgt:
+      \[ P(490 \le Y \le 530) = P(Y \le 530) - P(Y \le 490) = P\left( Z \le \frac{530-500}{100} \right) - P\left( Z \le \frac{490-500}{100}\right) \]
+      \tabel{Standaard Normale Tabel}{$P(Z \le 0.3) = 0.618$ en $P(Z \le 0.1) = 0.540$}
+      We vinden de gevraagde kans:
+      \[ P(490 \le Y \le 530) = 0.618 - 0.460 = 0.158 \]
+      Het antwoord is dus dat de kans $0.158$ is of $15.8\%$.
+    \end{enumerate}
+  \end{ex-antwoord}
+\end{examenvraag}
+
+
+
 \end{document}
 
 %%% Local Variables:

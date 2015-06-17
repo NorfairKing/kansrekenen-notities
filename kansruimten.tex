@@ -284,7 +284,7 @@
 
 \begin{ei}
   \evraag{Juni 2014}
-  Voor elke collectie deelverzamelingen $\mathcal{C} \subseteq \Omega$ bestaat $\sigma(C)$.
+  Voor elke collectie deelverzamelingen $\mathcal{C}$ van $\Omega$ bestaat $\sigma(C)$.
 
   \begin{proof}
     Niet constructief bewijs van existentie\\
@@ -296,20 +296,25 @@
     \[ \mathcal{B} = \bigcap_{\mathcal{A} \in X}\mathcal{A} \]
     $\mathcal{B}$ omvat nu zeker $\mathcal{C}$ omdat $C$ een deel is van elke $\mathcal{A} \in X$.
     We tonen nu aan dat $\mathcal{B}$ een $\sigma$-algebra is.
-\extra{bewijs dit.}
     \begin{itemize}
-    \item $\Omega \in \mathcal{A}$
-    \item $A \in \mathcal{A} \Rightarrow A^{C} \in \mathcal{A}$
-    \item $(\forall n\in \mathbb{N}: A_{n}\in \mathcal{A}) \Rightarrow \bigcup_{n\in \mathbb{N}} A_{n} \in \mathcal{A}$
+    \item $\Omega \in \mathcal{B}$:\\
+      Elke $\mathcal{A}$ in $\mathcal{P}$ bevat $\Omega$ omdat het zelf $\sigma$-algebra's zijn.
+      $\mathcal{B}$, als doorsnede van de $\mathcal{A}$ bevat dus zeker ook $\Omega$.
+    \item $B \in \mathcal{B} \Rightarrow B^{C} \in \mathcal{B}$\\
+      Zij $B$ een deelverzameling van $\Omega$ in $\mathcal{B}$, dan betekent dit per definitie van $\mathcal{B}$ dat $B$ ook in elke $\mathcal{A}$ in $X$ zit.
+      Omdat elke $\mathcal{A}$ in $X$ een $\sigma$-algebra is, bevat elke $\mathcal{A}$ ook $B^{C}$.
+      Dit betekent precies dat $\mathcal{B}$ ook $B^{C}$ bevat.
+    \item $(\forall n\in \mathbb{N}: B_{n}\in \mathcal{B}) \Rightarrow \bigcup_{n\in \mathbb{N}} B_{n} \in \mathcal{B}$:
+      Deze redenering is precies analoog aan het vorige puntje.
     \end{itemize}
   \end{proof}
 \end{ei}
 
 \begin{de}
   \evraag{Juni 2014}
-  De \term{Borel $\sigma$-algebra op $\mathbb{R}$} is de $\sigma$-algebra voortgebracht door $\mathcal{C}$:
+  De \term{Borel $\sigma$-algebra op $\mathbb{R}$} is de $\sigma$-algebra voortgebracht door de volgende verzamelingen (geldt voor beide):
   \[ \mathcal{C} = \{ ]-\infty,a] \mid a \in \mathbb{R} \} \]  
-  \[ \{ \interval{a}{b} \mid a,b\in \mathbb{R} \} \]  
+  \[ \left\{ \interval{a}{b} \mid a,b\in \mathbb{R} \right\} \]  
 \end{de}
 
 %\begin{st}
