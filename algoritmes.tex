@@ -5,21 +5,98 @@
 \label{cha:algoritmes}
 
 \section{Opzoeken in de tabel van de standaard normale verdeling}
+Het is niet evident en niet uitgelegd hoe iets in de tabel van de standaard normale verdeling opgezocht kan worden. 
+Hier daarom wat uitleg.
+
+Allereerst is het belangrijk om te weten dat de getallen in de tabel zelf de kans $P(Z \le z)$ voorstel, waarbij $z$ wordt gegeven door de rand van de tabel.
+De som van de waarde aan het begin van de rij en de waarde het begin van de kolom geeft u de $z$ waarvoor $P(Z \le z)$ in de tabel staat.
+
+In de tabel staat natuurlijk niet de kans $P(Z \le z)$ voor alle mogelijke $z$.
+Er staan alleen kansen in voor bepaalde $z \in \interval{0}{3.3}$ en enkel voor maximum twee cijfers na de komma.
+De maker van de tabel ging er bovendien van uit dat u twee dingen weet:
+
+\[ P(Z \le z) = 1 - P(Z > z) \quad\text{ en }\quad P(Z \le z) = P(Z \ge -z) \]
+
+Merk op dat die eerste gelijkheid strikt klopt, maar omdat we de resultaten toch al niet exact zijn (door afrondingen) maken we er eveneens het volgende van:
+\footnote{Ja. Ik weet het. Ik vind het ook lelijk maar dat is nu eenmaal waar statistici zich mee bezig houden.}
+\[ P(Z \le z) = 1 - P(Z \le z) \]
+Aan de hand van deze twee regels kunnen we uit de tabel nog veel meer informatie halen.
+
+We kunnen bovendien, mits een beetje gefoefel, de tabel ook gebruiken om, gegeven een bepaalde kans $P(Z \le z)$ de $z$ te bepalen. 
 
 \subsection{Abstract}
 \subsubsection*{Vraag}
-\subsubsection*{Antwoord}
+\begin{itemize}
+\item 
+  \begin{enumerate}
+  \item Bepaal $P(Z \le z)$ voor $z \in\interval{0}{3.3}$
+  \item Bepaal $P(Z \ge z)$ voor $z \in\interval{0}{3.3}$
+  \item Bepaal $P(Z \le z)$ voor $z \in\interval{-3.3}{0}$
+  \item Bepaal $P(Z \ge z)$ voor $z \in\interval{-3.3}{0}$
+  \end{enumerate}
+\item
+  \begin{itemize}
+  \item Bepaal $z$ zodat $P(Z \le z) = p$ geldt met $p \in \interval{0.5}{1}$ 
+  \item Bepaal $z$ zodat $P(Z \ge z) = p$ geldt met $p \in \interval{0.5}{1}$
+  \item Bepaal $z$ zodat $P(Z \le z) = p$ geldt met $p \in \interval{0}{0.5}$
+  \item Bepaal $z$ zodat $P(Z \ge z) = p$ geldt met $p \in \interval{0}{0.5}$
+  \end{itemize}
+\end{itemize}
 
+\subsubsection*{Antwoord}
+\begin{itemize}
+\item 
+  \begin{enumerate}
+  \item Lees $P(Z \le z)$ af.
+  \item Lees $P(Z \le z)$ af. Het resultaat is $1-P(Z \le z)$.
+  \item Lees $P(Z \le -z)$ af. Het resultaat is $1-P(Z \le -z)$.
+  \item Lees $P(Z \le -z)$ af. Dit is meteen het resultaat.
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \item Zoek $p$ in de tabel en tel de hoofdingen op.
+  \item Zoek $p$ in de tabel en tel de hoofdingen op om $-z$ te bekomen.
+  \item Zoek $1-p$ in de tabel en tel de hoofdingen op om $-z$ te bekomen.
+  \item Zoek $1-p$ in de tabel en tel de hoofdingen op om $z$ te bekomen.
+  \end{enumerate}
+\end{itemize}
 
 
 \subsection{Voorbeeld}
 \subsubsection*{Vraag}
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \item Bepaal $P(Z \le 1.25)$
+  \item Bepaal $P(Z \ge 1.25)$
+  \item Bepaal $P(Z \le -0.3)$
+  \item Bepaal $P(Z \ge -0.3)$
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \item Bepaal $z$ zodat $P(Z \le z) = 0.6$ geldt
+  \item Bepaal $z$ zodat $P(Z \ge z) = 0.6$ geldt
+  \item Bepaal $z$ zodat $P(Z \le z) = 0.2$ geldt
+  \item Bepaal $z$ zodat $P(Z \ge z) = 0.2$ geldt.
+  \end{enumerate}
+\end{itemize}
 \subsubsection*{Antwoord}
-
-
-
-
-
+\begin{itemize}
+\item
+  \begin{enumerate}
+  \item $P(Z \le 1.25) = 0.894$
+  \item $P(Z \ge 1.25) = 1-P(Z \le 1.25) = 1- 0.894 = 0.106$
+  \item $P(Z \le -0.3) = P(Z \ge 0.3) = 1- P(Z \le 0.3) = 1-0.619 = 0.381$
+  \item $P(Z \ge -0.3) = P(Z \le 0.3) = 0.619$
+  \end{enumerate}
+\item
+  \begin{enumerate}
+  \item $P(Z \le z) = 0.6 \Rightarrow z = 0.25$
+  \item $P(Z \ge z) = 0.6 \Rightarrow P(Z \le -z) = 0.6 \Rightarrow -z = 0.25 \Rightarrow z = -0.25$ 
+  \item $P(Z \le z) = 0.2 \Rightarrow 1-P(Z \ge z) = 0.2 \Rightarrow P(Z \ge z) = 0.8 \Rightarrow P(Z \le -z) = 0.8 \Rightarrow -z = 0.84 \Rightarrow z = -0.84$
+  \item $P(Z \ge z) = 0.2 \Rightarrow 1-P(Z \le z) = 0.2 \Rightarrow P(Z \le z) = 0.8 \Rightarrow z = 0.8$
+  \end{enumerate}
+\end{itemize}
 
 
 \end{document}
