@@ -24,7 +24,7 @@ Aan de hand van deze twee regels kunnen we uit de tabel nog veel meer informatie
 
 We kunnen bovendien, mits een beetje gefoefel, de tabel ook gebruiken om, gegeven een bepaalde kans $P(Z \le z)$ de $z$ te bepalen. 
 
-\subsection{Abstract}
+\subsection*{Abstract}
 \subsubsection*{Vraag}
 \begin{itemize}
 \item 
@@ -62,7 +62,7 @@ We kunnen bovendien, mits een beetje gefoefel, de tabel ook gebruiken om, gegeve
 \end{itemize}
 
 
-\subsection{Voorbeeld}
+\subsection*{Voorbeeld}
 \subsubsection*{Vraag}
 \begin{itemize}
 \item
@@ -98,6 +98,36 @@ We kunnen bovendien, mits een beetje gefoefel, de tabel ook gebruiken om, gegeve
   \end{enumerate}
 \end{itemize}
 
+\newpage
+\section{Verwachtingswaarde en variantie berekenen aan de hand van een MGF}
+\subsection*{Abstract}
+\subsubsection*{Vraag}
+Gegeven de momentgenererende functie $M_{X}(t)$ van een stochastische variabele $X$, bepaal de verwachtingswaarde en de variantie van $X$.
+
+\subsubsection*{Antwoord}
+De verwachtingswaarde is gelijk aan het eerste ruwe moment.
+\[ E[X] = \alpha_{1} \]
+De variantie is gelijk aan het eerste centrale moment, dat we overigens kunnen schrijven in functie van het eerste ruwe en het tweede ruwe moment:
+\[ Var[X] = \mu_{1}(X) = \alpha_{2}(X) - \alpha_{1}(X)^{2} = E[X^{2}] - E[X]^{2} \]
+De ruwe momenten kunnen we tenslotte vinden door de momentgenererende functie af te lijden en daarna te evalueren in nul.
+\[ \alpha_{k} = \left.\frac{d^{k}}{dt^{k}}M_{X}(t)\right|_{t=0} \]
+
+\subsection*{Voorbeeld}
+\subsubsection*{Vraag}
+Zij $X$ een stochastische variabele met de volgende momentgenererende functie:
+\[ M_{X}(t) = e^{-5t} \]
+Bepaal de verwachtingswaarde en de variantie van $X$.
+
+\subsubsection*{Antwoord}
+We berekenen eerst de afgeleide van $M_{X}(t)$:
+\[ \frac{d}{dt}M_{X}(t) = -5e^{-5t} \]
+In $t=0$ is dit $-5$.
+De verwachtinsgwaarde van $X$ is dus $-5$.\\
+Nu de tweede afgeleide van $M_{X}(t)$:
+\[ \frac{d^{2}}{dt^{2}}M_{X}(t) = \frac{d}{dt} -5e^{-5t} = 25e^{-5t} \]
+In $t=0$ is dit $25$.
+De variantie van $X$ kunnen we nu eenvoudig berekenen:
+\[ Var[X] = 25 - (-5)^{2} = 0 \]
 
 \end{document}
 
