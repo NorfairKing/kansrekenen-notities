@@ -575,6 +575,53 @@
   \end{ex-antwoord}
 \end{examenvraag}
 
+\begin{examenvraag}{Augustus 2013}
+  \begin{ex-vraag}
+    Veronderstel een gezamelijke dichtheidsfunctie van twee continue stochastische veranderlijken $X$ en $Y$:
+    \[ f_{X,Y}(x,y) = 2 \]
+    Hierin is $f_{X,Y}$ gedefinieerd op $\{ (x,y) \mid x,y\in \interval{0}{1}, x+y \le 1 \}$
+    \begin{enumerate}
+    \item Bereken de marginale dichtheidsfuncties $f_{X}$ en $f_{Y}$
+    \item Bereken de voorwaardelijke dichtheidfunctie $f_{Y\mid X=x}(y\mid X=x)$ van $(Y \mid X = x)$
+    \item Bereken de covariantie van $X$ en $Y$.
+    \end{enumerate}
+  \end{ex-vraag}
+  
+  \begin{ex-antwoord}
+    \begin{enumerate}
+    \item 
+      \kennen{De marginale dichtheidsfunctie vinden we door de gezamelijke dichtheidsfunctie te integreren: $f_{X} = \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dy$.}
+      \[ f_{X}(x) = \int_{-\infty}^{+\infty}f_{X,Y}(x,y)\ dy = \int_{0}^{1-x}2\ dy = 2-2x \]
+      Analoog vinden we de marginale dichtheidsfunctie voor $Y$:
+      \[ f_{Y}(y) = 2-2y\]
+      Beide zijn gedefinieerd op $\interval{0}{1}$.
+    \item
+      \kennen{De voorwaardelijke dichtheidsfunctie berekenen we aan de hand van de dichtheidsfuncties: $f_{Y\mid X}(y\mid x)$}
+      \[ f_{Y\mid X}(y\mid x) = \frac{f_{X,Y}(x,y)}{f_{X}(x)} = \frac{2}{2-2x} \]
+      Voor een gegeven $x$ is deze functie gedefinieerd op $\interval{0}{1-x}$.
+    \item
+      \kennen{De covariantie van twee stochastische variabelen kunnen we berekenen aan de hand van de formule $Cov(X,Y) = \int_{-\infty}^{+\infty}(x-E[X])(y-E[Y])f_{X,Y}(x,y)\ dxdy$.}
+      We berekenen eerst $E[X]$ en $E[Y]$:
+      \[ E[X] = \int_{-\infty}^{+\infty}f_{X}\ dx = \int_{0}^{1}2-2x\ dx = 1 \]
+      Analoog berekenen we dat ook $E[Y] = 1$ geldt.
+      \begin{align*}
+        &\int_{-\infty}^{\infty}\int_{-\infty}^{+\infty}(x-E[X])(y-E[Y])f_{X,Y}(x,y)\ dxdy\\
+        &= \int_{0}^{1}\int_{0}^{1-x}2(x-1)(y-1)\ dxdy\\
+        &= 2\int_{0}^{1}\int_{0}^{1-x}xy-x-y+1\ dx\ dy\\
+        &= 2\int_{0}^{1}\left( \int_{0}^{1-x}xy\ dy + \int_{0}^{1-x}1-x\ dy +\int_{0}^{1-x}y\ dy \right)\ dx\\
+        &= 2\int_{0}^{1}\left( \frac{x}{2}(1-x)^{2} + (1-x)^{2} + \frac{1}{2}(1-x)^{2} \right)\ dx\\
+        &= \int_{0}^{1}(3+x)(1-x)^{2}\ dx\\
+        &= \int_{0}^{1}x^{3} + x^{2} -5x + 3\ dx\\
+        &= \frac{1}{4}+\frac{1}{3} - \frac{5}{2} + 3\\
+        &= \frac{13}{12}\\
+      \end{align*}
+      De covariantie van $X$ en $Y$ is dus $\frac{13}{12}$.
+    \end{enumerate}
+  \end{ex-antwoord}
+\end{examenvraag}
+
+
+
 \iffalse
 \begin{examenvraag}{Juni 2014}
   \begin{ex-vraag}
