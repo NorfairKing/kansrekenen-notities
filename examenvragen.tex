@@ -620,7 +620,45 @@
   \end{ex-antwoord}
 \end{examenvraag}
 
-
+\begin{examenvraag}{Augustus 2013}
+  \begin{ex-vraag}
+    Beschouw een toevalsvariabele $X$ met de volgende cumulatieve verdelingsfunctie.
+    \[ F_{X}(x) = 1 - e^{\left(\frac{X}{\alpha}\right)^{\beta}} \]
+    \begin{enumerate}
+    \item Bepaal de dichtheidsfunctie van $X$.
+    \item Stel $Y=\left(\frac{X}{\alpha}\right)^{\beta}$, wat kan je vertellen over de verdeling van $Y$.
+    \item Hoe kunnen we stochastische veranderlijken komende van de Weibull verdeling genereren vertrekkende van $U \sim \mathcal{U}\interval{0}{1}$?
+    \end{enumerate}
+  \end{ex-vraag}
+  
+  \begin{ex-antwoord}
+    \begin{enumerate}
+    \item \kennen{De dichtheidsfunctie van een stochastische variabele is de afgeleide van de cumulatieve verdelingsfunctie.}
+      \[ f_{X}(x) = \frac{d}{dx}F_{X}(x) = -\frac{\beta}{\alpha}\left(\frac{X}{\alpha}\right)^{\beta-1}e^{\left(\frac{X}{\alpha}\right)^{\beta}} \]
+    \item \kennen{De cumulatieve verdelingsfunctie in $x$ geeft u de waarde $P(X \le x)$.} 
+      \begin{align*}
+        F_{Y}(y)
+        &= P(Y \le y)\\
+        &= P\left(\left(\frac{X}{\alpha}\right)^{\beta} \le y\right)\\
+        &= P\left( X \le \alpha\sqrt[\beta]{y} \right)\\
+        &= F_{X}\left(\alpha\sqrt[\beta]{y} \right)\\
+        &= 1 - e^{\left(\frac{\alpha\sqrt[\beta]{y}}{\alpha}\right)^{\beta}}\\
+        &= 1-e^{y}
+      \end{align*}
+    \item
+      \kennen{Door de integraaltransformatie om te keren kunnen we eender welke stochastische variabele genereren.}
+      We hebben hiervoor eerst $F^{-1}$ nodig:
+      \begin{align*}
+        F_{X}(x) &=  1 - e^{\left(\frac{x}{\alpha}\right)^{\beta}}\\
+        1-F_{X}(x) &= e^{\left(\frac{x}{\alpha}\right)^{\beta}}\\
+        \ln\left(1-F_{X}(x)\right) &= \left(\frac{x}{\alpha}\right)^{\beta}\\
+        \alpha \sqrt[\beta]{\ln\left(1-F_{X}(x)\right)} &= x\\
+        F^{-1}(F(x)) &= \alpha \sqrt[\beta]{\ln\left(1-F_{X}(x)\right)}                                                
+      \end{align*}
+      We vinden een Weibull-verdeelde stochastische variabele door $F^{-1}$ toe te passen op $U$.
+    \end{enumerate}
+  \end{ex-antwoord}
+\end{examenvraag}
 
 \iffalse
 \begin{examenvraag}{Juni 2014}
