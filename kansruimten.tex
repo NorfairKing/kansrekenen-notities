@@ -423,7 +423,7 @@
 \begin{st}
   \evraag{Augustus 2013}
   Zij $\Omega,\mathcal{A},P$ een kansruimte en $X$ een partitie van $\Omega$ waarin $\forall A \in X:\ P(A) > 0$ geldt.
-  \[ \forall B \in A:\ P(B) = \sum_{A\in X}P(A)P(B|A) \]
+  \[ \forall B \in \mathcal{A}:\ P(B) = \sum_{A\in X}P(A)P(B|A) \]
   \begin{proof}
     \[
     \begin{array}{rl}
@@ -435,8 +435,9 @@
       &= P(B \cap \Omega) = P(B)\\
     \end{array}
     \]
-    Merk op dat de derde gelijkheid enkel geldt omdat $X$ een partitie is van $Q$ en de verzamelingen $(B \cap A)$ daarom disjunct zijn.
-  \end{proof}
+    Merk op dat de derde gelijkheid enkel geldt omdat $X$ een partitie is van $\Omega$ en de verzamelingen $(B \cap A)$ daarom disjunct zijn.
+    De vijfde gelijkheid geldt ook enkel omdat $X$ een partitie is van $\Omega$.
+   \end{proof}
 \end{st}
 
 \subsection{Stelling van Bayes}

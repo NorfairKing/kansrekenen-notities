@@ -36,15 +36,17 @@
   \]
 
   \begin{proof}
-    Het volstaat te bewijzen dat de MGF van $\mathcal{B(n,p_{n})}$ naar die van $\mathcal{P}(\alpha)$ convergeert:
+    Het volstaat te bewijzen dat de MGF van $\mathcal{B}(n,p_{n})$ naar die van $\mathcal{P}(\alpha)$ convergeert:
     \[ \forall t\in \mathbb{R}:\ \lim_{n\rightarrow +\infty}M_{\mathcal{B}(n,p_{n})}(t) = M_{\mathcal{P}(\alpha)}(t) \]
     \begin{align*}
        M_{\mathcal{B}(n,p_{n})}(t)
-       &= (q_{n} + p_{n}e^{t})^{n}
-       &= \left( 1 + \frac{(e^{t}-1)np_{n}}{n}\right)^{n}
-       \overset{np_{n}\rightarrow \alpha}{\underset{n\rightarrow+\infty}{\longrightarrow}}
-       e^{\alpha\left(e^{t}-1\right)}
-       = M_{\mathcal{P}(\alpha}(t)
+       &= (q_{n} + p_{n}e^{t})^{n}\\
+       &= (1-p_{n} + p_{n}e^{t})^{n}\\
+       &= (1 - (e^{t}-1))^{n}\\
+       &= \left( 1 + \frac{(e^{t}-1)np_{n}}{n}\right)^{n}\\
+       &\overset{np_{n}\rightarrow \alpha}{\underset{n\rightarrow+\infty}{\longrightarrow}}
+       e^{\alpha\left(e^{t}-1\right)}\\
+       &= M_{\mathcal{P}(\alpha)}(t)
     \end{align*}
     We hebben hier gebruik gemaakt $\left(1 + \frac{a_{n}}{n}\right)^{n} \rightarrow e^{a}$ als $a_{n}\rightarrow a$.
   \end{proof}
