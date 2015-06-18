@@ -24,14 +24,21 @@
 \newcommand{\lemref}[1]{\footnote{Zie lemma \ref{#1} op pagina \pageref{#1}.}}
 \newcommand{\alref}[1]{\footnote{Zie algoritme \ref{#1} op pagina \pageref{#1}.}}
 \newcommand{\secref}[1]{\footnote{Zie sectie \ref{#1} op pagina \pageref{#1}.}}
+\newcommand{\figref}[1]{\footnote{Zie figuur \ref{#1} op pagina \pageref{#1}.}}
 
 \newcommand{\hint}[1]{Hint: #1}
 
+% Counters
+\newcounter{todocounter}
+\newcounter{importantcounter}
+\newcommand{\todonum}[2][]{\stepcounter{todocounter}\todo[#1]{#2}}
+\newcommand{\todoi}[2][]{\stepcounter{importantcounter}\todonum[#1]{#2}}
+
 % Mooiere TODO's
-\newcommand{\TODO}[1]{\todo[color=red,inline,size=\small]{TODO: #1}}
-\newcommand{\extra}[1]{\todo[color=orange,inline,size=\small]{EXTRA: #1}}
-\newcommand{\clarify}[1]{\todo[color=yellow,inline,size=\small]{CLARIFY: #1}}
-\newcommand{\question}[1]{\todo[color=green,inline,size=\small]{QUESTION: #1}}
+\newcommand{\TODO}[1]{\todoi[color=red,inline,size=\small]{TODO: #1}}
+\newcommand{\extra}[1]{\todonum[color=orange,inline,size=\small]{EXTRA: #1}}
+\newcommand{\clarify}[1]{\todonum[color=yellow,inline,size=\small]{CLARIFY: #1}}
+\newcommand{\question}[1]{\todonum[color=green,inline,size=\small]{QUESTION: #1}}
 
 \newcommand{\waarom}[0]{\clarify{waarom?}}
 \newcommand{\needed}[0]{\clarify{referentie?}}
@@ -44,7 +51,10 @@
 \newcommand{\tabel}[2]{(Tabel #1: #2)}
 
 % Badges
+\newcommand{\bx}[1]{ \framebox[1.1\width]{#1} }
 \newcommand{\examen}[0]{\bx{{\bf Examenvraag!}}\\}
+\newcommand{\evraag}[1]{\bx{{\bf Examenvraag: #1 !}}\\}
+\newcommand{\stiekem}[1]{\textcolor{white}{\bf Examenvraag #1}\\}
 
 % Examenvragen
 \newenvironment{examenvraag}[1]
@@ -64,3 +74,14 @@
 
 % Voor meer plaats tussen wiskunde
 \renewcommand{\arraystretch}{1.25}
+
+% Echt een vierkantje
+\renewcommand{\qedsymbol}{$\square$}
+
+\newcommand{\1}{\mathbbmss{1}}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: " RET"
+%%% End:

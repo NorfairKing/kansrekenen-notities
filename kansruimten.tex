@@ -268,7 +268,7 @@
   De $\sigma$-algebra $\sigma(\mathcal{C})$ \term{voortgebracht door} $\mathcal{C}$ is de kleinste $\sigma$-algebra die $\mathcal{C}$ bevat.
 
   \begin{itemize}
-  \item $\sigma(\mathcal{C}$ is een $\sigma$-algebra.
+  \item $\sigma(\mathcal{C})$ is een $\sigma$-algebra.
   \item $\mathcal{C} \subseteq \sigma(\mathcal{C})$
   \item Elke $\sigma$-algebra $\mathcal{A}$ met $\mathcal{C} \subseteq \mathcal{A}$ omvat $\sigma(\mathcal{C})$.
   \end{itemize}
@@ -278,12 +278,13 @@
   De $\sigma$-algebra opgespannen door een collectie deelverzamelingen van een universum is uniek.
 
   \begin{proof}
-    Als er immers nog een (even kleine) sigma algebra zou zijn die aan de voorwaarde voldoet dan zouden ze gelijk zijn volgens de derde eigenschap.
+    Als er immers nog een (even kleine) sigma algebra zou zijn die aan de voorwaarde voldoet dan zouden ze gelijk zijn volgens de tweede en derde eigenschap.
   \end{proof}
 \end{st}
 
 \begin{ei}
-  Voor elke collectie deelverzamelingen $\mathcal{C} \subseteq \Omega$ bestaat $\sigma(C)$.
+  \evraag{Juni 2014}
+  Voor elke collectie deelverzamelingen $\mathcal{C}$ van $\Omega$ bestaat $\sigma(C)$.
 
   \begin{proof}
     Niet constructief bewijs van existentie\\
@@ -295,26 +296,33 @@
     \[ \mathcal{B} = \bigcap_{\mathcal{A} \in X}\mathcal{A} \]
     $\mathcal{B}$ omvat nu zeker $\mathcal{C}$ omdat $C$ een deel is van elke $\mathcal{A} \in X$.
     We tonen nu aan dat $\mathcal{B}$ een $\sigma$-algebra is.
-\extra{bewijs dit.}
     \begin{itemize}
-    \item $\Omega \in \mathcal{A}$
-    \item $A \in \mathcal{A} \Rightarrow A^{C} \in \mathcal{A}$
-    \item $(\forall n\in \mathbb{N}: A_{n}\in \mathcal{A}) \Rightarrow \bigcup_{n\in \mathbb{N}} A_{n} \in \mathcal{A}$
+    \item $\Omega \in \mathcal{B}$:\\
+      Elke $\mathcal{A}$ in $\mathcal{P}$ bevat $\Omega$ omdat het zelf $\sigma$-algebra's zijn.
+      $\mathcal{B}$, als doorsnede van de $\mathcal{A}$ bevat dus zeker ook $\Omega$.
+    \item $B \in \mathcal{B} \Rightarrow B^{C} \in \mathcal{B}$\\
+      Zij $B$ een deelverzameling van $\Omega$ in $\mathcal{B}$, dan betekent dit per definitie van $\mathcal{B}$ dat $B$ ook in elke $\mathcal{A}$ in $X$ zit.
+      Omdat elke $\mathcal{A}$ in $X$ een $\sigma$-algebra is, bevat elke $\mathcal{A}$ ook $B^{C}$.
+      Dit betekent precies dat $\mathcal{B}$ ook $B^{C}$ bevat.
+    \item $(\forall n\in \mathbb{N}: B_{n}\in \mathcal{B}) \Rightarrow \bigcup_{n\in \mathbb{N}} B_{n} \in \mathcal{B}$:
+      Deze redenering is precies analoog aan het vorige puntje.
     \end{itemize}
   \end{proof}
 \end{ei}
 
 \begin{de}
-  De \term{Borel $\sigma$-algebra op $\mathbb{R}$} is de $\sigma$-algebra voortgebracht door $\mathcal{C}$:
-  \[ \{ ]-\infty,a] \mid a \in \mathbb{R} \} \]  
-  \[ \{ \interval{a}{b} \mid a,b\in \mathbb{R} \} \]  
+  \evraag{Juni 2014}
+  De \term{Borel $\sigma$-algebra op $\mathbb{R}$} is de $\sigma$-algebra voortgebracht door de volgende verzamelingen (geldt voor beide):
+  \[ \mathcal{C} = \{ ]-\infty,a] \mid a \in \mathbb{R} \} \]  
+  \[ \left\{ \interval{a}{b} \mid a,b\in \mathbb{R} \right\} \]  
 \end{de}
 
-\begin{st}
-  Het \term{theorema van Vitali}\\
-  Er bestaat geen uniforme kansverdeling op het interval $[0,1]$.
-\zb
-\end{st}
+%\begin{st}
+%  Het \term{theorema van Vitali}\\
+%  Er bestaat geen uniforme kansverdeling op het interval $[0,1]$.
+%\zb
+%\end{st}
+\extra{goede uitleg van het theorema van Vitali}
 
 \section{Voorwaardelijke kans en onafhankelijkheid}
 \label{sec:voorwaardelijke-kans-en-onafhankelijkheid}
@@ -413,9 +421,23 @@
 \label{sec:wet-van-de}
 
 \begin{st}
+  \evraag{Augustus 2013}
   Zij $\Omega,\mathcal{A},P$ een kansruimte en $X$ een partitie van $\Omega$ waarin $\forall A \in X:\ P(A) > 0$ geldt.
-  \[ \forall B \in A:\ P(B) = \sum_{A\in X}P(A)P(B|A) \]
-  \extra{bewijs}
+  \[ \forall B \in \mathcal{A}:\ P(B) = \sum_{A\in X}P(A)P(B|A) \]
+  \begin{proof}
+    \[
+    \begin{array}{rl}
+      \sum_{A\in X}P(A)P(B|A)
+      &= \sum_{A\in X}\frac{P(A)P(B \cap A)}{P(A)}\\
+      &= \sum_{A\in X} P(B \cap A)\\
+      &= P(\cup_{A\in X}(B \cap A))\\
+      &= P(B \cap \cup_{A\in X}(A))\\
+      &= P(B \cap \Omega) = P(B)\\
+    \end{array}
+    \]
+    Merk op dat de derde gelijkheid enkel geldt omdat $X$ een partitie is van $\Omega$ en de verzamelingen $(B \cap A)$ daarom disjunct zijn.
+    De vijfde gelijkheid geldt ook enkel omdat $X$ een partitie is van $\Omega$.
+   \end{proof}
 \end{st}
 
 \subsection{Stelling van Bayes}
@@ -426,7 +448,15 @@
   Zij $\Omega,\mathcal{A},P$ een kansruimte en $X$ een partitie van $\Omega$ waarin $\forall A \in X:\ P(A) > 0$ geldt.
   Zij $B$ een gebeurtenis in $\mathcal{A}$ met $P(B) > 0$.
   \[ \forall A\in X:\ P(A|B) = \frac{P(A)P(B|A)}{\sum_{C\in X}P(C)P(B|C)} \]
-  \extra{bewijs}
+  \begin{proof}
+    \[
+      \begin{array}{rl}
+        \frac{P(A)P(B|A)}{\sum_{C\in X}P(C)P(B|C)}
+        &= \frac{P(A)P(B|A)}{P(B)}\\
+        &= \frac{P(A \cap B)}{P(B)} = P(A|B)\\
+      \end{array}
+    \]
+  \end{proof}
 \end{st}
 
 \subsection{Handige rekenregels}
@@ -551,13 +581,13 @@
 \begin{figure}[H]
   \caption{Een serieel systeem}
   \centering
-    \includegraphics[width=0.5\textwidth]{assets/systeem-serieel.png}
+    \includegraphics[width=0.5\textwidth]{assets/systeem-serieel.eps}
 \end{figure}
 
 \begin{figure}[H]
   \caption{Een parallel systeem}
   \centering
-    \includegraphics[width=0.5\textwidth]{assets/systeem-parallel.png}
+    \includegraphics[width=0.5\textwidth]{assets/systeem-parallel.eps}
 \end{figure}
 
 \begin{de}

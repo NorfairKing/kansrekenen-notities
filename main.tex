@@ -5,6 +5,8 @@
 \input{packages}
 \input{header}
 
+\immediate\write18{git rev-parse --short HEAD > commit.tex}
+
 \begin{document}
 
 \input{titelpagina}
@@ -23,11 +25,17 @@
 \subfile{algoritmes}
 \subfile{examenvragen}
 
+\appendix
+\subfile{oproep}
+
+\nocite{krI}
 \bibliographystyle{plain}
 \bibliography{kansrekenen-notities}
 
 \includepdf[pages=-]{assets/tabellen.pdf}
 \includepdf[pages=-]{assets/formularium.pdf}
+
+\printindex
 
 \listoftodos
 
