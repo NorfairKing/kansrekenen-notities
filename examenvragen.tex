@@ -287,49 +287,6 @@
 \end{examenvraag}
 
 
-\begin{examenvraag}{Tussentijdse Toets 2014}
-  \begin{ex-vraag}
-    Beschouw een toevalsvariabele $X$ met de volgende cumulatieve verdelingsfunctie.
-    \[ F_{X}(x) = 1 - e^{-\left(\frac{x}{\alpha}\right)^{\beta}} \quad x \ge 0 \]
-    Met parameters $\alpha$ en $\beta$.
-    Deze verdelingsfunctie beschrijft de Weibull verdeling.
-    \begin{itemize}
-    \item Bepaal de dichtheidsfunctie van $X$.
-    \item Stel $Y = \left(\frac{X}{\alpha}\right)^{\beta}$, wat kan je vertellen over de verdeling van $Y$?
-    \item Hoe kunnen we stochastische veranderlijken komende van de Weibull verdeling genereren, vertrekkende van $U \sim U\interval{0}{1}$? 
-    \end{itemize}
-  \end{ex-vraag}
-
-  \begin{ex-antwoord}
-    \begin{itemize}
-    \item
-      \kennen{De dichtheidsfunctie van $X$ is de afgeleide van de cumulatieve verdelingsfunctie.}
-      \[ f_{X} = \frac{dF_{X}(x)}{dx} = e^{-\left(\frac{x}{\alpha}\right)^{\beta}}\frac{\beta}{\alpha^{\beta}}x^{\beta-1} \]
-      \needed
-    \item 
-      Noem $g$ de functie die $X$ op $Y$ afbeeldt:
-      \[ g:\ \mathbb{R}^{+} \rightarrow \mathbb{R}^{+}:\ x \mapsto y = g(x) = \left(\frac{x}{\alpha}\right)^{\beta} \]
-      De inverse functie noemen we $h$:
-      \[ h = g^{-1}: y \mapsto x = h(y) = \alpha\sqrt[\beta]{y} \]
-      \kennen{We kunnen nu $f_{Y}$ berekenen vanuit $f_{X}$:}
-      \[ f_{Y}(y) = f_{X}(h(y))|h'(y)| = e^{-\left(\frac{\alpha\sqrt[\beta]{y}}{\alpha}\right)^{\beta}}\frac{\beta}{\alpha^{\beta}}\left(\alpha\sqrt[\beta]{y}\right)^{\beta-1} \frac{\alpha}{\beta}y^{\frac{1-\beta}{\beta}} = e^{-y} \]
-      \formularium{$\mathcal{E}$}{$f(x)$ voor $\mathcal{E}(1)$ is $e^{-x}$ voor $x>0$.}
-      Nu blijkt het volgende:
-      \[ X \sim \mathcal{E}(1) \]
-      \clarify{meer uitleg, waarom deze werkwijze?}
-    \item Gegeven $U \sim U\interval{0}{1}$:
-      \[
-      \begin{array}{rl}
-        F_{X} &= 1 - e^{-\left(\frac{x}{\alpha}\right)^{\beta}}\\
-        z &= 1 - e^{-\left(\frac{x}{\alpha}\right)^{\beta}}\\
-        x &= a\sqrt[\beta]{-\ln(1-z)}\\
-        F_{X}^{-1} &= a\sqrt[\beta]{-\ln(1-z)}\\
-      \end{array}
-      \]
-      \clarify{meer uitleg, waarom deze werkwijze?}
-    \end{itemize}
-  \end{ex-antwoord}
-\end{examenvraag}
 
 \begin{examenvraag}{Tussentijdse Toets 2014}
   \begin{ex-vraag}
@@ -620,10 +577,10 @@
   \end{ex-antwoord}
 \end{examenvraag}
 
-\begin{examenvraag}{Augustus 2013}
+\begin{examenvraag}{Augustus 2013, Tussentijdse Toets 2014}
   \begin{ex-vraag}
     Beschouw een toevalsvariabele $X$ met de volgende cumulatieve verdelingsfunctie.
-    \[ F_{X}(x) = 1 - e^{\left(\frac{X}{\alpha}\right)^{\beta}} \]
+    \[ F_{X}(x) = 1 - e^{-\left(\frac{X}{\alpha}\right)^{\beta}} \]
     \begin{enumerate}
     \item Bepaal de dichtheidsfunctie van $X$.
     \item Stel $Y=\left(\frac{X}{\alpha}\right)^{\beta}$, wat kan je vertellen over de verdeling van $Y$.
@@ -634,7 +591,7 @@
   \begin{ex-antwoord}
     \begin{enumerate}
     \item \kennen{De dichtheidsfunctie van een stochastische variabele is de afgeleide van de cumulatieve verdelingsfunctie.}
-      \[ f_{X}(x) = \frac{d}{dx}F_{X}(x) = -\frac{\beta}{\alpha}\left(\frac{X}{\alpha}\right)^{\beta-1}e^{\left(\frac{X}{\alpha}\right)^{\beta}} \]
+      \[ f_{X}(x) = \frac{d}{dx}F_{X}(x) = \frac{\beta}{\alpha}\left(\frac{X}{\alpha}\right)^{\beta-1}e^{\left(\frac{X}{\alpha}\right)^{\beta}} \]
     \item \kennen{De cumulatieve verdelingsfunctie in $x$ geeft u de waarde $P(X \le x)$.} 
       \begin{align*}
         F_{Y}(y)
@@ -642,11 +599,15 @@
         &= P\left(\left(\frac{X}{\alpha}\right)^{\beta} \le y\right)\\
         &= P\left( X \le \alpha\sqrt[\beta]{y} \right)\\
         &= F_{X}\left(\alpha\sqrt[\beta]{y} \right)\\
-        &= 1 - e^{\left(\frac{\alpha\sqrt[\beta]{y}}{\alpha}\right)^{\beta}}\\
-        &= 1-e^{y}
+        &= 1 - e^{-\left(\frac{\alpha\sqrt[\beta]{y}}{\alpha}\right)^{\beta}}\\
+        &= 1-e^{-y}
       \end{align*}
+      Als we dit afleiden om de dichtheidsfunctie te vinden we $f_{Y}(y) = e^{-y}$.
+      \formularium{Exponenti\"ele verdeling}{$f_{\mathcal{E}(\alpha)} = \alpha e^{-\alpha}$, $\alpha > 0$}
+      We vinden dat $Y$ exponentieel verdeeld is met parameter $\alpha = 1$.
+      \[ Y \sim \mathcal{E}(1) \]
     \item
-      \kennen{Door de integraaltransformatie om te keren kunnen we eender welke stochastische variabele genereren.}
+      \kennen{Door de integraaltransformatie om te keren kunnen we eender welke stochastische variabele genereren.\eiref{ei:integraaltransformatie}}
       We hebben hiervoor eerst $F^{-1}$ nodig:
       \begin{align*}
         F_{X}(x) &=  1 - e^{\left(\frac{x}{\alpha}\right)^{\beta}}\\
@@ -655,7 +616,7 @@
         \alpha \sqrt[\beta]{\ln\left(1-F_{X}(x)\right)} &= x\\
         F^{-1}(F(x)) &= \alpha \sqrt[\beta]{\ln\left(1-F_{X}(x)\right)}                                                
       \end{align*}
-      We vinden een Weibull-verdeelde stochastische variabele door $F^{-1}$ toe te passen op $U$.
+      We vinden een Weibull-verdeelde stochastische variabele door $F^{-1}$ toe te passen op $U$.\eiref{ei:stochastische-veranderlijke-genereren}
     \end{enumerate}
   \end{ex-antwoord}
 \end{examenvraag}
