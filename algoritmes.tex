@@ -158,6 +158,90 @@ We kunnen bovendien, mits een beetje gefoefel, de tabel ook gebruiken om, gegeve
   \end{enumerate}
 \end{itemize}
 
+
+\newpage
+\section{Het systeembetrouwbaarheid stramien}
+\subsection*{Abstract}
+\subsubsection*{Vraag}
+Gegeven een systeem dat bestaat uit \textbf{onafhankelijke componenten} en gegeven de faalkansen van alle componenten behalve \'e\'en alsook de kans dat de laatste component heeft gefaald, gegeven dat het hele systeem faalt.
+Bereken de laatste faalkans.
+
+Dit soort oefeningen kan nog veel uitgebreider zijn.
+Hier is daarom een stappenplan voor het oplossen van dit soort oefeningen.
+
+\subsubsection*{Antwoord}
+\begin{enumerate}
+\item Bereken (parametrisch) de faalkans van heel het systeem aan de hand van de rekenregels voor faalkansen in een systeem.
+  Dit doen we door het systeem stukje bij beetje te vereenvoudigen door componenten te combineren tot \'e\'en groter geheel.
+  \begin{itemize}
+  \item Twee componenten $A$ en $B$ die in serie staan vervangen we door een component $C$ met faalkans $p_{C} = p_{a} + p_{b} - p_{a}p_{b}$. Er moet immers maar \'e\'en van de twee componenten $A$ en $B$ falen om $C$ te doen falen.
+  \item Twee componenten $A$ en $B$ die in parallel staan vervangen we door een component $C$ met faalkans $p_{C} = p_{a}p_{b}$. $A$ en $B$ moeten immers beide falen om $C$ te doen falen.
+  \end{itemize}
+  Dit tot we met \'e\'en enkele component overblijven.
+  De faalkans van deze component is dan de faalkans van heel het systeem.
+\item Herschrijf de kans dat de laatste component heeft gefaald, gegeven dat het hele systeem faalt (waarschijnlijk) aan de hand van de regel van Bayes.
+  In die herschrijving zal het gevraagde al staan, maar ook nog onbekenden.
+We kunnen nu redeneren over de onbekenden om te bepalen wat die zullen zijn, of we kunnen gewoon de faalkans $p_{S}$ gebruiken die we eerder al berekend hebben.
+\item We rekenen nu verder uit om de gevraagde kans te bekomen. Er zullen meerdere mogelijkheden zijn om hetzelfde te bekomen.
+Maak het jezelf niet moeilijk en kies de makkelijkste.
+\end{enumerate}
+
+\subsection*{Voorbeeld}
+\subsubsection*{Vraag}
+Gegeven een systeem $S$ dat bestaat uit onafhankelijke componenten $A$, $B$, $C$, $D$ en $E$.
+$A$ en $B$, en $D$ en $E$ staan in serie. Deze twee combinaties staan, samen met $C$ in parallel.
+De faalkansen van $A$, $B$, $C$ en $D$ zijn gegeven:
+\[ p_{A} = 0.01,\quad p_{B} = 0.02,\quad p_{C} = 0.04,\quad p_{D} = 0.08 \]
+Wat is de faalkans van $E$ als we weten dat de kans dat $E$ gefaald heeft, gegeven dat het hele systeem faalt $0.1$ is.
+
+\subsubsection*{Antwoord}
+\begin{enumerate}
+\item Eerst berekenen we de faalkans van heel het systeem:
+  \begin{itemize}
+  \item Vervang $A$ en $B$ door $F$ met $p_{f} = p_{A} + p_{B} - p_{A}p_{B}$
+  \item Vervang $D$ en $E$ door $G$ met $p_{G} = p_{D} + p_{E} - P_{D}p_{E}$
+  \item Vervang $F$, $G$ en $C$ door $H$ met $p_{H} = p_{C}p_{F}p_{G} = p_{C}(p_{A} + p_{B} - p_{A}p_{B})(p_{D} + p_{E} - P_{D}p_{E})$
+  \end{itemize}
+  De faalkans van heel het systeem is dus $p_{S}$ als volgt:
+  \[ p_{S} = p_{C}(p_{A} + p_{B} - p_{A}p_{B})(p_{D} + p_{E} - P_{D}p_{E})\]
+\item We herschrijven $P(E|S)$:
+  \[ P(E | S) = \frac{P(S | E)P(E)}{P(S)} = \frac{P(S|E)P(E)}{P(S|E)P(E) + P(S|E^{C})P(E^{C})} \]
+  \begin{itemize}
+  \item $P(S|E)$ vinden we door te redeneren:
+    Als $E$ gefaald heeft, hoe kan het systeem dan nog falen?
+    Als $E$ gefaald heeft, valt allesinds al de tak van $D$ en $E$ als weg.
+    De faalkans van het overblijvende systeem geeft ons dat $P(S|E)$.
+    In dit geval is dat $p_{C}(p_{A}+p_{B}-p_{A}p_{B})$.
+  \item $P(S|E^{C})$ vinden we opnieuw door te redeneren:
+    Als $E$ zeker niet gefaald heeft, hoe kan het systeem dan nog falen?
+    We kunnen ons dit inbeelden alsof we $E$ weglaten uit het systeem.
+    De faalkans van het overblijvende systeem, en dus dus de kans $P(S|E^{C})$ is dan $p_{C}(p_{A} + p_{B} - p_{A}p_{B})p_{D}$.
+  \item We kunnen natuurlijk ook gewoon $P(S)=p_{s}$ zoals we dat hierboven uitgerekend hebben, gebruiken.
+  \end{itemize}
+\item We gebruiken nu de gemakkelijkste van volgende vergelijkingen om $p_{E}$ te bepalen. Natuurlijk komen ze op hetzelfde neer. 
+  \begin{itemize}
+  \item
+    \begin{align*}
+      P(E | S) = \frac{P(S | E)P(E)}{P(S)}
+      &= \frac{p_{C}(p_{A}+p_{B}-p_{A}p_{B})p_{E}}{p_{C}(p_{A} + p_{B} - p_{A}p_{B})(p_{D} + p_{E} - P_{D}p_{E})}\\
+      0.1&=\frac{0.04(0.01+0.02-(0.01)(0.02))p_{E}}{0.04(0.01+0.02-(0.01)(0.02))(0.08 + p_{E} - 0.08p_{E}} \\
+      0.1&=\frac{0.001192p_{E}}{0.00192(0.08 + p_{E} - 0.08p_{E})}
+      p_{E}&= 0.0088106
+    \end{align*}
+  \item
+    \[
+      P(E | S)
+      = \frac{P(S|E)P(E)}{P(S|E)P(E) + P(S|E^{C})P(E^{C})}
+      =\frac{p_{C}(p_{A}+p_{B}-p_{A}p_{B})p_{E}}{p_{C}(p_{A}+p_{B}-p_{A}p_{B})p_{E} + p_{C}(p_{A} + p_{B} - p_{A}p_{B})p_{D}(1-p_{E})}
+    \]
+    \begin{align*}
+      0.1 &= \frac{0.04(0.01+0.02-(0.01)(0.02))p_{E}}{0.04(0.01+0.02-(0.01)(0.02))p_{E} + (0.04(0.01+0.02-(0.01)(0.02))0.08)(1-p_{E})}\\
+    \end{align*}
+    Dat laatste is duidelijk meer werk.
+  \end{itemize}
+\end{enumerate}
+
+
 \newpage
 \section{Verwachtingswaarde en variantie berekenen aan de hand van een MGF}
 \subsection*{Abstract}
@@ -188,6 +272,17 @@ Nu de tweede afgeleide van $M_{X}(t)$:
 In $t=0$ is dit $25$.
 De variantie van $X$ kunnen we nu eenvoudig berekenen:
 \[ Var[X] = 25 - (-5)^{2} = 0 \]
+
+\iffalse
+\newpage
+\section{algoritme}
+\subsection*{Abstract}
+\subsubsection*{Vraag}
+\subsubsection*{Antwoord}
+\subsection*{Voorbeeld}
+\subsubsection*{Vraag}
+\subsubsection*{Antwoord}
+\fi
 
 \end{document}
 
