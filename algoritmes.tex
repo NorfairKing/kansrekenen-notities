@@ -4,6 +4,66 @@
 \chapter{Algoritmes}
 \label{cha:algoritmes}
 
+\section{Integreren over twee veranderlijke met een onderling afhankelijk domein}
+\subsection*{Abstract}
+\subsubsection*{Vraag}
+Gegeven een functie $f$ in twee veranderlijken:
+\[ f:\ A \subseteq \mathbb{R}^{2} \rightarrow \mathbb{R}:\ (x,y) \mapsto f(x,y) \]
+Zij $P$ het predicaat dat bepaalt of een koppel $(x,y)\in\mathbb{R}^{2}$ tot $A$ behoort.
+\[ \forall (x,y) \in \mathbb{R}^{2}:\ (x,y)\in A \Leftrightarrow P(x,y) \]
+$A$ is dan gedefinieerd als volgt:
+\[ A = \{ (x,y) \mid P(x,y) \} \]
+Bereken de volgende integraal:
+\[ \int_{(x,y)\in A}f(x,y)\ dx dy \]
+
+\subsubsection*{Antwoord}
+We zullen proberen de integraal op te splitsen in twee integralen.
+We hebben daarvoor een aangepaste versie van het predicaat $P$ nodig, namelijk het predicaat $P_{x}$ of $P_{y}$.
+$P_{y}(x)$ is het predicaat dat voor een gegeven $y$ bepaalt of een $x$ tot $A$ behoort:
+\[ \forall (x,y) \in \mathbb{R}^{2}:\ (x,y)\in A \Leftrightarrow P_{y}(x) \]
+Aan de hand van $P_{y}(x)$ of $P_{x}(y)$ kunnen we respectievelijk $A_{y}$ en $A_{x}$ definieren:
+\[ A_{y} = \{ (x,y) \mid P_{y}(x) \} \]
+Eveneens defini\"eren we $E_{X}$ en $E_{Y}$ als volgt:
+\[ E_{X} = \{ x \in\mathbb{R} \mid \exists y \in \mathbb{R}:\ P_{y}(x) \} \]
+We kunnen nu de integraal splitsen:
+\[ \int_{(x,y)\in A}f(x,y)\ dx = \int_{x\in E_{X}}\int_{y\in A_{x}}f(x,y)\ dy\ dx \]
+Op dit punt kunnen we de integraal eenvoudig uitrekenen als twee enkelvoudige integralen.
+
+\subsection*{Voorbeeld}
+\subsubsection*{Vraag}
+Zij $f$ gedefinieerd op $A = \{ (x,y)\in \interval{0}{1}^{2} \mid x^{2} \le y \}$ als volgt:
+\[ f:\ A \rightarrow \mathbb{R}:\ (x,y) \mapsto 3x^{2} + xy + 2y^{2} \]
+Bereken de integraal van $f$ over heel $A$.
+
+\subsubsection*{Antwoord}
+We bepalen eerst $A_{x}$:
+\[ A_{x} = \{ (x,y) \in \interval{0}{1}^{2} \mid y \ge x^{2} \} \]
+
+\begin{figure}[H]
+  \centering
+  \begin{tikzpicture}[scale=4]
+    \draw[->] (0,0) -- (1.1,0) node[right] {$x$};
+    \draw[->] (0,0) -- (0,1.1) node[above] {$y$};
+    \draw (1,0) -- (1,1) node {};
+    \draw (0,1) -- (1,1) node {};
+    \filldraw[thick,fill=green!80!black,opacity=.4] plot [smooth,domain=0:1] ({\x},{\x^2}) -- (0,1) -- cycle;
+  \end{tikzpicture}
+  \caption{$A$}
+\end{figure}
+\noindent
+We kunnen nu de integraal spliten:
+\[ \int_{0}^{1} \int_{x^{2}}^{1}f(x,y)\ dy\ dx \]
+... en uitrekenen.
+\begin{align*}
+  \int_{0}^{1} \int_{x^{2}}^{1}3x^{2} + xy + 2y^{2}\ dy\ dx
+  &= \int_{0}^{1} \left( 3x^{2}(1-x^{2}) + \frac{x}{2}(1-x^{4}) + (1-x^{6})\right)\ dx\\
+  &= \int_{0}^{1}-x^{6}-\frac{1}{2}x^{5}-3x^{4}+3x^{2}+\frac{1}{2}x 1\ dx\\
+  &= -\frac{1}{7} - \frac{1}{12} - \frac{3}{5} + 1 + \frac{1}{4} + 1\\
+  &=  \frac{299}{210}
+\end{align*}
+
+
+\newpage
 \section{Opzoeken in de tabel van de standaard normale verdeling}
 Het is niet evident en niet uitgelegd hoe iets in de tabel van de standaard normale verdeling opgezocht kan worden. 
 Hier daarom wat uitleg.
