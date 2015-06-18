@@ -273,6 +273,36 @@ In $t=0$ is dit $25$.
 De variantie van $X$ kunnen we nu eenvoudig berekenen:
 \[ Var[X] = 25 - (-5)^{2} = 0 \]
 
+
+\newpage
+\section{De MGF bepalen van een combinatie van onafhankelijke stochastische variabelen}
+\subsection*{Abstract}
+\subsubsection*{Vraag}
+Gegeven de momentgenererende functies van een aantal onafhankelijke stochastische veranderlijken, bepaal de momentgenererende functie van een bepaalde combinatie van deze variabelen.
+\subsubsection*{Antwoord}
+Er zijn twee rekenregels die we in ons achterhoofd moeten houden:
+\[ M_{aX+b}(t) = e^{bt}M_{X}(at) \]
+\[ M_{X+Y}(t) = M_{X}(t)M_{Y}(t) \text{ voor $X$ en $Y$ onafhankelijk.} \]
+Elke combinatie van stochastische variabelen en constanten kunnen we aan de hand hiervan berekenen.
+
+\subsection*{Voorbeeld}
+\subsubsection*{Vraag}
+Zij $X$, $Y$ en $Z$ drie onafhankelijke stochastische variabelen met volgende momentgenerende functie:
+\[ M_{X}(t) = \frac{1}{2t}(e^{5t}-e^{3t}) \]
+\[ M_{Y}(t) = e^{7t + 2t^{2}}\]
+\[ M_{Z}(t) = \frac{1}{3} + \frac{2}{3}e^{t} \]
+Bepaal de momentgenererende functie van $U$:
+\[ U = 4X + 3Y + 2Z + 5  \]
+
+\subsubsection*{Antwoord}
+\begin{align}
+  M_{U}(t)
+  &= e^{5t}\left(\frac{1}{2(4t)}(e^{5(4t)}-e^{3(4t)})\right)\left(e^{7(3t) + 2(3t)^{2}}\right)\left(\frac{1}{3} + \frac{2}{3}e^{2t}\right)\\
+  &= e^{5t}\frac{1}{8t}(e^{20t}-e^{12t})e^{21t + 18t^{2}}\left(\frac{1}{3} + \frac{2}{3}e^{2t}\right)\\
+  &= \frac{1}{8t}(e^{20t}-e^{12t})e^{26t + 18t^{2}}\left(\frac{1}{3} + \frac{2}{3}e^{2t}\right)
+\end{align}
+
+
 \iffalse
 \newpage
 \section{algoritme}

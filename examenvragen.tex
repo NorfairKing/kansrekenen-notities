@@ -123,14 +123,14 @@
         $P(A|B)$ is de kans op de gegeven wachttijd, gegeven dat we bij Yumm's bestellen.
         \[ P(A|B) = P(75 \le X \le 90) \]
         Omdat $X$ normaal verdeeld is, kunnen we deze kans berekenen met behulp van onze tabellen.
-        \[ P(75 \le X \le 90) = P(\frac{75-60}{20} \le Z \le \frac{90-60}{20}) = P(Z \le 1.5) - P(Z \le 0.75)\]
+        \[ P(75 \le X \le 90) = P\left(\frac{75-60}{20} \le Z \le \frac{90-60}{20}\right) = P(Z \le 1.5) - P(Z \le 0.75)\]
         \tabel{Standaard normale verdeling}{$P(Z \le 0.75)=0.733$ en $P(Z \le 1.5) = 0.933$}
         \[ = 0.933 - 0.773 = \frac{4}{25} = 0.16 \]
       \item $P(A|B^{C})$:\\
         $P(A|B^{C})$ is de kans op de gegeven wachttijd, gegeven dat we bij Tasty bestellen.
         \[ P(A|B^{C} = P(75 \le Y \le 90) \]
         Omdat $Y$ normaal verdeeld is, kunnen we deze kans berekenen met behulp van onze tabellen.
-        \[ P(75 \le Y \le 90) = P(\frac{75-75}{10} \le Z \le \frac{90-75}{10}) = P(Z \le 1.5) - P(Z \le 0) \]
+        \[ P(75 \le Y \le 90) = P\left(\frac{75-75}{10} \le Z \le \frac{90-75}{10}\right) = P(Z \le 1.5) - P(Z \le 0) \]
         \tabel{Standaard normale verdeling}{$P(Z \le 1.5) = 0.773$ en $P(Z \le 0) = 0.5$}
         \[ = 0.933 - 0.5 = \frac{433}{1000} = 0.433 \]
       \end{itemize}
@@ -145,7 +145,7 @@
       \[ U \sim B(n=52, p=0.16) \]
       We zoeken nu de volgende kans:
       \[ P(U > 9) \]
-      We kunnen stukje bij beetje uitrekenen door $42$ termen uit te schrijven en uit te rekenen, of we kunnen de centrale limietstelling gebruiken:
+      We kunnen stukje bij beetje uitrekenen door $52$ termen uit te schrijven en uit te rekenen, of we kunnen de centrale limietstelling gebruiken:
       \[ U = 52 X \sim N(52\mu_{X},52\sigma_{X}^{2}) \]
       We hebben hiervoor $\mu_{X}$ en $\sigma_{X}^{2}$ nodig.
       \kennen{Aangezien $X$ twee mogelijke uitkomsten heeft, in de zin dat het eten ofwel binnen de grenzen, ofwel buiten de grenzen aankomt, is $X$ Bernoulli-verdeeld met $p=0.16$.}
