@@ -478,10 +478,10 @@
         \begin{align*}
           E[\phi(X)]
           &= \int_{\mathbb{R}}\phi(x)f_{X}(x)\ dx\\
-          &= \int_{-\infty}^{a}\phi(x)f_{X}(x)\ dx + \int_{-a}^{a}\phi(x)f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
-          &\ge \int_{-\infty}^{a}\phi(x)f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
-          &\ge \phi(-a)\int_{-\infty}^{a}f_{X}(x)\ dx + \phi(a)\int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
-          &= \phi(a) \left( \int_{-\infty}^{a}f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\right)\\
+          &= \int_{-\infty}^{-a}\phi(x)f_{X}(x)\ dx + \int_{-a}^{a}\phi(x)f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
+          &\ge \int_{-\infty}^{-a}\phi(x)f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
+          &\ge \phi(-a)\int_{-\infty}^{-a}f_{X}(x)\ dx + \phi(a)\int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
+          &= \phi(a) \left( \int_{-\infty}^{-a}f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\right)\\
           &= \phi(a) \left(P(X \le a) + P(X \ge a)\right)\\
           &= \phi(a)P(|X| \ge a)
         \end{align*}
@@ -492,7 +492,7 @@
         \begin{align*}
           E[\phi(X)]
           &= \int_{\mathbb{R}}\phi(x)f_{X}(x)\ dx\\
-          &= \int_{-\infty}^{a}\phi(x)f_{X}(x)\ dx + \int_{-a}^{a}\phi(x)f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
+          &= \int_{-\infty}^{-a}\phi(x)f_{X}(x)\ dx + \int_{-a}^{a}\phi(x)f_{X}(x)\ dx + \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
           &\ge \int_{a}^{+\infty}\phi(x)f_{X}(x)\ dx\\
           &\ge \phi(a)\int_{a}^{+\infty}f_{X}(x)\ dx\\
           &= \phi(a)P(X \ge a)
